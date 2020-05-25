@@ -207,7 +207,7 @@ public class view_head extends javax.swing.JInternalFrame {
                             .addComponent(jButton4)
                             .addComponent(jButton3)
                             .addComponent(jButton2))))
-                .addContainerGap(372, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         pack();

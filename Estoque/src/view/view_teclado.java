@@ -223,7 +223,7 @@ public class view_teclado extends javax.swing.JInternalFrame {
                             .addComponent(jButton3)
                             .addComponent(jButton2)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         pack();
