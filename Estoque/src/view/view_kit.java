@@ -7,6 +7,9 @@ package view;
 
 import dao.dao_kitSaida;
 import javax.swing.table.DefaultTableModel;
+import model.model_head;
+import model.model_kitSaida;
+import model.model_webcam;
 
 /**
  *
@@ -22,8 +25,23 @@ public class view_kit extends javax.swing.JInternalFrame {
         readJtable();
         readJtableMonitor();
         readJtableOp();
+        readJtableMouse();
+        readJtableTeclado();
+        cboWebCam();
+        cboHead();
     }
-
+    public void cboWebCam(){//Chama dados do bd no combobox
+        dao_kitSaida dao = new dao_kitSaida();
+        for(model_kitSaida w : dao.findWebCam()){
+            cboWeb.addItem(w);
+        }
+    }
+    public void cboHead(){//Chama dados do bd no combobox
+        dao_kitSaida dao = new dao_kitSaida();
+        for(model_head h : dao.findHead()){
+            cboHead.addItem(h);
+        }
+    }
     public void readJtable() {
         DefaultTableModel model = (DefaultTableModel) tblPC.getModel();
         model.setNumRows(0);
@@ -60,6 +78,7 @@ public class view_kit extends javax.swing.JInternalFrame {
             });
         });
     }
+
     public void readJtableOp() {
         DefaultTableModel model = (DefaultTableModel) tbOperador.getModel();
         model.setNumRows(0);
@@ -76,6 +95,39 @@ public class view_kit extends javax.swing.JInternalFrame {
                 pc.getSetor(),
                 pc.getSupervisor()
 
+            });
+        });
+    }
+
+    public void readJtableMouse() {
+        DefaultTableModel model = (DefaultTableModel) tblMouse.getModel();
+        model.setNumRows(0);
+        dao_kitSaida dao = new dao_kitSaida();
+        dao.findMouse().forEach((pc) -> {
+            model.addRow(new Object[]{
+                pc.getCod_mouse(),
+                pc.getMarcamouse()
+            });
+        });
+    }
+    public void readJtableTeclado() {
+        DefaultTableModel model = (DefaultTableModel) tblTeclado.getModel();
+        model.setNumRows(0);
+        dao_kitSaida dao = new dao_kitSaida();
+        dao.findTeclado().forEach((pc) -> {
+            model.addRow(new Object[]{
+                pc.getCod_teclado(),
+                pc.getMarcateclado()
+            });
+        });
+    }
+    public void readJtableWebCam() {
+        DefaultTableModel model = (DefaultTableModel) tblTeclado.getModel();
+        model.setNumRows(0);
+        dao_kitSaida dao = new dao_kitSaida();
+        dao.findWebCam().forEach((pc) -> {
+            model.addRow(new Object[]{
+                pc.getCod_webcam(),
             });
         });
     }
@@ -107,23 +159,18 @@ public class view_kit extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tbOperador = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         txtMouse = new javax.swing.JTextField();
         btmMon = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblMonitor1 = new javax.swing.JTable();
+        tblMouse = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         txtTeclado = new javax.swing.JTextField();
         btnTeclado = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        tbOperador1 = new javax.swing.JTable();
+        tblTeclado = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -172,24 +219,22 @@ public class view_kit extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
         txtCodMon = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtCodigoTeclado = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtCodMouse = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        txtMarcaMouse = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
-        txtEnergy1 = new javax.swing.JTextField();
+        txtMarcaTeclado = new javax.swing.JTextField();
+        txtVGA = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        txtVGA1 = new javax.swing.JTextField();
+        txtEnerg = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        cboHead = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        cboWeb = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(1400, 721));
 
@@ -398,40 +443,6 @@ public class view_kit extends javax.swing.JInternalFrame {
             tbOperador.getColumnModel().getColumn(7).setHeaderValue("Supervisor(a)");
         }
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Perifericos"));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel10.setText("Head: ");
-
-        jLabel11.setText("WebCam:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel11)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel10))
-        );
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -445,7 +456,6 @@ public class view_kit extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,8 +466,6 @@ public class view_kit extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -478,7 +486,7 @@ public class view_kit extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Código do Mouse:");
 
-        tblMonitor1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -486,7 +494,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                 {null, null}
             },
             new String [] {
-                "ID_Monitor", "Código Monitor"
+                "codigo", "marca"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -497,30 +505,32 @@ public class view_kit extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblMonitor1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblMouse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblMonitor1MouseClicked(evt);
+                tblMouseMouseClicked(evt);
             }
         });
-        tblMonitor1.addKeyListener(new java.awt.event.KeyAdapter() {
+        tblMouse.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tblMonitor1KeyReleased(evt);
+                tblMouseKeyReleased(evt);
             }
         });
-        jScrollPane3.setViewportView(tblMonitor1);
+        jScrollPane3.setViewportView(tblMouse);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtMouse, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(btmMon)
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMouse, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(btmMon)))
+                .addGap(0, 0, 0))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,7 +560,7 @@ public class view_kit extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Código Teclado:");
 
-        tbOperador1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTeclado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -558,7 +568,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                 {null, null}
             },
             new String [] {
-                "ID_OPERADOR", "Nome "
+                "codigo", "marca "
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -569,29 +579,32 @@ public class view_kit extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbOperador1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblTeclado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbOperador1MouseClicked(evt);
+                tblTecladoMouseClicked(evt);
             }
         });
-        tbOperador1.addKeyListener(new java.awt.event.KeyAdapter() {
+        tblTeclado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tbOperador1KeyReleased(evt);
+                tblTecladoKeyReleased(evt);
             }
         });
-        jScrollPane9.setViewportView(tbOperador1);
+        jScrollPane9.setViewportView(tblTeclado);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(txtTeclado)
-                .addGap(93, 93, 93)
-                .addComponent(btnTeclado))
-            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTeclado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTeclado)))
+                .addGap(0, 0, 0))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -752,14 +765,14 @@ public class view_kit extends javax.swing.JInternalFrame {
                                             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(jLabel12)
                                                 .addComponent(jLabel29))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanel7Layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                     .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jLabel30))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGap(0, 0, Short.MAX_VALUE)
                                                     .addComponent(jLabel13)))))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -890,27 +903,27 @@ public class view_kit extends javax.swing.JInternalFrame {
 
         jLabel26.setText("cod_teclado:");
 
-        jLabel28.setText("cod_webcam:");
-
         jLabel25.setText("cod_mouse:");
-
-        jLabel27.setText("id_head:");
 
         jLabel3.setText("Marca Mouse:");
 
-        jLabel4.setText("Marca Teclado:");
-
-        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+        txtMarcaMouse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField15ActionPerformed(evt);
+                txtMarcaMouseActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Marca WebCam:");
+        jLabel4.setText("Marca Teclado:");
 
-        txtEnergy1.addActionListener(new java.awt.event.ActionListener() {
+        txtMarcaTeclado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnergy1ActionPerformed(evt);
+                txtMarcaTecladoActionPerformed(evt);
+            }
+        });
+
+        txtVGA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVGAActionPerformed(evt);
             }
         });
 
@@ -918,89 +931,92 @@ public class view_kit extends javax.swing.JInternalFrame {
 
         jLabel38.setText("Energia:");
 
+        jLabel10.setText("Head: ");
+
+        jLabel11.setText("WebCam:");
+
+        cboWeb.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cboWebKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel25)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCodMouse))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel26)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCodigoTeclado, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel28)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel39)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEnergy1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboHead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel38)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtVGA1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField14))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField16))
+                        .addComponent(cboWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMarcaTeclado))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel39)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField15))))
+                        .addComponent(txtVGA, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEnerg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMarcaMouse)))
+                .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel28)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27)))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel39)
-                    .addComponent(txtEnergy1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel38)
-                    .addComponent(txtVGA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                            .addComponent(jLabel25)
+                            .addComponent(txtCodMouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(txtCodigoTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(cboHead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(cboWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMarcaMouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMarcaTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel39)
+                            .addComponent(txtVGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel38)
+                            .addComponent(txtEnerg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1015,39 +1031,37 @@ public class view_kit extends javax.swing.JInternalFrame {
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(75, 75, 75)))
-                .addGap(226, 226, 226))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(217, 217, 217))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -1082,13 +1096,13 @@ public class view_kit extends javax.swing.JInternalFrame {
             //Preenche os campos ao clicar dentro de um dado na tabela
             txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
             txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
-            txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(),2).toString());
-            txtModel.setText(tblPC.getValueAt(tblPC.getSelectedRow(),3).toString());
-            txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(),4).toString());
-            txtRam.setText(tblPC.getValueAt(tblPC.getSelectedRow(),5).toString());
+            txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
+            txtModel.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
+            txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 4).toString());
+            txtRam.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 5).toString());
             txtSO.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 6).toString());
-            txtHD.setText(tblPC.getValueAt(tblPC.getSelectedRow(),7).toString());
-            txtGarantia.setText(tblPC.getValueAt(tblPC.getSelectedRow(),8).toString());
+            txtHD.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 7).toString());
+            txtGarantia.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 8).toString());
 
         }
     }//GEN-LAST:event_tblPCKeyReleased
@@ -1098,13 +1112,13 @@ public class view_kit extends javax.swing.JInternalFrame {
             //Preenche os campos ao clicar dentro de um dado na tabela
             txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
             txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
-            txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(),2).toString());
-            txtModel.setText(tblPC.getValueAt(tblPC.getSelectedRow(),3).toString());
-            txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(),4).toString());
-            txtRam.setText(tblPC.getValueAt(tblPC.getSelectedRow(),5).toString());
+            txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
+            txtModel.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
+            txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 4).toString());
+            txtRam.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 5).toString());
             txtSO.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 6).toString());
-            txtHD.setText(tblPC.getValueAt(tblPC.getSelectedRow(),7).toString());
-            txtGarantia.setText(tblPC.getValueAt(tblPC.getSelectedRow(),8).toString());
+            txtHD.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 7).toString());
+            txtGarantia.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 8).toString());
 
         }
     }//GEN-LAST:event_tblPCMouseClicked
@@ -1114,8 +1128,8 @@ public class view_kit extends javax.swing.JInternalFrame {
             //Preenche os campos ao clicar dentro de um dado na tabela
             txtidMonitor.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 0).toString());
             txtCodMon.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 1).toString());
-            txtMonMarca.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(),2 ).toString());
-            txtMonModel.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(),3).toString());
+            txtMonMarca.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 2).toString());
+            txtMonModel.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 3).toString());
         }
     }//GEN-LAST:event_tblMonitorKeyReleased
 
@@ -1124,8 +1138,8 @@ public class view_kit extends javax.swing.JInternalFrame {
             //Preenche os campos ao clicar dentro de um dado na tabela
             txtidMonitor.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 0).toString());
             txtCodMon.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 1).toString());
-            txtMonMarca.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(),2 ).toString());
-            txtMonModel.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(),3).toString());
+            txtMonMarca.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 2).toString());
+            txtMonModel.setText(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 3).toString());
         }
     }//GEN-LAST:event_tblMonitorMouseClicked
 
@@ -1165,13 +1179,23 @@ public class view_kit extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btmMonActionPerformed
 
-    private void tblMonitor1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonitor1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblMonitor1MouseClicked
+    private void tblMouseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseMouseClicked
+         if (tblMouse.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            txtCodMouse.setText(tblMouse.getValueAt(tblMouse.getSelectedRow(), 0).toString());
+            txtMarcaMouse.setText(tblMouse.getValueAt(tblMouse.getSelectedRow(),1).toString());
+            
+        }
+    }//GEN-LAST:event_tblMouseMouseClicked
 
-    private void tblMonitor1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMonitor1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblMonitor1KeyReleased
+    private void tblMouseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMouseKeyReleased
+          if (tblMouse.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            txtCodMouse.setText(tblMouse.getValueAt(tblMouse.getSelectedRow(), 0).toString());
+            txtMarcaMouse.setText(tblMouse.getValueAt(tblMouse.getSelectedRow(),1).toString());
+            
+        }
+    }//GEN-LAST:event_tblMouseKeyReleased
 
     private void txtTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTecladoActionPerformed
         // TODO add your handling code here:
@@ -1180,14 +1204,6 @@ public class view_kit extends javax.swing.JInternalFrame {
     private void btnTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTecladoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTecladoActionPerformed
-
-    private void tbOperador1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbOperador1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbOperador1MouseClicked
-
-    private void tbOperador1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbOperador1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbOperador1KeyReleased
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
@@ -1201,9 +1217,9 @@ public class view_kit extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidMonitorActionPerformed
 
-    private void txtEnergy1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnergy1ActionPerformed
+    private void txtVGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVGAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnergy1ActionPerformed
+    }//GEN-LAST:event_txtVGAActionPerformed
 
     private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
         // TODO add your handling code here:
@@ -1213,9 +1229,35 @@ public class view_kit extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSetorActionPerformed
 
-    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+    private void txtMarcaTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaTecladoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField15ActionPerformed
+    }//GEN-LAST:event_txtMarcaTecladoActionPerformed
+
+    private void tblTecladoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblTecladoKeyReleased
+        if (tblTeclado.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            txtCodigoTeclado.setText(tblTeclado.getValueAt(tblTeclado.getSelectedRow(), 0).toString());
+            txtMarcaTeclado.setText(tblTeclado.getValueAt(tblTeclado.getSelectedRow(),1).toString());
+            
+        }
+    }//GEN-LAST:event_tblTecladoKeyReleased
+
+    private void tblTecladoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTecladoMouseClicked
+        if (tblTeclado.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            txtCodigoTeclado.setText(tblTeclado.getValueAt(tblTeclado.getSelectedRow(), 0).toString());
+            txtMarcaTeclado.setText(tblTeclado.getValueAt(tblTeclado.getSelectedRow(),1).toString());
+            
+        }
+    }//GEN-LAST:event_tblTecladoMouseClicked
+
+    private void cboWebKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboWebKeyReleased
+       
+    }//GEN-LAST:event_cboWebKeyReleased
+
+    private void txtMarcaMouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaMouseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMarcaMouseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1224,9 +1266,9 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnOp;
     private javax.swing.JButton btnPC;
     private javax.swing.JButton btnTeclado;
+    private javax.swing.JComboBox<Object> cboHead;
     private javax.swing.JComboBox<String> cboStatus;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<Object> cboWeb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1246,8 +1288,6 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -1261,7 +1301,6 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1271,7 +1310,6 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1279,30 +1317,27 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tbOperador;
-    private javax.swing.JTable tbOperador1;
     private javax.swing.JTable tblMonitor;
-    private javax.swing.JTable tblMonitor1;
+    private javax.swing.JTable tblMouse;
     private javax.swing.JTable tblPC;
+    private javax.swing.JTable tblTeclado;
     private javax.swing.JTextField txtCargo;
     private javax.swing.JTextField txtCodMon;
+    private javax.swing.JTextField txtCodMouse;
     private javax.swing.JTextField txtCodPc;
+    private javax.swing.JTextField txtCodigoTeclado;
     private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtEnergy1;
+    private javax.swing.JTextField txtEnerg;
     private javax.swing.JTextField txtGarantia;
     private javax.swing.JTextField txtHD;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDOP;
     private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtMarcaMouse;
+    private javax.swing.JTextField txtMarcaTeclado;
     private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtMonMarca;
     private javax.swing.JTextField txtMonModel;
@@ -1318,7 +1353,7 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSuper;
     private javax.swing.JTextField txtTeclado;
     private javax.swing.JTextField txtTel;
-    private javax.swing.JTextField txtVGA1;
+    private javax.swing.JTextField txtVGA;
     private javax.swing.JTextField txtidMonitor;
     // End of variables declaration//GEN-END:variables
 }

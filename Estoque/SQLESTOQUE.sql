@@ -52,8 +52,10 @@ select * from monitor;
 select * from mouse;
 select cod_mouse ,marca_mouse from mouse where status_envio_mouse = "No Estoque";
 alter table mouse drop column status_mouse;
-
-
+select * from teclado;
+select teclado_cod, teclado_marca from teclado where status_envio_teclado = "No Estoque";
+select * from webcam;
+select webcam_cod, webcam_marca from webcam where status_envio_webcam = "No Estoque";
 create table head(
 	id_head int primary key auto_increment,
     status_envio_head varchar(10),
@@ -62,6 +64,7 @@ create table head(
 	status_head varchar(50),
     head_cod varchar(200) unique
 );
+
 select * from head;
 alter table head drop column status_head;
 create table webcam(

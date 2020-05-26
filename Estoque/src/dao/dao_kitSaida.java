@@ -13,7 +13,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.model_head;
 import model.model_kitSaida;
+import model.model_webcam;
 
 /**
  *
@@ -184,10 +186,10 @@ public class dao_kitSaida {
         return listMouse;
     }
     //select teclado
-       public List<model_kitSaida> findTeclaod() {//Metodo Tipo lista
+       public List<model_kitSaida> findTeclado() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do operador
-        String sql = ("select cod_mouse ,marca_mouse from mouse where status_envio_mouse = " + "'" + valor + "'");
+        String sql = ("select teclado_cod, teclado_marca from teclado where status_envio_teclado = " + "'" + valor + "'");
         List<model_kitSaida> listTeclado = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
@@ -196,8 +198,8 @@ public class dao_kitSaida {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_kitSaida pc = new model_kitSaida();
-                pc.setCod_mouse(rs.getString("cod_mouse"));
-                pc.setMarcamouse(rs.getString("marca_mouse"));
+                pc.setCod_teclado(rs.getString("teclado_cod"));
+                pc.setMarcateclado(rs.getString("teclado_marca"));
                 listTeclado.add(pc);
             }
         } catch (SQLException e) {
@@ -208,7 +210,52 @@ public class dao_kitSaida {
         return listTeclado;
     }
     //select head
+        public List<model_head> findHead() {//Metodo Tipo lista
+        String valor = "No Estoque";
+        //Seleciona apenas o Codigo e o status do operador
+        String sql = ("select head_cod from head where status_envio_head = " + "'" + valor + "'");
+        List<model_head> listHead = new ArrayList<>();//Cria lista
+        //Tenta fazer uma con com o bd
+        try {
+            //Chama a variavel com a query
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_head pc = new model_head();
+                pc.setCod_head(rs.getString("head_cod"));
+                listHead.add(pc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listHead;
+    }
     //select webcam
+       public List<model_kitSaida> findWebCam() {//Metodo Tipo lista
+        String valor = "No Estoque";
+        //Seleciona apenas o Codigo e o status do operador
+        String sql = ("select webcam_cod from webcam where status_envio_webcam = " + "'" + valor + "'");
+        List<model_kitSaida> listwebcam = new ArrayList<>();//Cria lista
+        //Tenta fazer uma con com o bd
+        try {
+            //Chama a variavel com a query
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_kitSaida pc = new model_kitSaida();
+                pc.setCod_webcam(rs.getString("webcam_cod"));
+                
+                listwebcam.add(pc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listwebcam;
+    }
     //insert cabos
     //update status
 }

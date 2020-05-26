@@ -372,6 +372,11 @@ public class model_kitSaida {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return getCod_webcam();
+    }
+
    
     
 }
