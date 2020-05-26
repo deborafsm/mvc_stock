@@ -14,12 +14,24 @@ public class model_kitSaida {
     private String datakitSaida;
     private String id_pc;
     private String cod_pc;
+    private String marca;
+    private String modelo;
+    private String processador;
+    private String memoria;
+    private String hd;
+    private String so;
+    private String garantia;
     private String id_monitor;
     private String cod_monitor;
+    private String modelmon;
+    private String marcamon;
     private String cod_mouse;
+    private String marcamouse;
     private String cod_teclado;
+    private String marcateclado;
     private String id_head;
     private String cod_webcam;
+    private String marcaweccam;
     private String qntEnergia;
     private String qntVga;
     private String id_operador;
@@ -30,6 +42,7 @@ public class model_kitSaida {
     private String setor;
     private String supervisor;
     private String status;
+    private String endereco;
 
     public model_kitSaida() {
     }
@@ -51,16 +64,29 @@ public class model_kitSaida {
         this.status = status;
     }
 
-    public model_kitSaida(String datakitSaida, String id_pc, String cod_pc, String id_monitor, String cod_monitor, String cod_mouse, String cod_teclado, String id_head, String cod_webcam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status) {
+    public model_kitSaida(String id_kit, String datakitSaida, String id_pc, String cod_pc, String marca, String modelo, String processador, String memoria, String hd, String so, String garantia, String id_monitor, String cod_monitor, String modelmon, String marcamon, String cod_mouse, String marcamouse, String cod_teclado, String marcateclado, String id_head, String cod_webcam, String marcaweccam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status, String endereco) {
+        this.id_kit = id_kit;
         this.datakitSaida = datakitSaida;
         this.id_pc = id_pc;
         this.cod_pc = cod_pc;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.processador = processador;
+        this.memoria = memoria;
+        this.hd = hd;
+        this.so = so;
+        this.garantia = garantia;
         this.id_monitor = id_monitor;
         this.cod_monitor = cod_monitor;
+        this.modelmon = modelmon;
+        this.marcamon = marcamon;
         this.cod_mouse = cod_mouse;
+        this.marcamouse = marcamouse;
         this.cod_teclado = cod_teclado;
+        this.marcateclado = marcateclado;
         this.id_head = id_head;
         this.cod_webcam = cod_webcam;
+        this.marcaweccam = marcaweccam;
         this.qntEnergia = qntEnergia;
         this.qntVga = qntVga;
         this.id_operador = id_operador;
@@ -71,8 +97,119 @@ public class model_kitSaida {
         this.setor = setor;
         this.supervisor = supervisor;
         this.status = status;
+        this.endereco = endereco;
     }
 
+  
+
+    public String getModelmon() {
+        return modelmon;
+    }
+
+    public void setModelmon(String modelmon) {
+        this.modelmon = modelmon;
+    }
+
+    public String getMarcamon() {
+        return marcamon;
+    }
+
+    public void setMarcamon(String marcamon) {
+        this.marcamon = marcamon;
+    }
+
+    public String getMarcamouse() {
+        return marcamouse;
+    }
+
+    public void setMarcamouse(String marcamouse) {
+        this.marcamouse = marcamouse;
+    }
+
+    public String getMarcateclado() {
+        return marcateclado;
+    }
+
+    public void setMarcateclado(String marcateclado) {
+        this.marcateclado = marcateclado;
+    }
+
+    public String getMarcaweccam() {
+        return marcaweccam;
+    }
+
+    public void setMarcaweccam(String marcaweccam) {
+        this.marcaweccam = marcaweccam;
+    }
+
+   
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getProcessador() {
+        return processador;
+    }
+
+    public void setProcessador(String processador) {
+        this.processador = processador;
+    }
+
+    public String getMemoria() {
+        return memoria;
+    }
+
+    public void setMemoria(String memoria) {
+        this.memoria = memoria;
+    }
+
+    public String getHd() {
+        return hd;
+    }
+
+    public void setHd(String hd) {
+        this.hd = hd;
+    }
+
+    public String getSo() {
+        return so;
+    }
+
+    public void setSo(String so) {
+        this.so = so;
+    }
+
+    public String getGarantia() {
+        return garantia;
+    }
+
+    public void setGarantia(String garantia) {
+        this.garantia = garantia;
+    }
+
+    
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+    
     public String getCod_mouse() {
         return cod_mouse;
     }
@@ -234,6 +371,7 @@ public class model_kitSaida {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
+   
     
 }

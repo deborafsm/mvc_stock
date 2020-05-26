@@ -31,6 +31,7 @@ create table monitor(
     cod_monitor varchar(200) unique
     
 );    
+select * from monitor;
   create table mouse(  
 	id_mouse int primary key auto_increment,
     status_envio_mouse varchar(10),
@@ -48,6 +49,11 @@ create table monitor(
     teclado_cod varchar(200) unique
     
 );
+select * from mouse;
+select cod_mouse ,marca_mouse from mouse where status_envio_mouse = "No Estoque";
+alter table mouse drop column status_mouse;
+
+
 create table head(
 	id_head int primary key auto_increment,
     status_envio_head varchar(10),
@@ -56,6 +62,8 @@ create table head(
 	status_head varchar(50),
     head_cod varchar(200) unique
 );
+select * from head;
+alter table head drop column status_head;
 create table webcam(
 	id_webcam int primary key auto_increment,
     status_envio_webcam varchar(10),
@@ -64,6 +72,8 @@ create table webcam(
     webcam_status varchar(50),
     webcam_cod varchar(200) unique
 );
+select * from webcam;
+alter table webcam drop webcam_status;
 create table cabo(
 	id_cabo int primary key auto_increment,
     cabo_tipo varchar(10),
@@ -82,6 +92,10 @@ create table operador(
     empresa varchar(200),
     supervisor varchar(100)
 );
+select * from operador;
+alter table operador add column endereco varchar(200);
+select  id_operador,tel,email_operador,endereco,cargo,setor,supervisor from operador where status_operador = "Ok";
+
 create table defeitos(
 	id_defeitos int primary key auto_increment,
     comentarios varchar(400),
@@ -92,6 +106,7 @@ create table defeitos(
     defeito_head varchar(200)
     
 );
+
 create table periodo(
 	id_periodo int primary key auto_increment,
 	data_entrada varchar(20),
@@ -106,25 +121,12 @@ select * from pc where status_pc ="No Estoque";
 
 select * from pc;
 select id_formulario,codpc from pc where status_pc = "No Estoque";
-select id_formulario,codpc from pc where status_pc = "No Estoque";
+select codpc , status_pc from pc where status_pc = "No Estoque";
 select count(*) from pc;
-select count(*) from pc where status_pc = "No Estoque";
-/*
-private String id_kit;
-    private String datakitSaida;
-    private String id_pc;
-    private String cod_pc;
-    private String id_monitor;
-    private String cod_monitor;
-    private String id_operador;
-    private String nome;
-    private String telefone;
-    private String email;
-    private String cargo;
-    private String setor;
-    private String supervisor;
-    private String status;
-*/
+select count(*) from monitor where status_monitor = "No Estoque";
+select id_marca,cod_monitor from monitor where status_monitor = "No Estoque";
+select * from monitor;
+
 create table kitExit(
 	id_kit int primary key auto_increment,
     datekit varchar(50),

@@ -29,6 +29,7 @@ public class dao_kitSaida {
     public dao_kitSaida() {
         con = connection_stock.getConnection();
     }
+
     //Insert 
     public void addKit(model_kitSaida kit) {
         try {
@@ -66,12 +67,13 @@ public class dao_kitSaida {
         }
 
     }
+
     //Selecionar tudo que está no estoque
     public List<model_kitSaida> findAll() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do pc (verificando se o mesmo está no estoque )
-        String sql = ("select codpc,status_pc from pc where status_pc = " + "'" + valor + "'");
-        List<model_kitSaida> listPcKit = new ArrayList<>();//Cria lista
+        String sql = ("select id_formulario,codpc,marca_pc,modelo,processador,memoria,so,hd,garantia from pc where status_pc = " + "'" + valor + "'");
+        List<model_kitSaida> listMonitorKit = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
             //Chama a variavel com a query
@@ -79,25 +81,132 @@ public class dao_kitSaida {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_kitSaida pc = new model_kitSaida();
-                //pc.setIdform(rs.getString("id_formulario"));
+                pc.setId_pc(rs.getString("id_formulario"));
                 pc.setCod_pc(rs.getString("codpc"));
-                pc.setStatus(rs.getString("status_pc"));
-                listPcKit.add(pc);
+                pc.setMarca(rs.getString("marca_pc"));
+                pc.setModelo(rs.getString("modelo"));
+                pc.setProcessador(rs.getString("processador"));
+                pc.setMemoria(rs.getString("memoria"));
+                pc.setSo(rs.getString("so"));
+                pc.setHd(rs.getString("hd"));
+                pc.setGarantia(rs.getString("garantia"));
+
+                listMonitorKit.add(pc);
             }
         } catch (SQLException e) {
             System.out.println("Erro" + e);//Erro
         } finally {
             connection_stock.closeConnection(con, ps, rs);
         }
-        return listPcKit;
+        return listMonitorKit;
     }
     //Pesquisar Pc Por código
-    
-    
+
     //select monitor
+    public List<model_kitSaida> findAllMonitor() {//Metodo Tipo lista
+        String valor = "No Estoque";
+        //Seleciona apenas o Codigo e o status do monitor (verificando se o mesmo está no estoque )
+
+        String sql = ("select id_marca,cod_monitor,marca_monitor, modelo from monitor where status_monitor = " + "'" + valor + "'");
+        List<model_kitSaida> listMonitorKit = new ArrayList<>();//Cria lista
+        //Tenta fazer uma con com o bd
+        try {
+            //Chama a variavel com a query
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_kitSaida pc = new model_kitSaida();
+                pc.setId_monitor(rs.getString("id_marca"));
+                pc.setCod_monitor(rs.getString("cod_monitor"));
+                pc.setMarcamon(rs.getString("marca_monitor"));
+                pc.setModelmon(rs.getString("modelo"));
+                listMonitorKit.add(pc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listMonitorKit;
+    }
     //select operadora
+    public List<model_kitSaida> findAllOp() {//Metodo Tipo lista
+        String valor = "Ok";
+        //Seleciona apenas o Codigo e o status do operador
+        String sql = ("select id_operador,nome_operador,tel,email_operador,endereco,cargo,setor,supervisor from operador where status_operador = " + "'" + valor + "'");
+        List<model_kitSaida> listOp = new ArrayList<>();//Cria lista
+        //Tenta fazer uma con com o bd
+        try {
+            //Chama a variavel com a query
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_kitSaida pc = new model_kitSaida();
+                pc.setId_operador(rs.getString("id_operador"));
+                pc.setNome(rs.getString("nome_operador"));
+                pc.setTelefone(rs.getString("tel"));
+                pc.setEmail(rs.getString("email_operador"));
+                pc.setEndereco(rs.getString("endereco"));
+                pc.setCargo(rs.getString("cargo"));
+                pc.setSetor(rs.getString("setor"));
+                pc.setSupervisor(rs.getString("supervisor"));
+                listOp.add(pc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listOp;
+    }
     //select mouse
+       public List<model_kitSaida> findMouse() {//Metodo Tipo lista
+        String valor = "No Estoque";
+        //Seleciona apenas o Codigo e o status do operador
+        String sql = ("select cod_mouse ,marca_mouse from mouse where status_envio_mouse = " + "'" + valor + "'");
+        List<model_kitSaida> listMouse = new ArrayList<>();//Cria lista
+        //Tenta fazer uma con com o bd
+        try {
+            //Chama a variavel com a query
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_kitSaida pc = new model_kitSaida();
+                pc.setCod_mouse(rs.getString("cod_mouse"));
+                pc.setMarcamouse(rs.getString("marca_mouse"));
+                listMouse.add(pc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listMouse;
+    }
     //select teclado
+       public List<model_kitSaida> findTeclaod() {//Metodo Tipo lista
+        String valor = "No Estoque";
+        //Seleciona apenas o Codigo e o status do operador
+        String sql = ("select cod_mouse ,marca_mouse from mouse where status_envio_mouse = " + "'" + valor + "'");
+        List<model_kitSaida> listTeclado = new ArrayList<>();//Cria lista
+        //Tenta fazer uma con com o bd
+        try {
+            //Chama a variavel com a query
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_kitSaida pc = new model_kitSaida();
+                pc.setCod_mouse(rs.getString("cod_mouse"));
+                pc.setMarcamouse(rs.getString("marca_mouse"));
+                listTeclado.add(pc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listTeclado;
+    }
     //select head
     //select webcam
     //insert cabos

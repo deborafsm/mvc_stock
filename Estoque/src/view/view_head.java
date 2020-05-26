@@ -7,7 +7,7 @@ package view;
 
 /**
  *
- * @author Usuário
+ *@author Debora Freire T.I JobHome
  */
 public class view_head extends javax.swing.JInternalFrame {
 
