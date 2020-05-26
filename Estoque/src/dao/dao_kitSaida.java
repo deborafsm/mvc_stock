@@ -15,7 +15,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.model_head;
 import model.model_kitSaida;
-import model.model_webcam;
+import model.model_pc;
 
 /**
  *
@@ -35,28 +35,73 @@ public class dao_kitSaida {
     //Insert 
     public void addKit(model_kitSaida kit) {
         try {
-            ps = con.prepareStatement("insert into kitExit(datekit,id_pc,cod_pc,id_mon,cod_mon,cod_mouse,cod_teclado,"
-                    + "id_head,cod_webcam,id_op,nome,tel,email,cargo,setor,supervisor,statuskit,qnt_en,qnt_vga)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            ps = con.prepareStatement("insert into kit(	"
+                    + "data_saida,"
+                    + "id_operador,"
+                    + "nome,"
+                    + "telefone,"
+                    + "email,"
+                    + "endereco,"
+                    + "setor,"
+                    + "cargo,"
+                    + "supervisor,"
+                    + "empresa,"
+                    + "id_pc,"
+                    + "cod_pc,"
+                    + "marca,\n"
+                    + "	modelo,\n"
+                    + "	processor,\n"
+                    + "	memoria,\n"
+                    + "	so,\n"
+                    + "	hd,\n"
+                    + "	garantia,\n"
+                    + "	id_monitor,\n"
+                    + "	codigo_monitor,\n"
+                    + "	marca_monitor,\n"
+                    + "	status_kit,\n"
+                    + "	codigo_head,\n"
+                    + "	codigo_webcam,\n"
+                    + "	codigo_mouse,\n"
+                    + "	marca_mouse,\n"
+                    + "	codigo_teclado,\n"
+                    + "	marca_teclado,\n"
+                    + "	qnt_caboE,\n"
+                    + "	qnt_caboVga)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             //Dados que serão inseridos
             ps.setString(1, kit.getDatakitSaida());
-            ps.setString(2, kit.getId_pc());
-            ps.setString(3, kit.getCod_pc());
-            ps.setString(4, kit.getId_monitor());
-            ps.setString(5, kit.getCod_monitor());
-            ps.setString(6, kit.getCod_mouse());
-            ps.setString(7, kit.getCod_teclado());
-            ps.setString(8, kit.getId_head());
-            ps.setString(9, kit.getCod_webcam());
-            ps.setString(10, kit.getId_operador());
-            ps.setString(11, kit.getNome());
-            ps.setString(12, kit.getTelefone());
-            ps.setString(13, kit.getEmail());
-            ps.setString(14, kit.getCargo());
-            ps.setString(15, kit.getSetor());
-            ps.setString(16, kit.getSupervisor());
-            ps.setString(17, kit.getStatus());
-            ps.setString(18, kit.getQntEnergia());
-            ps.setString(19, kit.getQntVga());
+            ps.setString(2, kit.getId_operador());
+            ps.setString(3, kit.getNome());
+            ps.setString(4, kit.getTelefone());
+            ps.setString(5, kit.getEmail());
+            ps.setString(6, kit.getEndereco());
+            ps.setString(7, kit.getSetor());
+            ps.setString(8, kit.getCargo());
+            ps.setString(9, kit.getSupervisor());
+            ps.setString(10, kit.getEmpresa());
+            ps.setString(11, kit.getId_pc());
+            ps.setString(12, kit.getCod_pc());
+            ps.setString(13, kit.getMarca());
+            ps.setString(14, kit.getModelo());
+            ps.setString(15, kit.getProcessador());
+            ps.setString(16, kit.getMemoria());
+            ps.setString(17, kit.getSo());
+            ps.setString(18, kit.getHd());
+            ps.setString(19, kit.getGarantia());
+            ps.setString(20, kit.getId_monitor());
+            ps.setString(21, kit.getCod_monitor());
+            ps.setString(22, kit.getMarcamon());
+            ps.setString(23, kit.getStatus());
+            ps.setString(24, kit.getId_head());
+            ps.setString(25, kit.getCod_webcam());
+            ps.setString(26, kit.getCod_mouse());
+            ps.setString(27, kit.getMarcamouse());
+            ps.setString(28, kit.getCod_teclado());
+            ps.setString(29, kit.getMarcateclado());
+            ps.setString(30, kit.getQntEnergia());
+            ps.setString(31, kit.getQntVga());
+            
+            
             //Executa a Query
             ps.executeUpdate();
             //Sucesso
@@ -131,6 +176,7 @@ public class dao_kitSaida {
         }
         return listMonitorKit;
     }
+
     //select operadora
     public List<model_kitSaida> findAllOp() {//Metodo Tipo lista
         String valor = "Ok";
@@ -161,8 +207,9 @@ public class dao_kitSaida {
         }
         return listOp;
     }
+
     //select mouse
-       public List<model_kitSaida> findMouse() {//Metodo Tipo lista
+    public List<model_kitSaida> findMouse() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select cod_mouse ,marca_mouse from mouse where status_envio_mouse = " + "'" + valor + "'");
@@ -185,8 +232,9 @@ public class dao_kitSaida {
         }
         return listMouse;
     }
+
     //select teclado
-       public List<model_kitSaida> findTeclado() {//Metodo Tipo lista
+    public List<model_kitSaida> findTeclado() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select teclado_cod, teclado_marca from teclado where status_envio_teclado = " + "'" + valor + "'");
@@ -209,8 +257,9 @@ public class dao_kitSaida {
         }
         return listTeclado;
     }
+
     //select head
-        public List<model_head> findHead() {//Metodo Tipo lista
+    public List<model_head> findHead() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select head_cod from head where status_envio_head = " + "'" + valor + "'");
@@ -232,8 +281,9 @@ public class dao_kitSaida {
         }
         return listHead;
     }
+
     //select webcam
-       public List<model_kitSaida> findWebCam() {//Metodo Tipo lista
+    public List<model_kitSaida> findWebCam() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select webcam_cod from webcam where status_envio_webcam = " + "'" + valor + "'");
@@ -246,7 +296,7 @@ public class dao_kitSaida {
             while (rs.next()) {
                 model_kitSaida pc = new model_kitSaida();
                 pc.setCod_webcam(rs.getString("webcam_cod"));
-                
+
                 listwebcam.add(pc);
             }
         } catch (SQLException e) {
@@ -256,6 +306,27 @@ public class dao_kitSaida {
         }
         return listwebcam;
     }
-    //insert cabos
-    //update status
+    
+    //update status pc
+    public void updateCliente(model_pc pc) {//Query de atualizar cliente
+        PreparedStatement ps = null;
+        try {//tenta a logica abaixo
+            ps = con.prepareStatement("UPDATE pc SET status_pc = ?  WHERE codpc = ? ");
+            //Permissão para atualizar apenas os componentes abaixo
+            ps.setString(1,pc.getStatus());
+            ps.setString(2, pc.getCodPC());
+            //Executando a instrução sql
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "PC atualizado com sucesso");//Mostra a mensagem ao usuario de sucesso 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar" + e); //Mostra a mensagem de falha
+        } finally {//Fecha as conexões
+            connection_stock.closeConnection(con, ps);
+        }
+    }
+    //update status monitor
+    //update status mouse
+    //update status teclado
+    //update status webcam
+    //update status head
 }
