@@ -32,7 +32,7 @@ PC
 # Operador 
 - [ ] Insert
 - [ ] Select (Tabela)
-KIT 
+# KIT 
 - [x] Insert 
 - [x] Select PC
 - [x] Select Monitor
@@ -50,6 +50,4 @@ KIT
 - [ ] Update Head
 - [ ] Update WebCam
 - [ ] Update Operador
-#
-
-# 
+ 
