@@ -10,4 +10,46 @@ Tecnologias Utilizadas:
     Linguagem de programação: Java
 # Caso de Uso 
 # Diagrama de caso de uso
-(x) 
+# OK
+PC
+- [x]  Insert 
+- [x]  Select (Tabela)
+# Monitor 
+- [ ] Insert
+- [ ] Select (Tabela)
+# Mouse 
+- [ ] Insert
+- [ ] Select (Tabela)
+# Teclado
+- [ ] Insert
+- [ ] Select (Tabela)
+# Head 
+- [ ] Insert
+- [ ] Select (Tabela)
+# WebCam
+- [ ] Insert
+- [ ] Select (Tabela)
+# Operador 
+- [ ] Insert
+- [ ] Select (Tabela)
+KIT 
+- [x] Insert 
+- [x] Select PC
+- [x] Select Monitor
+- [x] Select Mouse
+- [x] Select Teclado
+- [x] Select Head
+- [x] Select WebCam
+- [x] Select Operador
+# Fazer (KIT)
+(Status)
+- [ ] Update PC
+- [ ] Update Monitor
+- [ ] Update Mouse 
+- [ ] Update Teclado
+- [ ] Update Head
+- [ ] Update WebCam
+- [ ] Update Operador
+#
+
+# 
