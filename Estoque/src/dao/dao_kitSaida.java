@@ -36,7 +36,7 @@ public class dao_kitSaida {
     public void addKit(model_kitSaida kit) {
         try {
             ps = con.prepareStatement("insert into kit(	"
-                    + "data_saida,"
+                    + "data_saida," 
                     + "id_operador,"
                     + "nome,"
                     + "telefone,"
@@ -67,7 +67,8 @@ public class dao_kitSaida {
                     + "	marca_teclado,\n"
                     + "	qnt_caboE,\n"
                     + "	qnt_caboVga)"
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "	rede)"
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             //Dados que serão inseridos
             ps.setString(1, kit.getDatakitSaida());
             ps.setString(2, kit.getId_operador());
@@ -308,13 +309,13 @@ public class dao_kitSaida {
     }
     
     //update status pc
-    public void updateCliente(model_pc pc) {//Query de atualizar cliente
+    public void updateCliente(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
             ps = con.prepareStatement("UPDATE pc SET status_pc = ?  WHERE codpc = ? ");
             //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,pc.getStatus());
-            ps.setString(2, pc.getCodPC());
+            ps.setString(1,kit.getStatus());
+            ps.setString(2, kit.getCod_pc());
             //Executando a instrução sql
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "PC atualizado com sucesso");//Mostra a mensagem ao usuario de sucesso 

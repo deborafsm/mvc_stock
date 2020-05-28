@@ -10,6 +10,7 @@ package model;
  * @author Debora Freire T.I JobHome
  */
 public class model_kitSaida {
+
     private String id_kit;
     private String datakitSaida;
     private String id_pc;
@@ -45,7 +46,7 @@ public class model_kitSaida {
     private String endereco;
     private String empresa;
     private String cod_head;
-    
+    private String rede;
 
     public model_kitSaida() {
     }
@@ -67,7 +68,7 @@ public class model_kitSaida {
         this.status = status;
     }
 
-    public model_kitSaida(String id_kit, String datakitSaida, String id_pc, String cod_pc, String marca, String modelo, String processador, String memoria, String hd, String so, String garantia, String id_monitor, String cod_monitor, String modelmon, String marcamon, String cod_mouse, String marcamouse, String cod_teclado, String marcateclado, String id_head, String cod_webcam, String marcaweccam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status, String endereco, String empresa, String cod_head) {
+    public model_kitSaida(String id_kit, String datakitSaida, String id_pc, String cod_pc, String marca, String modelo, String processador, String memoria, String hd, String so, String garantia, String id_monitor, String cod_monitor, String modelmon, String marcamon, String cod_mouse, String marcamouse, String cod_teclado, String marcateclado, String id_head, String cod_webcam, String marcaweccam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status, String endereco, String empresa, String cod_head, String rede) {
         this.id_kit = id_kit;
         this.datakitSaida = datakitSaida;
         this.id_pc = id_pc;
@@ -103,9 +104,25 @@ public class model_kitSaida {
         this.endereco = endereco;
         this.empresa = empresa;
         this.cod_head = cod_head;
+        this.rede = rede;
     }
 
-    
+    public String getCod_head() {
+        return cod_head;
+    }
+
+    public void setCod_head(String cod_head) {
+        this.cod_head = cod_head;
+    }
+
+    public String getRede() {
+        return rede;
+    }
+
+    public void setRede(String rede) {
+        this.rede = rede;
+    }
+
     public String getEmpresa() {
         return empresa;
     }
@@ -113,10 +130,6 @@ public class model_kitSaida {
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
-
-   
-
-  
 
     public String getModelmon() {
         return modelmon;
@@ -157,8 +170,6 @@ public class model_kitSaida {
     public void setMarcaweccam(String marcaweccam) {
         this.marcaweccam = marcaweccam;
     }
-
-   
 
     public String getMarca() {
         return marca;
@@ -216,8 +227,6 @@ public class model_kitSaida {
         this.garantia = garantia;
     }
 
-    
-
     public String getEndereco() {
         return endereco;
     }
@@ -225,7 +234,7 @@ public class model_kitSaida {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
+
     public String getCod_mouse() {
         return cod_mouse;
     }
@@ -273,8 +282,6 @@ public class model_kitSaida {
     public void setQntVga(String qntVga) {
         this.qntVga = qntVga;
     }
-
-    
 
     public String getId_kit() {
         return id_kit;
@@ -393,6 +400,4 @@ public class model_kitSaida {
         return getCod_webcam();
     }
 
-   
-    
 }

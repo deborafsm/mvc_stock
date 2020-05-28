@@ -66,6 +66,7 @@ create table head(
 );
 
 select * from head;
+select head_cod from head where status_envio_head = "No Estoque";
 alter table head drop column status_head;
 create table webcam(
 	id_webcam int primary key auto_increment,
@@ -130,29 +131,51 @@ select count(*) from monitor where status_monitor = "No Estoque";
 select id_marca,cod_monitor from monitor where status_monitor = "No Estoque";
 select * from monitor;
 
-create table kitExit(
-	id_kit int primary key auto_increment,
-    datekit varchar(50),
-    id_pc varchar(50) unique,
-    cod_pc varchar(50) unique,
-    id_mon varchar(50)unique,
-    cod_mon varchar(50)unique,
+create table kit(
+	id_kit int primary key auto_increment ,
+	data_entrada varchar(50),
+	data_saida varchar(50),
     
-    cod_mouse varchar(50)unique,
-    cod_teclado varchar(50)unique,
-	id_head varchar(50)unique,
-	cod_webcam varchar(50)unique,
+	id_operador varchar(100) unique,
+	nome varchar(200),
+	telefone varchar(20),
+	email varchar(100) unique,
+	endereco varchar(100),
+	setor varchar(50),
+	cargo varchar(50),
+	supervisor varchar(100),
     
-    id_op varchar(50)unique,
-    nome varchar(200)unique,
-    tel varchar(20)unique,
-    email varchar(200)unique,
-    cargo varchar(200)unique,
-    setor varchar(200)unique,
-    supervisor varchar(200)unique,
-    statuskit varchar(200)
+	id_pc varchar(100) unique,
+	cod_pc varchar(200) unique,
+	marca varchar(50),
+	modelo varchar(50),
+	processador varchar(50),
+	memoria varchar(50),
+	so varchar(50),
+	hd varchar(50),
+	garantia varchar(50),
+    
+	id_monitor varchar(100) unique,
+	codigo_monitor varchar(200),
+	marca_monitor varchar(50),
+    
+	status_kit varchar(100),
+    
+	codigo_head varchar(200) unique,
+	codigo_webcam varchar(200) unique,
+    
+	codigo_mouse varchar(200) unique,
+	marca_mouse varchar (200) unique,
+    
+	codigo_teclado varchar(200) unique,
+	marca_teclado varchar(200) unique,
+    
+	qnt_caboE varchar(100),
+	qnt_caboVga varchar(100)
 );
-select * from kitExit;
+alter table kit add column empresa varchar(50);
+select * from kit;
+drop table kitExit;
 
 alter table kitExit add qnt_en varchar(50);
 alter table kitExit add qnt_vga varchar(50);
