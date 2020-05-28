@@ -47,6 +47,8 @@ public class model_kitSaida {
     private String empresa;
     private String cod_head;
     private String rede;
+    private String statusOP;
+    
 
     public model_kitSaida() {
     }
@@ -68,7 +70,7 @@ public class model_kitSaida {
         this.status = status;
     }
 
-    public model_kitSaida(String id_kit, String datakitSaida, String id_pc, String cod_pc, String marca, String modelo, String processador, String memoria, String hd, String so, String garantia, String id_monitor, String cod_monitor, String modelmon, String marcamon, String cod_mouse, String marcamouse, String cod_teclado, String marcateclado, String id_head, String cod_webcam, String marcaweccam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status, String endereco, String empresa, String cod_head, String rede) {
+    public model_kitSaida(String id_kit, String datakitSaida, String id_pc, String cod_pc, String marca, String modelo, String processador, String memoria, String hd, String so, String garantia, String id_monitor, String cod_monitor, String modelmon, String marcamon, String cod_mouse, String marcamouse, String cod_teclado, String marcateclado, String id_head, String cod_webcam, String marcaweccam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status, String endereco, String empresa, String cod_head, String rede, String statusOP) {
         this.id_kit = id_kit;
         this.datakitSaida = datakitSaida;
         this.id_pc = id_pc;
@@ -105,8 +107,18 @@ public class model_kitSaida {
         this.empresa = empresa;
         this.cod_head = cod_head;
         this.rede = rede;
+        this.statusOP = statusOP;
     }
 
+    public String getStatusOP() {
+        return statusOP;
+    }
+
+    public void setStatusOP(String statusOP) {
+        this.statusOP = statusOP;
+    }
+
+    
     public String getCod_head() {
         return cod_head;
     }

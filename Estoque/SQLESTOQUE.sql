@@ -31,7 +31,20 @@ create table monitor(
     cod_monitor varchar(200) unique
     
 );    
-select * from monitor;
+select * from pc;
+select * from operador;
+select * from head;
+select * from webcam;
+select *from monitor;	
+select * from mouse;
+select * from teclado;
+alter  table kit drop column data_saida;
+ALTER TABLE kit CHANGE data_entrada data_saida varchar(50);
+alter table kit add column rede varchar(10);
+alter table kit add column status_op varchar(100);
+select * from kit;
+
+describe pc;
   create table mouse(  
 	id_mouse int primary key auto_increment,
     status_envio_mouse varchar(10),
@@ -173,6 +186,8 @@ create table kit(
 	qnt_caboE varchar(100),
 	qnt_caboVga varchar(100)
 );
+
+alter table kit add column rede varchar(100);
 alter table kit add column empresa varchar(50);
 select * from kit;
 drop table kitExit;
