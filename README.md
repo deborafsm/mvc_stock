@@ -44,9 +44,9 @@ PC
 # Fazer (KIT)
 (Status)
 - [x] Update PC
-- [] Update Monitor
-- [] Update Mouse 
-- [] Update Teclado
+- [x] Update Monitor
+- [x] Update Mouse 
+- [x] Update Teclado
 - [x] Update Head
 - [x] Update WebCam
 - [x] Update Operador
