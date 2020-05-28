@@ -43,7 +43,7 @@ PC
 - [x] Select Operador
 # Fazer (KIT)
 (Status)
-- [ ] Update PC
+- [x] Update PC
 - [ ] Update Monitor
 - [ ] Update Mouse 
 - [ ] Update Teclado
