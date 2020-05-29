@@ -48,7 +48,8 @@ public class model_kitSaida {
     private String cod_head;
     private String rede;
     private String statusOP;
-    
+    private String marca_head;
+    private String lacre;
 
     public model_kitSaida() {
     }
@@ -70,7 +71,7 @@ public class model_kitSaida {
         this.status = status;
     }
 
-    public model_kitSaida(String id_kit, String datakitSaida, String id_pc, String cod_pc, String marca, String modelo, String processador, String memoria, String hd, String so, String garantia, String id_monitor, String cod_monitor, String modelmon, String marcamon, String cod_mouse, String marcamouse, String cod_teclado, String marcateclado, String id_head, String cod_webcam, String marcaweccam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status, String endereco, String empresa, String cod_head, String rede, String statusOP) {
+    public model_kitSaida(String id_kit, String datakitSaida, String id_pc, String cod_pc, String marca, String modelo, String processador, String memoria, String hd, String so, String garantia, String id_monitor, String cod_monitor, String modelmon, String marcamon, String cod_mouse, String marcamouse, String cod_teclado, String marcateclado, String id_head, String cod_webcam, String marcaweccam, String qntEnergia, String qntVga, String id_operador, String nome, String telefone, String email, String cargo, String setor, String supervisor, String status, String endereco, String empresa, String cod_head, String rede, String statusOP, String marca_head, String lacre) {
         this.id_kit = id_kit;
         this.datakitSaida = datakitSaida;
         this.id_pc = id_pc;
@@ -108,7 +109,28 @@ public class model_kitSaida {
         this.cod_head = cod_head;
         this.rede = rede;
         this.statusOP = statusOP;
+        this.marca_head = marca_head;
+        this.lacre = lacre;
     }
+
+    public String getLacre() {
+        return lacre;
+    }
+
+    public void setLacre(String lacre) {
+        this.lacre = lacre;
+    }
+
+    
+    public String getMarca_head() {
+        return marca_head;
+    }
+
+    public void setMarca_head(String marca_head) {
+        this.marca_head = marca_head;
+    }
+
+    
 
     public String getStatusOP() {
         return statusOP;
@@ -409,7 +431,8 @@ public class model_kitSaida {
 
     @Override
     public String toString() {
-        return getCod_webcam();
+        return getMarca_head();
     }
 
+    
 }

@@ -44,7 +44,7 @@ alter table kit add column rede varchar(10);
 alter table kit add column status_op varchar(100);
 select * from kit;
 
-describe pc;
+describe KIT;
   create table mouse(  
 	id_mouse int primary key auto_increment,
     status_envio_mouse varchar(10),
@@ -142,55 +142,107 @@ select codpc , status_pc from pc where status_pc = "No Estoque";
 select count(*) from pc;
 select count(*) from monitor where status_monitor = "No Estoque";
 select id_marca,cod_monitor from monitor where status_monitor = "No Estoque";
-select * from monitor;
+select * from KIT;
+
+create table kit(
+	-- 0
+	id_kit int primary key auto_increment ,
+	data_kit varchar(200),
+	status_kit varchar(200),
+    -- 1
+	id_operador varchar(200) unique,
+	nome varchar(200),
+	telefone varchar(200),
+	email varchar(200) unique,
+	endereco varchar(200),
+	setor varchar(200),
+	cargo varchar(200),
+	supervisor varchar(200),
+    empresa varchar(200),
+    -- 2
+	id_pc varchar(200) unique,
+	cod_pc varchar(200) unique,
+	marca varchar(200),
+	modelo varchar(200),
+	processador varchar(200),
+	memoria varchar(200),
+	so varchar(200),
+	hd varchar(200),
+	garantia varchar(200),
+    -- 3
+	id_monitor varchar(200) unique,
+	codigo_monitor varchar(200),
+	marca_monitor varchar(200),
+    
+    -- 4
+    codigo_head varchar(200) ,
+    -- 5
+	codigo_webcam varchar(200) ,
+    
+	codigo_mouse varchar(200) ,
+	marca_mouse varchar (200) ,
+    
+	codigo_teclado varchar(200) ,
+	marca_teclado varchar(200),
+    
+	qnt_caboE varchar(200),
+	qnt_caboVga varchar(200),
+    rede varchar(200)
+    
+    
+);
 
 create table kit(
 	id_kit int primary key auto_increment ,
-	data_entrada varchar(50),
-	data_saida varchar(50),
-    
-	id_operador varchar(100) unique,
-	nome varchar(200),
-	telefone varchar(20),
-	email varchar(100) unique,
-	endereco varchar(100),
-	setor varchar(50),
-	cargo varchar(50),
-	supervisor varchar(100),
-    
-	id_pc varchar(100) unique,
-	cod_pc varchar(200) unique,
-	marca varchar(50),
-	modelo varchar(50),
-	processador varchar(50),
-	memoria varchar(50),
-	so varchar(50),
-	hd varchar(50),
-	garantia varchar(50),
-    
-	id_monitor varchar(100) unique,
-	codigo_monitor varchar(200),
-	marca_monitor varchar(50),
-    
-	status_kit varchar(100),
-    
-	codigo_head varchar(200) unique,
-	codigo_webcam varchar(200) unique,
-    
-	codigo_mouse varchar(200) unique,
-	marca_mouse varchar (200) unique,
-    
-	codigo_teclado varchar(200) unique,
-	marca_teclado varchar(200) unique,
-    
-	qnt_caboE varchar(100),
-	qnt_caboVga varchar(100)
-);
+	data_kit varchar(200),
+	status_kit varchar(200),
+    id_operador varchar(200),
+    nome_operador varchar(200),
+    telefone varchar(200),
+    email varchar(200),
+    endereco varchar(200),
+    cargo varchar(200),
+    setor varchar(200),
+    supervisor varchar(200),
+    operacao varchar(200),
+    id_pc varchar(200),
+    cod_pc varchar(200),
+    marca_pc varchar(200),
+    modelo_pc varchar(200),
+    processador varchar(200),
+    memoria varchar(200),
+    so varchar(200),
+    hd varchar(200),
+    garantia varchar(200),
+    marca_monitor varchar(200),
+    marca_teclado varchar(200),
+    marca_mouse varchar(200),
+	marca_head varchar(200),
+    marca_webcam varchar(200),
+    qnt_vga varchar(200),
+    qnt_e varchar(200),
+    rede varchar(200)
 
-alter table kit add column rede varchar(100);
+);
+drop table kit;
+
+select * from teclado;
+alter table teclado drop column teclado_cod;
+select * from mouse;
+select marca_mouse from mouse;
+select * from head;
+alter table head drop column head_cod;
+select * from mouse;
+select * from monitor;
+select * from kit;
+select * from teclado;
+alter table webcam drop column status_envio_webcam;
+
+alter table kit add column   lacre(200);
+alter table kit add column  cod_monitor varchar(200);
 alter table kit add column empresa varchar(50);
 select * from kit;
 drop table kitExit;
-
+DESCRIBE kit;
 alter table kitExit add qnt_en varchar(50);
 alter table kitExit add qnt_vga varchar(50);

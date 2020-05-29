@@ -11,10 +11,14 @@ package model;
  */
 public class model_head {
     private String cod_head;
+    private String marca_head;
 
-    public model_head(String cod_head) {
+    public model_head(String cod_head, String marca_head) {
         this.cod_head = cod_head;
+        this.marca_head = marca_head;
     }
+
+    
 
     public String getCod_head() {
         return cod_head;
@@ -27,9 +31,17 @@ public class model_head {
     public model_head() {
     }
 
+    public String getMarca_head() {
+        return marca_head;
+    }
+
+    public void setMarca_head(String marca_head) {
+        this.marca_head = marca_head;
+    }
+
     @Override
     public String toString() {
-        return getCod_head();
+        return getMarca_head();
     }
     
 }

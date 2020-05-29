@@ -247,7 +247,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="deskEstoque" alignment="0" pref="1780" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="deskEstoque" min="-2" pref="1429" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -270,7 +273,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1780" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1429" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

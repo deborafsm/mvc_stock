@@ -60,7 +60,7 @@ public class Estoque extends javax.swing.JFrame {
         deskEstoque.setLayout(deskEstoqueLayout);
         deskEstoqueLayout.setHorizontalGroup(
             deskEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1780, Short.MAX_VALUE)
+            .addGap(0, 1429, Short.MAX_VALUE)
         );
         deskEstoqueLayout.setVerticalGroup(
             deskEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +231,9 @@ public class Estoque extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(deskEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 1780, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(deskEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 1429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

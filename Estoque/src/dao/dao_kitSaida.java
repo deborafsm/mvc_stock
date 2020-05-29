@@ -15,7 +15,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.model_head;
 import model.model_kitSaida;
-import model.model_pc;
+import model.model_mouse;
+import model.model_teclado;
+import model.model_webcam;
+
 
 /**
  *
@@ -34,53 +37,55 @@ public class dao_kitSaida {
 
     //Insert 
     public void addKit(model_kitSaida kit) {
-         String sql ="INSERT INTO kit("
-                 + "data_saida,id_operador,nome,telefone,email,endereco,setor,cargo,supervisor,empresa,"
-                 + "id_pc,cod_pc,marca,modelo,processador,memoria,so,hd,garantia,id_monitor,"
-                 + "codigo_monitor,marca_monitor,status_kit,codigo_head,codigo_webcam,codigo_mouse,marca_mouse,codigo_teclado,marca_teclado,qnt_caboE,"
-                 + "qnt_caboVga,rede,status_op) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         String sql ="INSERT INTO kit(data_kit, status_kit, id_operador, nome_operador, telefone, email, endereco, cargo, setor, supervisor, operacao, id_pc, cod_pc, marca_pc, modelo_pc,"
+                 + " processador, memoria, so, hd, garantia, marca_monitor, marca_teclado, marca_mouse, marca_head, marca_webcam, qnt_vga, qnt_e, rede,id_monitor,cod_monitor,lacre) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
          PreparedStatement ps = null;
         try {
             
             ps = con.prepareStatement(sql);
             //Dados que serão inseridos
             ps.setString(1, kit.getDatakitSaida());
-            
-            ps.setString(2, kit.getId_operador());
-            ps.setString(3, kit.getNome());
-            ps.setString(4, kit.getTelefone());
-            ps.setString(5, kit.getEmail());
-            ps.setString(6, kit.getEndereco());
-            ps.setString(7, kit.getSetor());
+            ps.setString(2, kit.getStatus());
+            //OPERADOR
+            ps.setString(3, kit.getId_operador());
+            ps.setString(4, kit.getNome());
+            ps.setString(5, kit.getTelefone());
+            ps.setString(6, kit.getEmail());
+            ps.setString(7, kit.getEndereco());
             ps.setString(8, kit.getCargo());
-            ps.setString(9, kit.getSupervisor());
-            ps.setString(10, kit.getEmpresa());
+            ps.setString(9, kit.getSetor());
+            ps.setString(10, kit.getSupervisor());
+            ps.setString(11, kit.getEmpresa());
+            //PC
+            ps.setString(12, kit.getId_pc());
+            ps.setString(13, kit.getCod_pc());
+            ps.setString(14, kit.getMarca());
+            ps.setString(15, kit.getModelo());
+            ps.setString(16, kit.getProcessador());
+            ps.setString(17, kit.getMemoria());
+            ps.setString(18, kit.getSo());
+            ps.setString(19, kit.getHd());
+            ps.setString(20, kit.getGarantia());
+            //MONITOR
             
-            ps.setString(11, kit.getId_pc());
-            ps.setString(12, kit.getCod_pc());
-            ps.setString(13, kit.getMarca());
-            ps.setString(14, kit.getModelo());
-            ps.setString(15, kit.getProcessador());
-            ps.setString(16, kit.getMemoria());
-            ps.setString(17, kit.getSo());
-            ps.setString(18, kit.getHd());
-            ps.setString(19, kit.getGarantia());
-            
-            ps.setString(20, kit.getId_monitor());
-            ps.setString(21, kit.getCod_monitor());
-            ps.setString(22, kit.getMarcamon());
-            
-            ps.setString(23, kit.getStatus());
-            ps.setString(24, kit.getId_head());
-            ps.setString(25, kit.getCod_webcam());
-            ps.setString(26, kit.getCod_mouse());
-            ps.setString(27, kit.getMarcamouse());
-            ps.setString(28, kit.getCod_teclado());
-            ps.setString(39, kit.getMarcateclado());
-            ps.setString(30, kit.getQntEnergia());
-            ps.setString(31, kit.getQntVga());
-            ps.setString(32, kit.getRede());
-            ps.setString(33,kit.getStatusOP());
+            ps.setString(21, kit.getMarcamon());
+            //TECLADO
+            ps.setString(22, kit.getMarcateclado());
+//            MOUSE
+            ps.setString(23, kit.getMarcamouse());
+//            HEAD
+            ps.setString(24, kit.getMarca_head());
+//            WEBCAM
+            ps.setString(25, kit.getMarcaweccam());
+//            CABOS
+            ps.setString(26, kit.getQntVga());
+            ps.setString(27, kit.getQntEnergia());
+            ps.setString(28, kit.getRede());
+            ps.setString(29, kit.getId_monitor());
+            ps.setString(30, kit.getCod_monitor());
+//          LACRE
+            ps.setString(31, kit.getLacre());
+          
             
             
             //Executa a Query
@@ -191,20 +196,20 @@ public class dao_kitSaida {
     }
 
     //select mouse
-    public List<model_kitSaida> findMouse() {//Metodo Tipo lista
-        String valor = "No Estoque";
+    public List<model_mouse> findMouse() {//Metodo Tipo lista
+        
         //Seleciona apenas o Codigo e o status do operador
-        String sql = ("select cod_mouse ,marca_mouse from mouse where status_envio_mouse = " + "'" + valor + "'");
-        List<model_kitSaida> listMouse = new ArrayList<>();//Cria lista
+        String sql = ("select marca_mouse from mouse");
+        List<model_mouse> listMouse = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
             //Chama a variavel com a query
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                model_kitSaida pc = new model_kitSaida();
-                pc.setCod_mouse(rs.getString("cod_mouse"));
-                pc.setMarcamouse(rs.getString("marca_mouse"));
+                model_mouse pc = new model_mouse();
+               
+                pc.setMarca_mouse(rs.getString("marca_mouse"));
                 listMouse.add(pc);
             }
         } catch (SQLException e) {
@@ -216,20 +221,19 @@ public class dao_kitSaida {
     }
 
     //select teclado
-    public List<model_kitSaida> findTeclado() {//Metodo Tipo lista
-        String valor = "No Estoque";
+    public List<model_teclado> findTeclado() {//Metodo Tipo lista
         //Seleciona apenas o Codigo e o status do operador
-        String sql = ("select teclado_cod, teclado_marca from teclado where status_envio_teclado = " + "'" + valor + "'");
-        List<model_kitSaida> listTeclado = new ArrayList<>();//Cria lista
+        String sql = ("select teclado_marca  from teclado");
+        List<model_teclado> listTeclado = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
             //Chama a variavel com a query
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                model_kitSaida pc = new model_kitSaida();
-                pc.setCod_teclado(rs.getString("teclado_cod"));
-                pc.setMarcateclado(rs.getString("teclado_marca"));
+                model_teclado pc = new model_teclado();
+                
+                pc.setMarca(rs.getString("teclado_marca"));
                 listTeclado.add(pc);
             }
         } catch (SQLException e) {
@@ -242,9 +246,9 @@ public class dao_kitSaida {
 
     //select head
     public List<model_head> findHead() {//Metodo Tipo lista
-        String valor = "No Estoque";
+        //String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do operador
-        String sql = ("select head_cod from head where status_envio_head = " + "'" + valor + "'");
+        String sql = ("select head_marca from head");
         List<model_head> listHead = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
@@ -253,7 +257,7 @@ public class dao_kitSaida {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_head pc = new model_head();
-                pc.setCod_head(rs.getString("head_cod"));
+                pc.setMarca_head(rs.getString("head_marca"));
                 listHead.add(pc);
             }
         } catch (SQLException e) {
@@ -265,19 +269,18 @@ public class dao_kitSaida {
     }
 
     //select webcam
-    public List<model_kitSaida> findWebCam() {//Metodo Tipo lista
-        String valor = "No Estoque";
+    public List<model_webcam> findWebCam() {//Metodo Tipo lista
         //Seleciona apenas o Codigo e o status do operador
-        String sql = ("select webcam_cod from webcam where status_envio_webcam = " + "'" + valor + "'");
-        List<model_kitSaida> listwebcam = new ArrayList<>();//Cria lista
+        String sql = ("select webcam_marca from webcam ");
+        List<model_webcam> listwebcam = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
             //Chama a variavel com a query
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                model_kitSaida pc = new model_kitSaida();
-                pc.setCod_webcam(rs.getString("webcam_cod"));
+               model_webcam pc = new model_webcam();
+                pc.setMarca_wc(rs.getString("webcam_marca"));
 
                 listwebcam.add(pc);
             }

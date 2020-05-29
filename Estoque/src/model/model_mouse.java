@@ -10,5 +10,29 @@ package model;
  * @author Debora Freire T.I JobHome
  */
 public class model_mouse {
+    private String marca_mouse;
+
+    public model_mouse() {
+    }
+
+    public model_mouse(String marca_mouse) {
+        this.marca_mouse = marca_mouse;
+    }
+
+    public String getMarca_mouse() {
+        return marca_mouse;
+    }
+
+    public void setMarca_mouse(String marca_mouse) {
+        this.marca_mouse = marca_mouse;
+    }
+
+    @Override
+    public String toString() {
+        return getMarca_mouse();
+    }
+    
+    
+    
     
 }
