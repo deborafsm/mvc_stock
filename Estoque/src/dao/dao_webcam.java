@@ -13,59 +13,59 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.model_monitor;
+import model.model_mouse;
+import model.model_webcam;
 
 /**
  *
- * @author Debora Freire T.I JobHome
+ * @author Usuário
  */
-public class dao_monitor {
+public class dao_webcam {
 
     private Connection con = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
-    public dao_monitor() {
+    public dao_webcam() {
         con = connection_stock.getConnection();
-
     }
-
-    public void addMonitor(model_monitor monitor) {
+    public void addwc(model_webcam webcam) {
 
         try {
-            ps = con.prepareStatement("insert into monitor(marca_monitor)values(?)");
-            ps.setString(1, monitor.getMarca_monitor());
+            ps = con.prepareStatement("insert into webcam(webcam_marca)values(?)");
+            ps.setString(1, webcam.getMarca_wc());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Monitor Inserido com sucesso!");
+            JOptionPane.showMessageDialog(null, "webcam Inserido com sucesso!");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao Inserir Monitor" + e);
+            JOptionPane.showMessageDialog(null, "Erro ao Inserir webcam" + e);
 
         } finally {
             connection_stock.closeConnection(con, ps);
         }
     }
-
-    //Seleciona TODAS Marcas existentes
-    public List<model_monitor> findAll() {
-        String sql = "select marca_monitor from monitor";
-        List<model_monitor> listMon = new ArrayList<>();
+    
+    
+    
+    
+    
+     //Seleciona TODAS Marcas existentes
+    public List<model_webcam> findAll() {
+        String sql = "select webcam_marca from webcam";
+        List<model_webcam> listwc = new ArrayList<>();
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                model_monitor monitor = new model_monitor();
-                monitor.setMarca_monitor(rs.getString("marca_monitor"));
+                model_webcam web = new model_webcam();
+                web.setMarca_wc(rs.getString("webcam_marca"));
 
-                listMon.add(monitor);
+                listwc.add(web);
             }
         } catch (SQLException e) {
             System.out.println("Erro" + e);//Erro
         } finally {
             connection_stock.closeConnection(con, ps, rs);
         }
-        return listMon;
+        return listwc;
     }
-
 }
-
-
