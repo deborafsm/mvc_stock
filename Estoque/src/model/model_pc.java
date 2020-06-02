@@ -11,7 +11,7 @@ package model;
  */
 public class model_pc {
 
-    private String idform;
+    private int idform;
     private String dataCad;
     private String nomepc;
     private String marca;
@@ -28,21 +28,7 @@ public class model_pc {
     public model_pc() {
     }
 
-    public model_pc(String idform, String dataCad, String nomepc, String marca, String modelo, String cod, String hd, String memoria, String so, String processador, String codPC, String garantia, String status) {
-        this.idform = idform;
-        this.dataCad = dataCad;
-        this.nomepc = nomepc;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.cod = cod;
-        this.hd = hd;
-        this.memoria = memoria;
-        this.so = so;
-        this.processador = processador;
-        this.codPC = codPC;
-        this.garantia = garantia;
-        this.status = status;
-    }
+   
 
     public model_pc(String dataCad, String nomepc, String marca, String modelo, String cod, String hd, String memoria, String so, String processador, String codPC, String garantia, String status) {
         this.dataCad = dataCad;
@@ -58,14 +44,17 @@ public class model_pc {
         this.garantia = garantia;
         this.status = status;
     }
+    
 
-    public String getIdform() {
+    public int getIdform() {
         return idform;
     }
 
-    public void setIdform(String idform) {
+    public void setIdform(int idform) {
         this.idform = idform;
     }
+
+    
 
     public String getDataCad() {
         return dataCad;

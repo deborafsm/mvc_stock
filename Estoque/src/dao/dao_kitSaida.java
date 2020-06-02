@@ -19,7 +19,6 @@ import model.model_mouse;
 import model.model_teclado;
 import model.model_webcam;
 
-
 /**
  *
  * @author Debora Freire T.I JobHome
@@ -37,11 +36,11 @@ public class dao_kitSaida {
 
     //Insert 
     public void addKit(model_kitSaida kit) {
-         String sql ="INSERT INTO kit(data_kit, status_kit, id_operador, nome_operador, telefone, email, endereco, cargo, setor, supervisor, operacao, id_pc, cod_pc, marca_pc, modelo_pc,"
-                 + " processador, memoria, so, hd, garantia, marca_monitor, marca_teclado, marca_mouse, marca_head, marca_webcam, qnt_vga, qnt_e, rede,id_monitor,cod_monitor,lacre) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         PreparedStatement ps = null;
+        String sql = "INSERT INTO kit(data_kit, status_kit, id_operador, nome_operador, telefone, email, endereco, cargo, setor, supervisor, operacao,nome_pc, cod_pc, marca_pc, modelo_pc,"
+                + " processador, memoria, so, hd, garantia, marca_monitor, marca_teclado, marca_mouse, marca_head, marca_webcam, qnt_vga, qnt_e, rede,lacre,id_monitor,cod_monitor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement ps = null;
         try {
-            
+
             ps = con.prepareStatement(sql);
             //Dados que serão inseridos
             ps.setString(1, kit.getDatakitSaida());
@@ -57,7 +56,7 @@ public class dao_kitSaida {
             ps.setString(10, kit.getSupervisor());
             ps.setString(11, kit.getEmpresa());
             //PC
-            ps.setString(12, kit.getId_pc());
+            ps.setString(12, kit.getNomepc());
             ps.setString(13, kit.getCod_pc());
             ps.setString(14, kit.getMarca());
             ps.setString(15, kit.getModelo());
@@ -67,7 +66,7 @@ public class dao_kitSaida {
             ps.setString(19, kit.getHd());
             ps.setString(20, kit.getGarantia());
             //MONITOR
-            
+
             ps.setString(21, kit.getMarcamon());
             //TECLADO
             ps.setString(22, kit.getMarcateclado());
@@ -81,13 +80,13 @@ public class dao_kitSaida {
             ps.setString(26, kit.getQntVga());
             ps.setString(27, kit.getQntEnergia());
             ps.setString(28, kit.getRede());
-            ps.setString(29, kit.getId_monitor());
-            ps.setString(30, kit.getCod_monitor());
+
 //          LACRE
-            ps.setString(31, kit.getLacre());
-          
-            
-            
+            ps.setString(29, kit.getLacre());
+
+            ps.setString(30, kit.getId_monitor());
+            ps.setString(31, kit.getCod_monitor());
+
             //Executa a Query
             ps.executeUpdate();
             //Sucesso
@@ -105,7 +104,7 @@ public class dao_kitSaida {
     public List<model_kitSaida> findAll() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do pc (verificando se o mesmo está no estoque )
-        String sql = ("select id_formulario,codpc,marca_pc,modelo,processador,memoria,so,hd,garantia from pc where status_pc = " + "'" + valor + "'");
+        String sql = ("select nome_pc,codpc,marca_pc,modelo,processador,memoria,so,hd,garantia from pc where status_pc = " + "'" + valor + "'");
         List<model_kitSaida> listMonitorKit = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
@@ -114,7 +113,7 @@ public class dao_kitSaida {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_kitSaida pc = new model_kitSaida();
-                pc.setId_pc(rs.getString("id_formulario"));
+                pc.setNome(rs.getString("nome_pc"));
                 pc.setCod_pc(rs.getString("codpc"));
                 pc.setMarca(rs.getString("marca_pc"));
                 pc.setModelo(rs.getString("modelo"));
@@ -140,7 +139,7 @@ public class dao_kitSaida {
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do monitor (verificando se o mesmo está no estoque )
 
-        String sql = ("select id_marca,cod_monitor,marca_monitor, modelo from monitor where status_monitor = " + "'" + valor + "'");
+        String sql = ("select id_marca,cod_monitor,marca_monitor from monitor where status_monitor = " + "'" + valor + "'");
         List<model_kitSaida> listMonitorKit = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
@@ -152,7 +151,7 @@ public class dao_kitSaida {
                 pc.setId_monitor(rs.getString("id_marca"));
                 pc.setCod_monitor(rs.getString("cod_monitor"));
                 pc.setMarcamon(rs.getString("marca_monitor"));
-                pc.setModelmon(rs.getString("modelo"));
+
                 listMonitorKit.add(pc);
             }
         } catch (SQLException e) {
@@ -197,7 +196,7 @@ public class dao_kitSaida {
 
     //select mouse
     public List<model_mouse> findMouse() {//Metodo Tipo lista
-        
+
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select marca_mouse from mouse");
         List<model_mouse> listMouse = new ArrayList<>();//Cria lista
@@ -208,7 +207,7 @@ public class dao_kitSaida {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_mouse pc = new model_mouse();
-               
+
                 pc.setMarca_mouse(rs.getString("marca_mouse"));
                 listMouse.add(pc);
             }
@@ -232,7 +231,7 @@ public class dao_kitSaida {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_teclado pc = new model_teclado();
-                
+
                 pc.setMarca(rs.getString("teclado_marca"));
                 listTeclado.add(pc);
             }
@@ -279,7 +278,7 @@ public class dao_kitSaida {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-               model_webcam pc = new model_webcam();
+                model_webcam pc = new model_webcam();
                 pc.setMarca_wc(rs.getString("webcam_marca"));
 
                 listwebcam.add(pc);
@@ -291,14 +290,14 @@ public class dao_kitSaida {
         }
         return listwebcam;
     }
-    
+
     //update status pc
     public void updatePC(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
             ps = con.prepareStatement("UPDATE pc SET status_pc = ?  WHERE codpc = ? ");
             //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,kit.getStatus());
+            ps.setString(1, kit.getStatus());
             ps.setString(2, kit.getCod_pc());
             //Executando a instrução sql
             ps.executeUpdate();
@@ -309,13 +308,14 @@ public class dao_kitSaida {
             connection_stock.closeConnection(con, ps);
         }
     }
+
     //update status Operadora
     public void updateOp(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
             ps = con.prepareStatement("UPDATE operador SET status_operador = ?  WHERE id_operador = ? ");
             //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,kit.getStatus());
+            ps.setString(1, kit.getStatus());
             ps.setString(2, kit.getId_operador());
             //Executando a instrução sql
             ps.executeUpdate();
@@ -326,13 +326,14 @@ public class dao_kitSaida {
             connection_stock.closeConnection(con, ps);
         }
     }
+
     //update status monitor
     public void updateMonitor(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
             ps = con.prepareStatement("UPDATE monitor SET status_monitor  = ?  WHERE cod_monitor = ? ");
             //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,kit.getStatus());
+            ps.setString(1, kit.getStatus());
             ps.setString(2, kit.getCod_monitor());
             //Executando a instrução sql
             ps.executeUpdate();
@@ -343,74 +344,5 @@ public class dao_kitSaida {
             connection_stock.closeConnection(con, ps);
         }
     }
-    //update status mouse
-    //update status teclado
-    
-    //update status webcam
-    public void updateWebCam(model_kitSaida kit) {//Query de atualizar cliente
-        PreparedStatement ps = null;
-        try {//tenta a logica abaixo
-            ps = con.prepareStatement("UPDATE webcam SET status_envio_webcam  = ?  WHERE webcam_cod = ? ");
-            //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,kit.getStatus());
-            ps.setString(2, kit.getCod_webcam());
-            //Executando a instrução sql
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Status WebCam atualizado com sucesso");//Mostra a mensagem ao usuario de sucesso 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar" + e); //Mostra a mensagem de falha
-        } finally {//Fecha as conexões
-            connection_stock.closeConnection(con, ps);
-        }
-    }
-    //update status head
-    public void updateHead(model_kitSaida kit) {//Query de atualizar cliente
-        PreparedStatement ps = null;
-        try {//tenta a logica abaixo
-            ps = con.prepareStatement("UPDATE head SET status_envio_head = ?  WHERE head_cod = ? ");
-            //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,kit.getStatus());
-            ps.setString(2, kit.getCod_head());
-            //Executando a instrução sql
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Status head atualizado com sucesso");//Mostra a mensagem ao usuario de sucesso 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar" + e); //Mostra a mensagem de falha
-        } finally {//Fecha as conexões
-            connection_stock.closeConnection(con, ps);
-        }
-    }
-    public void updateMouse(model_kitSaida kit) {//Query de atualizar cliente
-        PreparedStatement ps = null;
-        try {//tenta a logica abaixo
-            ps = con.prepareStatement("UPDATE mouse SET status_envio_mouse = ?  WHERE cod_mouse = ? ");
-            //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,kit.getStatus());
-            ps.setString(2, kit.getCod_mouse());
-            //Executando a instrução sql
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Status Mouse atualizado com sucesso");//Mostra a mensagem ao usuario de sucesso 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar" + e); //Mostra a mensagem de falha
-        } finally {//Fecha as conexões
-            connection_stock.closeConnection(con, ps);
-        }
-    }
-    
-    public void updateTeclado(model_kitSaida kit) {//Query de atualizar cliente
-        PreparedStatement ps = null;
-        try {//tenta a logica abaixo
-            ps = con.prepareStatement("UPDATE teclado SET status_envio_teclado = ?  WHERE teclado_cod = ? ");
-            //Permissão para atualizar apenas os componentes abaixo
-            ps.setString(1,kit.getStatus());
-            ps.setString(2, kit.getCod_teclado());
-            //Executando a instrução sql
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Status teclado atualizado com sucesso");//Mostra a mensagem ao usuario de sucesso 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar" + e); //Mostra a mensagem de falha
-        } finally {//Fecha as conexões
-            connection_stock.closeConnection(con, ps);
-        }
-    }
+ 
 }

@@ -39,6 +39,7 @@ select *from monitor;
 select * from mouse;
 select * from teclado;
 alter  table kit drop column data_saida;
+alter table monitor drop cod_monitor;
 ALTER TABLE kit CHANGE data_entrada data_saida varchar(50);
 alter table kit add column rede varchar(10);
 alter table kit add column status_op varchar(100);
@@ -131,12 +132,16 @@ create table periodo(
     hora_entrada varchar(20),
     hora_saida varchar(20)
 );
+select * from monitor;
 
+alter table monitor add column modelo_monitor varchar(200);
+alter table monitor add column cod_monitor varchar(200);
+alter table monitor add column status_monitor varchar(200);
 select datacad,codpc,nome_pc,processador,marca_pc,hd ,memoria ,so,garantia,status_pc,modelo from pc;
 
 select * from pc where status_pc ="No Estoque";
 
-select * from pc;
+select * from pc;	
 select id_formulario,codpc from pc where status_pc = "No Estoque";
 select codpc , status_pc from pc where status_pc = "No Estoque";
 select count(*) from pc;
@@ -191,6 +196,17 @@ create table kit(
     
     
 );
+select * from kit;
+select * from monitor;
+select id_kit,lacre,nome_operador,endereco,email,cod_pc, nome_pc,
+marca_pc,processador,hd,memoria,so,garantia,marca_monitor,
+marca_teclado,marca_mouse,marca_head,marca_webcam from 
+kit;
+select nome_operador from kit where status_pc = "Saida";
+
+SELECT COUNT(status_kit)  FROM kit WHERE status_kit='Saida';
+select COUNT(status_pc)  FROM pc WHERE status_pc = 'No Estoque';
+alter table kit add column status varchar(200);
 
 create table kit(
 	id_kit int primary key auto_increment ,
@@ -224,7 +240,9 @@ create table kit(
     rede varchar(200)
 
 );
-drop table kit;
+select * from kit;
+alter table kit add column id_monitor varchar(200);
+alter table kit add column  cod_monitor varchar(200);
 
 select * from teclado;
 alter table teclado drop column teclado_cod;
@@ -233,16 +251,19 @@ select marca_mouse from mouse;
 select * from head;
 alter table head drop column head_cod;
 select * from mouse;
-select * from monitor;
-select * from kit;
+describe kit;
 select * from teclado;
 alter table webcam drop column status_envio_webcam;
 
-alter table kit add column   lacre(200);
+alter table kit add column lacre varchar(200);
 alter table kit add column  cod_monitor varchar(200);
 alter table kit add column empresa varchar(50);
-select * from kit;
+select * from pc;
 drop table kitExit;
 DESCRIBE kit;
 alter table kitExit add qnt_en varchar(50);
 alter table kitExit add qnt_vga varchar(50);
+
+
+select * from kit;
+ALTER TABLE kit CHANGE id_pc nome_pc varchar(200);

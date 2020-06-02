@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.model_pc;
@@ -47,6 +48,7 @@ public class view_pc extends javax.swing.JInternalFrame {
         dao.findAll().forEach((pc) -> {
             // for é usado para passar pelos objetos
             model.addRow(new Object[]{
+                pc.getIdform(),
                 pc.getDataCad(),
                 pc.getCod(),
                 pc.getNomepc(),
@@ -73,6 +75,7 @@ public class view_pc extends javax.swing.JInternalFrame {
             // for é usado para passar pelos objetos
             model.addRow(new Object[]{
                 //Chama os item 
+                pc.getIdform(),
                 pc.getDataCad(),
                 pc.getCod(),
                 pc.getNomepc(),
@@ -117,7 +120,7 @@ public class view_pc extends javax.swing.JInternalFrame {
     }
 
     public void zeraCampos() {
-        txtDatCad.setText("");
+        txtID.setText("");
         txtNomePc.setText("");
         txtMarca.setText("");
         txtHd.setText("");
@@ -172,6 +175,9 @@ public class view_pc extends javax.swing.JInternalFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         cboStatus = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -181,7 +187,7 @@ public class view_pc extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Visualizar computador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jLabel5.setText("Status:");
+        jLabel5.setText("Código PC:");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.png"))); // NOI18N
@@ -194,21 +200,31 @@ public class view_pc extends javax.swing.JInternalFrame {
 
         tblPC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "cadastro", "codigo pc", "nome pc", "processador", "marca", "modelo", "hd", "memoria", "so", "garantia", "status"
+                "ID", "cadastro", "codigo pc", "nome pc", "processador", "marca", "modelo", "hd", "memoria", "so", "garantia", "status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblPC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPCMouseClicked(evt);
+            }
+        });
+        tblPC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblPCKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(tblPC);
@@ -252,10 +268,20 @@ public class view_pc extends javax.swing.JInternalFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/criss-cross.png"))); // NOI18N
         jButton3.setText("Remover Computador");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ferramentas-de-edicao.png"))); // NOI18N
         jButton4.setText("Editar Computador");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adicionar computador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -297,7 +323,13 @@ public class view_pc extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Status:");
 
-        cboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saida", "Entrada", "Estoque" }));
+        cboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saida", "Entrada", "No Estoque" }));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("ID:");
+
+        txtID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtID.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -354,7 +386,11 @@ public class view_pc extends javax.swing.JInternalFrame {
                     .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDatGar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtso))
-                .addContainerGap(357, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +403,9 @@ public class view_pc extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel16)
-                                .addComponent(txtso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel15)
@@ -409,6 +447,13 @@ public class view_pc extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton5.setText("Limpar Campos");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -420,6 +465,8 @@ public class view_pc extends javax.swing.JInternalFrame {
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
+                .addGap(38, 38, 38)
+                .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -438,7 +485,8 @@ public class view_pc extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -462,8 +510,68 @@ public class view_pc extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         readJtableStatus(txtPesquisa.getText());
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (tblPC.getSelectedRow() != -1) {
+            model_pc pc = new model_pc();
+            dao_pc dao = new dao_pc();
+            //Pega o id do cliente para fazer a exclusão
+            pc.setIdform((int) tblPC.getValueAt(tblPC.getSelectedRow(), 0));
+            //Chama o metodo e deleta cliente
+            dao.deletPc(pc);
+            //Depois da logica realizada acima tira o texto dos campos.
+            readJtable();
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tblPCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPCMouseClicked
+        if (tblPC.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
+            txtDatCad.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
+            txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
+            txtNomePc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
+            txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 4).toString());
+            txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 5).toString());
+            txtModelo.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 6).toString());
+            txtHd.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 7).toString());
+            txtMemoria.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 8).toString());
+            txtso.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 9).toString());
+            txtDatGar.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 10).toString());
+            cboStatus.setSelectedItem(tblPC.getValueAt(tblPC.getSelectedRow(), 11).toString());
+
+        }
+    }//GEN-LAST:event_tblPCMouseClicked
+
+    private void tblPCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblPCKeyPressed
+        if (tblPC.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
+            txtDatCad.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
+            txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
+            txtNomePc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
+            txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 4).toString());
+            txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 5).toString());
+            txtModelo.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 6).toString());
+            txtHd.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 7).toString());
+            txtMemoria.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 8).toString());
+            txtso.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 9).toString());
+            txtDatGar.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 10).toString());
+            cboStatus.setSelectedItem(tblPC.getValueAt(tblPC.getSelectedRow(), 11).toString());
+
+        }
+    }//GEN-LAST:event_tblPCKeyPressed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       zeraCampos();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -472,6 +580,7 @@ public class view_pc extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -481,6 +590,7 @@ public class view_pc extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -493,6 +603,7 @@ public class view_pc extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDatCad;
     private javax.swing.JFormattedTextField txtDatGar;
     private javax.swing.JTextField txtHd;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtMemoria;
     private javax.swing.JTextField txtModelo;

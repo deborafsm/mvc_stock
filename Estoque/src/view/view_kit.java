@@ -106,7 +106,7 @@ public class view_kit extends javax.swing.JInternalFrame {
         dao.findAll().forEach((pc) -> {
             // for é usado para passar pelos objetos
             model.addRow(new Object[]{
-                pc.getId_pc(),
+                pc.getNome(),
                 pc.getCod_pc(),
                 pc.getMarca(),
                 pc.getModelo(),
@@ -194,7 +194,7 @@ public class view_kit extends javax.swing.JInternalFrame {
         txtGarantia = new javax.swing.JTextField();
         txtData = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
+        txtnomepc = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         txtRam = new javax.swing.JTextField();
         txtHD = new javax.swing.JTextField();
@@ -311,11 +311,11 @@ public class view_kit extends javax.swing.JInternalFrame {
                 {null, null, null}
             },
             new String [] {
-                "id", "codigo", "marca"
+                "id", "marca", "codigo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -376,7 +376,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "codigo", "marca", "modelo", "processador", "memoria", "so", "hd", "garantia"
+                "Nome PC", "codigo", "marca", "modelo", "processador", "memoria", "so", "hd", "garantia"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -423,7 +423,7 @@ public class view_kit extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados PC"));
 
-        jLabel12.setText("ID_PC:");
+        jLabel12.setText("Nome PC:");
 
         jLabel13.setText("Cod_PC");
 
@@ -446,9 +446,9 @@ public class view_kit extends javax.swing.JInternalFrame {
 
         jLabel24.setText("Data KIT:");
 
-        txtID.addActionListener(new java.awt.event.ActionListener() {
+        txtnomepc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
+                txtnomepcActionPerformed(evt);
             }
         });
 
@@ -512,7 +512,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtnomepc, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel13))
                                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -521,7 +521,6 @@ public class view_kit extends javax.swing.JInternalFrame {
                                                 .addComponent(jLabel30)))
                                         .addGap(0, 2, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel34)
                                         .addGap(26, 26, 26)
                                         .addComponent(txtHD, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -545,7 +544,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnomepc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(txtCodPc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -956,7 +955,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                         .addGap(50, 50, 50)
                         .addComponent(jButton2))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -971,10 +970,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton1)
                                     .addComponent(jButton2)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -982,7 +978,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         pack();
@@ -1003,7 +999,7 @@ public class view_kit extends javax.swing.JInternalFrame {
     private void tblPCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblPCKeyReleased
         if (tblPC.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
-            txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
+            txtnomepc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
             txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
             txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
             txtModel.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
@@ -1019,7 +1015,7 @@ public class view_kit extends javax.swing.JInternalFrame {
     private void tblPCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPCMouseClicked
         if (tblPC.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
-            txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
+            txtnomepc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
             txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
             txtMarca.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
             txtModel.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
@@ -1082,9 +1078,9 @@ public class view_kit extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbOperadorMouseClicked
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+    private void txtnomepcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomepcActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
+    }//GEN-LAST:event_txtnomepcActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
@@ -1124,14 +1120,9 @@ public class view_kit extends javax.swing.JInternalFrame {
         dao_kitSaida dao = new dao_kitSaida();
         campos(kit);
         dao.addKit(kit);
-//        //Regra de negocio
-//        webcam();
-//        head();
-//        pC();
-//        oP();
-//        monitor();
-//        mouse();
-//        teclado();
+        pC();
+        oP();
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1154,61 +1145,8 @@ public class view_kit extends javax.swing.JInternalFrame {
         }
     }
 
-    /*public void mouse() {
-
-        model_kitSaida kit = new model_kitSaida();
-        dao_kitSaida dao = new dao_kitSaida();
-        if (tblMouse.getSelectedRow() != -1) {
-            //Seta todos os campos que podem ser atualizados
-            kit.setStatus(cboStatus.getSelectedItem().toString());
-            //A atualização só vai ser possivel atraves do Código
-            kit.setCod_mouse((String) tblMouse.getValueAt(tblMouse.getSelectedRow(), 0));
-            //Chama metodo UPDATE 
-            dao.updateMouse(kit);
-            //Atualiza os campos da tabela
-            readJtableMouse();
-        }
-
-    }
-
-    public void teclado() {
-        model_kitSaida kit = new model_kitSaida();
-        dao_kitSaida dao = new dao_kitSaida();
-        if (tblTeclado.getSelectedRow() != -1) {
-            //Seta todos os campos que podem ser atualizados
-            kit.setStatus(cboStatus.getSelectedItem().toString());
-            //A atualização só vai ser possivel atraves do Código
-            kit.setCod_teclado((String) tblTeclado.getValueAt(tblTeclado.getSelectedRow(), 0));
-            //Chama metodo UPDATE 
-            dao.updateTeclado(kit);
-            //Atualiza os campos da tabela
-            readJtableTeclado();
-        }
-
-    }*/
-    public void webcam() {
-        model_kitSaida kit = new model_kitSaida();
-        dao_kitSaida dao = new dao_kitSaida();
-        //Atualiza WebCam
-        kit.setStatus(cboStatus.getSelectedItem().toString());
-        //A atualização só vai ser possivel atraves do Código
-        kit.setCod_webcam((String) cboWeb.getSelectedItem().toString());
-        //Chama metodo UPDATE 
-        dao.updateWebCam(kit);
-    }
-
-    public void head() {
-        model_kitSaida kit = new model_kitSaida();
-        dao_kitSaida dao = new dao_kitSaida();
-
-        //Atualiza Heads (CBO)
-        //Seta todos os campos que vão ser atualizado
-        kit.setStatus(cboStatus.getSelectedItem().toString());
-        //A atualização só vai ser possivel atraves do Código
-        kit.setCod_head((String) cboHead.getSelectedItem().toString());
-        //Chama metodo UPDATE 
-        dao.updateHead(kit);
-    }
+  
+    
 
     public void pC() {
         model_kitSaida kit = new model_kitSaida();
@@ -1225,7 +1163,6 @@ public class view_kit extends javax.swing.JInternalFrame {
             readJtable();
         }
     }
-
     public void oP() {
         model_kitSaida kit = new model_kitSaida();
         dao_kitSaida dao = new dao_kitSaida();
@@ -1257,7 +1194,7 @@ public class view_kit extends javax.swing.JInternalFrame {
         kit.setSupervisor(txtSuper.getText());
         kit.setEmpresa(txtEmpresa.getText());
         //PC
-        kit.setId_pc(txtID.getText());
+        kit.setNomepc(txtnomepc.getText());
         kit.setCod_pc(txtCodPc.getText());
         kit.setMarca(txtMarca.getText());
         kit.setModelo(txtModel.getText());
@@ -1299,7 +1236,7 @@ public class view_kit extends javax.swing.JInternalFrame {
         txtCargo.setText("");
         txtSuper.setText("");
         //PC
-        txtID.setText("");
+        txtnomepc.setText("");
         txtCodPc.setText("");
         txtMarca.setText("");
         txtModel.setText("");
@@ -1396,7 +1333,6 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtEnerg;
     private javax.swing.JTextField txtGarantia;
     private javax.swing.JTextField txtHD;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDOP;
     private javax.swing.JTextField txtId_Mon;
     private javax.swing.JTextField txtLacre;
@@ -1411,5 +1347,6 @@ public class view_kit extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSuper;
     private javax.swing.JTextField txtTel;
     private javax.swing.JTextField txtVGA;
+    private javax.swing.JTextField txtnomepc;
     // End of variables declaration//GEN-END:variables
 }

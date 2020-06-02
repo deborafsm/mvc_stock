@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.model_head;
-import model.model_teclado;
 
 /**
  *

@@ -6,6 +6,7 @@
 package dao;
 
 import connection.connection_stock;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,12 +45,12 @@ public class dao_pc {
             ps.setString(8, pc.getSo());
             ps.setString(9, pc.getGarantia());
             ps.setString(10, pc.getStatus());
-            ps.setString(11,pc.getModelo());
+            ps.setString(11, pc.getModelo());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Inserido com sucesso !");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Não foi possivel inserir os dados."+e);
+            JOptionPane.showMessageDialog(null, "Não foi possivel inserir os dados." + e);
         } finally {
             connection_stock.closeConnection(con, ps);
         }
@@ -58,13 +59,15 @@ public class dao_pc {
 
     //Selecionar tudo 
     public List<model_pc> findAll() {
-        String sql = "select datacad,codpc,nome_pc,processador,marca_pc,hd ,memoria ,so,garantia,status_pc,modelo from pc";
+        String sql = "select id_formulario,datacad,codpc,nome_pc,processador,marca_pc,hd ,memoria ,so,garantia,status_pc,modelo from pc";
         List<model_pc> listPc = new ArrayList<>();
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+
                 model_pc pc = new model_pc();
+                pc.setIdform(rs.getInt("id_formulario"));
                 pc.setDataCad(rs.getString("datacad"));
                 pc.setCod(rs.getString("codpc"));
                 pc.setNomepc(rs.getString("nome_pc"));
@@ -76,7 +79,7 @@ public class dao_pc {
                 pc.setGarantia(rs.getString("garantia"));
                 pc.setModelo(rs.getString("modelo"));
                 pc.setStatus(rs.getString("status_pc"));
-                
+
                 listPc.add(pc);
             }
         } catch (SQLException e) {
@@ -97,6 +100,7 @@ public class dao_pc {
             while (rs.next()) {//Enquando tiver resultado (linhas)
                 model_pc pc = new model_pc();
                 //Lista os componentes
+                pc.setIdform(rs.getInt("id_formulario"));
                 pc.setDataCad(rs.getString("datacad"));
                 pc.setCod(rs.getString("codpc"));
                 pc.setNomepc(rs.getString("nome_pc"));
@@ -119,8 +123,21 @@ public class dao_pc {
         //Retora o array 
         return findPC;
     }
-    
-    
-    
+
+    public void deletPc(model_pc pc) {
+        //query deleta cliente de acordo com o id
+        String sql = "DELETE FROM pc WHERE id_formulario = ?";
+        PreparedStatement ps = null;
+        try {//tenta fazer a logica abaixo
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pc.getIdform()); //pega o codigo do pc
+            ps.executeUpdate();//Executa a query
+            JOptionPane.showMessageDialog(null, "PC Excluido com sucesso"); //mensagem informando sucesso
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir PC" + e);//mensagem informando falha e o erro causado
+        } finally {
+            connection_stock.closeConnection(con, ps); //fecha as conexoes utilizadas
+        }
+    }
 
 }
