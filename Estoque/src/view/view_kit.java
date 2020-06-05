@@ -311,7 +311,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                 {null, null, null}
             },
             new String [] {
-                "id", "marca", "codigo"
+                "id", "codigo", "marca"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -955,7 +955,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                         .addGap(50, 50, 50)
                         .addComponent(jButton2))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -978,7 +978,7 @@ public class view_kit extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         pack();
@@ -1122,6 +1122,7 @@ public class view_kit extends javax.swing.JInternalFrame {
         dao.addKit(kit);
         pC();
         oP();
+        monitor();
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1137,7 +1138,7 @@ public class view_kit extends javax.swing.JInternalFrame {
             //Seta todos os campos que podem ser atualizados
             kit.setStatus(cboStatus.getSelectedItem().toString());
             //A atualização só vai ser possivel atraves do Código
-            kit.setCod_monitor((String) tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 0));
+            kit.setCod_monitor((String) tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 1));
             //Chama metodo UPDATE 
             dao.updateMonitor(kit);
             //Atualiza os campos da tabela
@@ -1145,7 +1146,7 @@ public class view_kit extends javax.swing.JInternalFrame {
         }
     }
 
-  
+    
     
 
     public void pC() {

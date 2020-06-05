@@ -139,7 +139,7 @@ public class dao_kitSaida {
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do monitor (verificando se o mesmo está no estoque )
 
-        String sql = ("select id_marca,cod_monitor,marca_monitor from monitor where status_monitor = " + "'" + valor + "'");
+        String sql = ("select id_monitor,cod_monitor,marca_monitor from monitor where status_monitor = " + "'" + valor + "'");
         List<model_kitSaida> listMonitorKit = new ArrayList<>();//Cria lista
         //Tenta fazer uma con com o bd
         try {
@@ -148,7 +148,7 @@ public class dao_kitSaida {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_kitSaida pc = new model_kitSaida();
-                pc.setId_monitor(rs.getString("id_marca"));
+                pc.setId_monitor(rs.getString("id_monitor"));
                 pc.setCod_monitor(rs.getString("cod_monitor"));
                 pc.setMarcamon(rs.getString("marca_monitor"));
 

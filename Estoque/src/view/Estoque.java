@@ -163,7 +163,7 @@ public class Estoque extends javax.swing.JFrame {
         jMenu6.setText("KIT Computadores");
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/promocoes.png"))); // NOI18N
-        jMenuItem5.setText("KIT Entrada");
+        jMenuItem5.setText("Alterar KIT");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -319,7 +319,9 @@ public class Estoque extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-
+        view_UpKit ke = new view_UpKit();
+        ke.setVisible(true);
+        deskEstoque.add(ke);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
