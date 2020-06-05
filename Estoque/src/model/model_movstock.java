@@ -7,7 +7,7 @@ package model;
 
 /**
  *
- * @author Usuário
+ * @author Debora Freire T.I JobHome
  */
 public class model_movstock {
     /*select id_kit,lacre,nome_operador,endereco,email,cod_pc,
