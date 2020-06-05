@@ -15,5 +15,7 @@ public class dao_kitUp {
     //Selecionar Todos com KIT
     //Selectionar TODOS os PCS NO ESTOQUE
     //Selecionar TODOS Os MONITORES no ESTOQUE
+    //Atualizar PC
+    //Atualizar Monitor
     
 }

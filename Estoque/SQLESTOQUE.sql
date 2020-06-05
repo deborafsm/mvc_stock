@@ -59,15 +59,7 @@ create table operador(
     empresa varchar(200),
     supervisor varchar(100)
 );
-create table defeitos(
-	id_defeitos int primary key auto_increment,
-    comentarios varchar(400),
-    defeito_pc varchar(200),
-    defeito_mouse varchar(200),
-    defeito_teclado varchar(200),
-    defeito_webcam varchar(200),
-    defeito_head varchar(200)
-);
+
 create table kit(
 	id_kit int primary key auto_increment ,
 	data_kit varchar(200),
@@ -99,8 +91,28 @@ create table kit(
     qnt_e varchar(200),
     rede varchar(200)
 );
+create table defeitoPC(
+	id_pcDef  int primary key auto_increment ,
+    cod_pc varchar(200),
+    marca varchar(200),
+    modelo varchar(200),
+    so varchar(200),
+    garantia varchar(50),
+    ram varchar(10),
+    processador varchar(10),
+    hd varchar(10),
+    statusd varchar(10),
+    descricao varchar(200)
+);
 
-
+create table monitorDef(
+	id_monitorDefeito  int primary key auto_increment ,
+	id_monitor varchar(200),
+	cod_monitor varchar(200),
+    marca_monitor varchar(200),
+    descricao varchar(200),
+    statusm varchar(200)
+);
 select  id_operador,tel,email_operador,endereco,cargo,setor,supervisor from operador where status_operador = "Ok";
 
 select cod_mouse ,marca_mouse from mouse where status_envio_mouse = "No Estoque";
@@ -129,3 +141,17 @@ select count(*) from monitor where status_monitor = "No Estoque";
 select id_marca,cod_monitor from monitor where status_monitor = "No Estoque";
 select * from KIT;
 
+-- Inserir PC com defeito
+insert into defeitopc(cod_pc,marca,modelo,so,garantia,ram,processador,hd,statusd,descricao)values(?,?,?,?,?,?,?,?,?,?);
+-- Inserir MONITOR com defeito
+insert into monitordef(id_monitor,cod_monitor,marca_monitor,statusm) values (?,?,?,?);
+-- Selecionar todos que tem kit
+select * from kit;
+-- Selecionar todos os pcs que estão no estoque
+select * FROM pc WHERE status_pc = 'No Estoque';
+-- Selecionar todos os monitores que estao no estoque
+select * FROM monitor WHERE status_monitor = 'No Estoque';
+-- ATUAlizar KIT  PC
+UPDATE kit SET nome_pc= ?,cod_pc = ? ,marca_pc = ?,modelo_pc = ?,processador= ?,memoria= ?,so= ?,hd= ?,garantia= ?   WHERE id_kit = ?;
+-- Atualizar KIT Monitor
+UPDATE kit SET marca_monitor= ?,id_monitor = ? ,cod_monitor = ?  WHERE id_kit = ?;
