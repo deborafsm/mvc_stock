@@ -10,7 +10,6 @@ select * from teclado;
 select * from kit;
 select * from monitordef;
 select * from defeitopc;
-describe kit;
 
 
 create table pc(

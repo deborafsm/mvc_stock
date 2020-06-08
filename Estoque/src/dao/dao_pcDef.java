@@ -55,34 +55,30 @@ public class dao_pcDef {
             connection_stock.closeConnection(con, ps);
         }
     }
-
     //Pesquisar Operadora
     public java.util.List<model_pcDef> pesquisaOperador(String nome_operador) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        //Array lista adicionada
-        java.util.List<model_pcDef> pesquisarOperadora = new ArrayList<>(); //Array de alunos
-        try {   //seleciona por nome da operadora
+        java.util.List<model_pcDef> pesquisarOperadora = new ArrayList<>(); 
+        try {   
             ps = con.prepareStatement("SELECT * FROM kit WHERE nome_operador like ?");
-            ps.setString(1, "%" + nome_operador + "%");// ? = nome
-            rs = ps.executeQuery(); //Result set para se obter o resultado
-            while (rs.next()) {//Enquando tiver resultado (linhas)
+            ps.setString(1, "%" + nome_operador + "%");
+            rs = ps.executeQuery(); 
+            while (rs.next()) {
                 model_pcDef kit = new model_pcDef();
-                
                 kit.setId_kit(rs.getString("id_kit"));
                 kit.setLacre(rs.getString("lacre"));
                 kit.setNome_operador(rs.getString("nome_operador"));
                 kit.setEmail(rs.getString("email"));
                 kit.setNomePcDef(rs.getString("nome_pc"));
-                kit.setCod_pcDef("cod_pc");
-                kit.setMarca_pcDef("marca_pc");
-                kit.setModelo_pcDef("modelo_pc");
-                kit.setCpu_pcDef("processador");
-                kit.setRam_pcDef("memoria");
-                kit.setSo_pcDef("so");
-                kit.setHd_pcDef("hd");
-                kit.setGarantia_pcDef("garantia");
-                
+                kit.setCod_pcDef(rs.getString("cod_pc"));
+                kit.setMarca_pcDef(rs.getString("marca_pc"));
+                kit.setModelo_pcDef(rs.getString("modelo_pc"));
+                kit.setCpu_pcDef(rs.getString("processador"));
+                kit.setRam_pcDef(rs.getString("memoria"));
+                kit.setSo_pcDef(rs.getString("so"));
+                kit.setHd_pcDef(rs.getString("hd"));
+                kit.setGarantia_pcDef(rs.getString("garantia"));
                 pesquisarOperadora.add(kit);
             }
         } catch (Exception e) {
@@ -90,8 +86,36 @@ public class dao_pcDef {
         } finally {
             connection_stock.closeConnection(con, ps, rs);
         }
-        //Retora o array 
         return pesquisarOperadora;
+    }
+    //Pesquisar PC
+    public java.util.List<model_pc> pesquisarPc(String cod_pc) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        java.util.List<model_pc> pesquisarPC = new ArrayList<>(); 
+        try {   
+            ps = con.prepareStatement("SELECT * FROM pc WHERE codpc like ?");
+            ps.setString(1, "%" + cod_pc + "%");
+            rs = ps.executeQuery(); 
+            while (rs.next()) {
+                model_pc pc = new model_pc();
+                pc.setNomepc(rs.getString("nome_pc"));
+                pc.setCodPC(rs.getString("codpc"));
+                pc.setMarca(rs.getString("marca_pc"));
+                pc.setModelo(rs.getString("modelo"));
+                pc.setProcessador(rs.getString("processador"));
+                pc.setMemoria(rs.getString("memoria"));
+                pc.setSo(rs.getString("so"));
+                pc.setHd(rs.getString("hd"));
+                pc.setGarantia(rs.getString("garantia"));
+                pesquisarPC.add(pc);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao pesquisar o pc. " + e);
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return pesquisarPC;
     }
 
     //Selecionar KIT
