@@ -9,7 +9,7 @@ package model;
  *
  * @author Debora Freire T.I JobHome
  */
-public class model_pcDef {
+    public class model_pcDef {
     //Vai para tabela PC Defeito
     private String id_kit;
     private String lacre;
@@ -27,6 +27,8 @@ public class model_pcDef {
     private String descricao_pcDef;
     private String nome_operador;
     private String email;
+    
+   
   
 
     public model_pcDef() {

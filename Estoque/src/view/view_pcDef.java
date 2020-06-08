@@ -5,8 +5,11 @@
  */
 package view;
 
+import dao.dao_pcDef;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+import model.model_pcDef;
 
 /**
  *
@@ -19,6 +22,129 @@ public class view_pcDef extends javax.swing.JInternalFrame {
      */
     public view_pcDef() {
         initComponents();
+        selecionaKit();
+        selecnewPC();
+    }
+
+    public void pesquisarOperador(String nome_operador) {
+        DefaultTableModel model = (DefaultTableModel) tblKitPc.getModel();
+        model.setNumRows(0);
+        dao_pcDef dao = new dao_pcDef();
+
+        dao.pesquisaOperador(nome_operador).forEach((pc) -> {
+            model.addRow(new Object[]{
+                //Chama os itens 
+                pc.getId_kit(),
+                pc.getLacre(),
+                pc.getNome_operador(),
+                pc.getEmail(),
+                pc.getCod_pcDef(),
+                pc.getNomePcDef(),
+                pc.getMarca_pcDef(),
+                pc.getModelo_pcDef(),
+                pc.getCpu_pcDef(),
+                pc.getHd_pcDef(),
+                pc.getRam_pcDef(),
+                pc.getSo_pcDef(),
+                pc.getGarantia_pcDef()
+            });
+        });
+
+    }
+
+    public void selecionaKit() {
+        DefaultTableModel model = (DefaultTableModel) tblKitPc.getModel();
+        model.setNumRows(0);
+        dao_pcDef kitpc = new dao_pcDef();
+
+        kitpc.selecionaKit().forEach((pc) -> {
+            // for é usado para passar pelos objetos
+            model.addRow(new Object[]{
+                pc.getId_kit(),
+                pc.getLacre(),
+                pc.getNome_operador(),
+                pc.getEmail(),
+                pc.getCod_pcDef(),
+                pc.getNomePcDef(),
+                pc.getMarca_pcDef(),
+                pc.getModelo_pcDef(),
+                pc.getCpu_pcDef(),
+                pc.getHd_pcDef(),
+                pc.getRam_pcDef(),
+                pc.getSo_pcDef(),
+                pc.getGarantia_pcDef()
+
+            });
+        });
+    }
+
+    public void selecnewPC() {
+        DefaultTableModel model = (DefaultTableModel) tblPCnv.getModel();
+        model.setRowCount(0);
+        dao_pcDef pcnv = new dao_pcDef();
+        pcnv.selectPC().forEach((newpc) -> {
+            model.addRow(new Object[]{
+                newpc.getNomepc(),
+                newpc.getCodPC(),
+                newpc.getMarca(),
+                newpc.getModelo(),
+                newpc.getProcessador(),
+                newpc.getMemoria(),
+                newpc.getSo(),
+                newpc.getHd(),
+                newpc.getGarantia()
+            });
+
+        });
+    }
+
+    public void campos(model_pcDef pcDef) {
+        pcDef.setNome_operador(txtNomeOP.getText());
+        pcDef.setEmail(txtEmail.getText());
+        pcDef.setNomePcDef(txtPCDefeito.getText());
+        pcDef.setCod_pcDef(txtCodPcDefeito.getText());
+        pcDef.setMarca_pcDef(txtMarcapcDefeito.getText());
+        pcDef.setModelo_pcDef(txtmodelopcDef.getText());
+        pcDef.setCpu_pcDef(txtCPUDefeito.getText());
+        pcDef.setRam_pcDef(txtRamDefeito.getText());
+        pcDef.setSo_pcDef(txtsoDefeito.getText());
+        pcDef.setHd_pcDef(txtHDDefeito.getText());
+        pcDef.setGarantia_pcDef(txtGarDefeito.getText());
+    }
+
+    public void camposPCnovo(model_pcDef pcnv) {
+        pcnv.setNomePcDef(txtPCnv.getText());
+        pcnv.setCod_pcDef(txtCodPcnv.getText());
+        pcnv.setMarca_pcDef(txtMarcapcnv.getText());
+        pcnv.setModelo_pcDef(txtpcModelonv.getText());
+        pcnv.setCpu_pcDef(txtCPUnv.getText());
+        pcnv.setRam_pcDef(txtRamnv.getText());
+        pcnv.setSo_pcDef(txtsonv.getText());
+        pcnv.setHd_pcDef(txtHDnv.getText());
+        pcnv.setGarantia_pcDef(txtGarnv.getText());
+    }
+
+    public void limparTudo() {
+        txtEmail.setText("");
+        txtPCDefeito.setText("");
+        txtCodPcDefeito.setText("");
+        txtMarcapcDefeito.setText("");
+        txtmodelopcDef.setText("");
+        txtCPUDefeito.setText("");
+        txtRamDefeito.setText("");
+        txtsoDefeito.setText("");
+        txtHDDefeito.setText("");
+        txtGarDefeito.setText("");
+        txtPCnv.setText("");
+        txtCodPcnv.setText("");
+        txtMarcapcnv.setText("");
+        txtpcModelonv.setText("");
+        txtCodPcnv.setText("");
+        txtRamnv.setText("");
+        txtsonv.setText("");
+        txtHDnv.setText("");
+        txtGarnv.setText("");
+
     }
 
     /**
@@ -33,7 +159,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         txtNomeOP = new javax.swing.JTextField();
-        txtEndereco = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         txtDataDK = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -45,7 +171,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         txtCodPcDefeito = new javax.swing.JTextField();
-        txtpcModeloDefeito = new javax.swing.JTextField();
+        txtmodelopcDef = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         txtRamDefeito = new javax.swing.JTextField();
         txtHDDefeito = new javax.swing.JTextField();
@@ -63,13 +189,13 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         cboStatusMonitor = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMOV = new javax.swing.JTable();
+        tblKitPc = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtFindop = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPCnv = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtFindPc = new javax.swing.JTextField();
         txtPCnv = new javax.swing.JTextField();
@@ -91,6 +217,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         txtRamnv = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -102,9 +229,9 @@ public class view_pcDef extends javax.swing.JInternalFrame {
 
         jLabel15.setText("Nome:");
 
-        txtEndereco.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnderecoActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
@@ -131,7 +258,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtDataDK, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                         .addComponent(txtNomeOP, javax.swing.GroupLayout.Alignment.LEADING)))
@@ -150,7 +277,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -170,10 +297,10 @@ public class view_pcDef extends javax.swing.JInternalFrame {
 
         jLabel30.setText("Modelo:");
 
-        txtpcModeloDefeito.setPreferredSize(new java.awt.Dimension(20, 20));
-        txtpcModeloDefeito.addActionListener(new java.awt.event.ActionListener() {
+        txtmodelopcDef.setPreferredSize(new java.awt.Dimension(20, 20));
+        txtmodelopcDef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpcModeloDefeitoActionPerformed(evt);
+                txtmodelopcDefActionPerformed(evt);
             }
         });
 
@@ -243,7 +370,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel35)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtGarDefeito, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtpcModeloDefeito, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtmodelopcDef, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel46)
                         .addGap(4, 4, 4)
@@ -267,7 +394,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                                     .addComponent(txtPCDefeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtpcModeloDefeito, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtmodelopcDef, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel30)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel29)
@@ -301,11 +428,11 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                         .addGap(41, 41, 41))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtMarcapcDefeito, txtpcModeloDefeito});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtMarcapcDefeito, txtmodelopcDef});
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Kits Existentes"));
 
-        tblMOV.setModel(new javax.swing.table.DefaultTableModel(
+        tblKitPc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -313,7 +440,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID_KIT", "Lacre KIT", "Nome Operadora", "Email", "Nome_PC", "Cod_PC", "Marca", "Modelo", "Processador", "Memoria", "SO", "HD", "Garantia"
+                "ID_KIT", "Lacre KIT", "Nome Operadora", "Email", "Cod_PC", "Nome_PC", "Marca", "Modelo", "Processador", "HD", "Memoria", "SO", "Garantia"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -324,23 +451,34 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblMOV);
+        jScrollPane1.setViewportView(tblKitPc);
+        if (tblKitPc.getColumnModel().getColumnCount() > 0) {
+            tblKitPc.getColumnModel().getColumn(4).setResizable(false);
+            tblKitPc.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jLabel2.setText("Nome Operador(a):");
 
         jButton2.setText("Pesquisar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFindop, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -352,14 +490,14 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jButton2))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField1))
+                    .addComponent(txtFindop))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("PC novo"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPCnv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -378,9 +516,9 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblPCnv);
 
-        jLabel1.setText("Marca_PC:");
+        jLabel1.setText("Cod_PC:");
 
         txtPCnv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,6 +553,13 @@ public class view_pcDef extends javax.swing.JInternalFrame {
 
         jButton3.setText("Atualizar KIT");
 
+        jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -425,7 +570,9 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFindPc, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFindPc, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addGap(0, 15, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
@@ -479,10 +626,11 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtFindPc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFindPc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -547,11 +695,9 @@ public class view_pcDef extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(324, Short.MAX_VALUE))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -561,13 +707,13 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPCDefeitoActionPerformed
 
-    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnderecoActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtpcModeloDefeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpcModeloDefeitoActionPerformed
+    private void txtmodelopcDefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmodelopcDefActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpcModeloDefeitoActionPerformed
+    }//GEN-LAST:event_txtmodelopcDefActionPerformed
 
     private void txtDataDKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataDKActionPerformed
         txtDataDK.setText(new SimpleDateFormat("HH:mm:ss").format(new Date(System.currentTimeMillis())));
@@ -581,9 +727,18 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpcModelonvActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        pesquisarOperador(txtFindop.getText());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboStatusMonitor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -618,17 +773,17 @@ public class view_pcDef extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tblMOV;
+    private javax.swing.JTable tblKitPc;
+    private javax.swing.JTable tblPCnv;
     private javax.swing.JTextArea txaDescPC;
     private javax.swing.JTextField txtCPUDefeito;
     private javax.swing.JTextField txtCPUnv;
     private javax.swing.JTextField txtCodPcDefeito;
     private javax.swing.JTextField txtCodPcnv;
     private javax.swing.JTextField txtDataDK;
-    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFindPc;
+    private javax.swing.JTextField txtFindop;
     private javax.swing.JTextField txtGarDefeito;
     private javax.swing.JTextField txtGarnv;
     private javax.swing.JTextField txtHDDefeito;
@@ -640,7 +795,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPCnv;
     private javax.swing.JTextField txtRamDefeito;
     private javax.swing.JTextField txtRamnv;
-    private javax.swing.JTextField txtpcModeloDefeito;
+    private javax.swing.JTextField txtmodelopcDef;
     private javax.swing.JTextField txtpcModelonv;
     private javax.swing.JTextField txtsoDefeito;
     private javax.swing.JTextField txtsonv;

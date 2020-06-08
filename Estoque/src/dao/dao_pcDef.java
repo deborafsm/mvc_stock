@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.model_pc;
 import model.model_pcDef;
 
 /**
@@ -56,7 +57,7 @@ public class dao_pcDef {
     }
 
     //Pesquisar Operadora
-    public java.util.List<model_pcDef> pesquisaOperador(model_pcDef nome_operador) {
+    public java.util.List<model_pcDef> pesquisaOperador(String nome_operador) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         //Array lista adicionada
@@ -67,10 +68,7 @@ public class dao_pcDef {
             rs = ps.executeQuery(); //Result set para se obter o resultado
             while (rs.next()) {//Enquando tiver resultado (linhas)
                 model_pcDef kit = new model_pcDef();
-                //Lista os componentes
-                //# id_kit, lacre, nome_operador, email, 
-                //nome_pc, cod_pc, marca_pc, 
-                //modelo_pc, processador, memoria, so, hd, garantia
+                
                 kit.setId_kit(rs.getString("id_kit"));
                 kit.setLacre(rs.getString("lacre"));
                 kit.setNome_operador(rs.getString("nome_operador"));
@@ -84,11 +82,11 @@ public class dao_pcDef {
                 kit.setSo_pcDef("so");
                 kit.setHd_pcDef("hd");
                 kit.setGarantia_pcDef("garantia");
-                //E adiciona no array list
+                
                 pesquisarOperadora.add(kit);
             }
         } catch (Exception e) {
-            System.out.println("Erro ao pesquisar operadora. " + e);//Mostra o erro da logica, ja que só mostra algum resultado
+            System.out.println("Erro ao pesquisar operadora. " + e);
         } finally {
             connection_stock.closeConnection(con, ps, rs);
         }
@@ -97,7 +95,7 @@ public class dao_pcDef {
     }
 
     //Selecionar KIT
-    public java.util.List<model_pcDef> selecionarOperadores() {
+    public java.util.List<model_pcDef> selecionaKit() {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -108,21 +106,22 @@ public class dao_pcDef {
                     + "so,garantia from kit");
 
             rs = ps.executeQuery();
+
             while (rs.next()) {
                 model_pcDef kit = new model_pcDef();
                 kit.setId_kit(rs.getString("id_kit"));
                 kit.setLacre(rs.getString("lacre"));
                 kit.setNome_operador(rs.getString("nome_operador"));
                 kit.setEmail(rs.getString("email"));
+                kit.setCod_pcDef(rs.getString("cod_pc"));
                 kit.setNomePcDef(rs.getString("nome_pc"));
-                kit.setCod_pcDef("cod_pc");
-                kit.setMarca_pcDef("marca_pc");
-                kit.setModelo_pcDef("modelo_pc");
-                kit.setCpu_pcDef("processador");
-                kit.setRam_pcDef("memoria");
-                kit.setSo_pcDef("so");
-                kit.setHd_pcDef("hd");
-                kit.setGarantia_pcDef("garantia");
+                kit.setMarca_pcDef(rs.getString("marca_pc"));
+                kit.setModelo_pcDef(rs.getString("modelo_pc"));
+                kit.setCpu_pcDef(rs.getString("processador"));
+                kit.setHd_pcDef(rs.getString("hd"));
+                kit.setRam_pcDef(rs.getString("memoria"));
+                kit.setSo_pcDef(rs.getString("so"));
+                kit.setGarantia_pcDef(rs.getString("garantia"));
                 selectKit.add(kit);
             }
         } catch (Exception e) {
@@ -133,32 +132,29 @@ public class dao_pcDef {
         //Retora o array 
         return selectKit;
     }
-    
-    
-    
-    public java.util.List<model_pcDef> selectPC() {
+
+    public java.util.List<model_pc> selectPC() {
         PreparedStatement ps = null;
         ResultSet rs = null;
-
-        java.util.List<model_pcDef> selectPC = new ArrayList<>();
+        String valor = "No Estoque";
+        String sql = ("select nome_pc,codpc,marca_pc,modelo,processador,memoria,so,"
+                + "hd,garantia from pc where status_pc = " + "'" + valor + "'");
+        java.util.List<model_pc> selectPC = new ArrayList<>();
         try {
-            ps = con.prepareStatement("cod_pc,nome_pc,marca_pc,modelo_pc,processador,hd,memoria,\n"
-                    + "so,garantia from kit");
-
+             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                model_pcDef kit = new model_pcDef();
-                
-                kit.setNomePcDef(rs.getString("nome_pc"));
-                kit.setCod_pcDef("cod_pc");
-                kit.setMarca_pcDef("marca_pc");
-                kit.setModelo_pcDef("modelo_pc");
-                kit.setCpu_pcDef("processador");
-                kit.setRam_pcDef("memoria");
-                kit.setSo_pcDef("so");
-                kit.setHd_pcDef("hd");
-                kit.setGarantia_pcDef("garantia");
-                selectPC.add(kit);
+                model_pc pc = new model_pc();
+                pc.setNomepc(rs.getString("nome_pc"));
+                pc.setCodPC(rs.getString("codpc"));
+                pc.setMarca(rs.getString("marca_pc"));
+                pc.setModelo(rs.getString("modelo"));
+                pc.setProcessador(rs.getString("processador"));
+                pc.setMemoria(rs.getString("memoria"));
+                pc.setSo(rs.getString("so"));
+                pc.setHd(rs.getString("hd"));
+                pc.setGarantia(rs.getString("garantia"));
+                selectPC.add(pc);
             }
         } catch (Exception e) {
             System.out.println("Erro ao mostrar PC. " + e);
@@ -168,16 +164,15 @@ public class dao_pcDef {
         //Retora o array 
         return selectPC;
     }
-    
-    
+
     public void updateStud(model_pcDef nome_operador) {
         PreparedStatement ps = null;
-        String sql = "UPDATE kit\n" +
-"SET lacre = ?,nome_operador = ?,email  = ?,\n" +
-"cod_pc = ?,nome_pc = ?,marca_pc = ?,modelo_pc = ?,\n" +
-"processador = ?,hd = ?,memoria = ?,\n" +
-"so = ?,garantia = ?\n" +
-"WHERE id_kit  = ?;";
+        String sql = "UPDATE kit\n"
+                + "SET lacre = ?,nome_operador = ?,email  = ?,\n"
+                + "cod_pc = ?,nome_pc = ?,marca_pc = ?,modelo_pc = ?,\n"
+                + "processador = ?,hd = ?,memoria = ?,\n"
+                + "so = ?,garantia = ?\n"
+                + "WHERE id_kit  = ?;";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, nome_operador.getLacre());
@@ -192,11 +187,11 @@ public class dao_pcDef {
             ps.setString(10, nome_operador.getRam_pcDef());
             ps.setString(11, nome_operador.getSo_pcDef());
             ps.setString(12, nome_operador.getGarantia_pcDef());
-            
+
             ps.executeQuery();
             JOptionPane.showMessageDialog(null, "Kit Alterado com sucesso");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao Alterar Kit"+e);
+            JOptionPane.showMessageDialog(null, "Erro ao Alterar Kit" + e);
         } finally {
             connection_stock.closeConnection(con, ps);
         }
