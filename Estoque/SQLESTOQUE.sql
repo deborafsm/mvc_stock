@@ -8,7 +8,11 @@ select *from monitor;
 select * from mouse;
 select * from teclado;
 select * from kit;
+select * from monitordef;
+select * from defeitopc;
 describe kit;
+
+
 create table pc(
 	id_formulario int primary key auto_increment,
     datacad varchar(100),
@@ -93,6 +97,7 @@ create table kit(
 );
 create table defeitoPC(
 	id_pcDef  int primary key auto_increment ,
+    data_def varchar(200),
     cod_pc varchar(200),
     marca varchar(200),
     modelo varchar(200),

@@ -38,16 +38,10 @@ public class Estoque extends javax.swing.JFrame {
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem24 = new javax.swing.JMenuItem();
-        jMenuItem27 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,19 +154,10 @@ public class Estoque extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cartao.png"))); // NOI18N
-        jMenu6.setText("KIT Computadores");
+        jMenu6.setText("KIT");
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/promocoes.png"))); // NOI18N
-        jMenuItem5.setText("Alterar KIT");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem5);
-
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/24-horas.png"))); // NOI18N
-        jMenuItem6.setText("KIT Saida");
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/promocoes.png"))); // NOI18N
+        jMenuItem6.setText("Saida");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -182,44 +167,24 @@ public class Estoque extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/interface.png"))); // NOI18N
-        jMenu4.setText("Visualizar Produto");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/suporte-tecnico.png"))); // NOI18N
+        jMenu3.setText("Suporte");
 
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/torre.png"))); // NOI18N
-        jMenuItem13.setText("Visualizar PC");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/eletronicos.png"))); // NOI18N
+        jMenuItem9.setText("Monitores");
+        jMenu3.add(jMenuItem9);
+
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/torre.png"))); // NOI18N
+        jMenuItem5.setText("PC");
+        jMenuItem5.setToolTipText("");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem13);
+        jMenu3.add(jMenuItem5);
 
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ferramenta.png"))); // NOI18N
-        jMenuItem14.setText("Visualizar Teclados");
-        jMenu4.add(jMenuItem14);
-
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/informatica.png"))); // NOI18N
-        jMenuItem15.setText("Visualizar Mouse");
-        jMenu4.add(jMenuItem15);
-
-        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/eletronicos.png"))); // NOI18N
-        jMenuItem16.setText("Visualizar Monitor");
-        jMenu4.add(jMenuItem16);
-
-        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pessoas.png"))); // NOI18N
-        jMenuItem17.setText("Visualizar HeadPhone");
-        jMenu4.add(jMenuItem17);
-
-        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cartao.png"))); // NOI18N
-        jMenuItem24.setText("Visualizar KIT");
-        jMenu4.add(jMenuItem24);
-
-        jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/video-chamada.png"))); // NOI18N
-        jMenuItem27.setText("Visualizar WebCam");
-        jMenu4.add(jMenuItem27);
-
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jMenu3);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon.png"))); // NOI18N
         jMenu2.setText("Movimentação de estoque");
@@ -272,10 +237,6 @@ public class Estoque extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         view_pc pc = new view_pc();
         pc.setVisible(true);
@@ -319,7 +280,7 @@ public class Estoque extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        view_UpKit ke = new view_UpKit();
+        view_pcDef ke = new view_pcDef();
         ke.setVisible(true);
         deskEstoque.add(ke);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -380,24 +341,18 @@ public class Estoque extends javax.swing.JFrame {
     private javax.swing.JDesktopPane deskEstoque;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
-    private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }

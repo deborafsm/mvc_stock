@@ -9,9 +9,12 @@ package model;
  *
  * @author Debora Freire T.I JobHome
  */
-public class model_kitUp {
+public class model_pcDef {
     //Vai para tabela PC Defeito
+    private String id_kit;
+    private String lacre;
     private String nomePcDef;
+    private String datadef;
     private String cod_pcDef;
     private String marca_pcDef;
     private String modelo_pcDef;
@@ -22,16 +25,18 @@ public class model_kitUp {
     private String hd_pcDef;
     private String status_pcDef;
     private String descricao_pcDef;
-    //Vai para tabela monitor
-    private String id_monitorDef;
-    private String marca_monitorDef;
-    private String codigo_monitorDef;
+    private String nome_operador;
+    private String email;
+  
 
-    public model_kitUp() {
+    public model_pcDef() {
     }
 
-    public model_kitUp(String nomePcDef, String cod_pcDef, String marca_pcDef, String modelo_pcDef, String so_pcDef, String garantia_pcDef, String ram_pcDef, String cpu_pcDef, String hd_pcDef, String status_pcDef, String descricao_pcDef, String id_monitorDef, String marca_monitorDef, String codigo_monitorDef) {
+    public model_pcDef(String id_kit, String lacre, String nomePcDef, String datadef, String cod_pcDef, String marca_pcDef, String modelo_pcDef, String so_pcDef, String garantia_pcDef, String ram_pcDef, String cpu_pcDef, String hd_pcDef, String status_pcDef, String descricao_pcDef, String nome_operador, String email) {
+        this.id_kit = id_kit;
+        this.lacre = lacre;
         this.nomePcDef = nomePcDef;
+        this.datadef = datadef;
         this.cod_pcDef = cod_pcDef;
         this.marca_pcDef = marca_pcDef;
         this.modelo_pcDef = modelo_pcDef;
@@ -42,11 +47,48 @@ public class model_kitUp {
         this.hd_pcDef = hd_pcDef;
         this.status_pcDef = status_pcDef;
         this.descricao_pcDef = descricao_pcDef;
-        this.id_monitorDef = id_monitorDef;
-        this.marca_monitorDef = marca_monitorDef;
-        this.codigo_monitorDef = codigo_monitorDef;
+        this.nome_operador = nome_operador;
+        this.email = email;
     }
 
+    public String getNome_operador() {
+        return nome_operador;
+    }
+
+    public void setNome_operador(String nome_operador) {
+        this.nome_operador = nome_operador;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
+
+    public String getId_kit() {
+        return id_kit;
+    }
+
+    public void setId_kit(String id_kit) {
+        this.id_kit = id_kit;
+    }
+
+    public String getLacre() {
+        return lacre;
+    }
+
+    public void setLacre(String lacre) {
+        this.lacre = lacre;
+    }
+
+    
+    
+
+    
     public String getNomePcDef() {
         return nomePcDef;
     }
@@ -55,6 +97,15 @@ public class model_kitUp {
         this.nomePcDef = nomePcDef;
     }
 
+    public String getDatadef() {
+        return datadef;
+    }
+
+    public void setDatadef(String datadef) {
+        this.datadef = datadef;
+    }
+    
+    
     public String getCod_pcDef() {
         return cod_pcDef;
     }
@@ -135,29 +186,6 @@ public class model_kitUp {
         this.descricao_pcDef = descricao_pcDef;
     }
 
-    public String getId_monitorDef() {
-        return id_monitorDef;
-    }
-
-    public void setId_monitorDef(String id_monitorDef) {
-        this.id_monitorDef = id_monitorDef;
-    }
-
-    public String getMarca_monitorDef() {
-        return marca_monitorDef;
-    }
-
-    public void setMarca_monitorDef(String marca_monitorDef) {
-        this.marca_monitorDef = marca_monitorDef;
-    }
-
-    public String getCodigo_monitorDef() {
-        return codigo_monitorDef;
-    }
-
-    public void setCodigo_monitorDef(String codigo_monitorDef) {
-        this.codigo_monitorDef = codigo_monitorDef;
-    }
     
     
     
