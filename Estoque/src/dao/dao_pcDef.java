@@ -29,28 +29,31 @@ public class dao_pcDef {
     }
 
     public void inserirPCDefeito(model_pcDef pcDef) {
-        String sql = "insert into defeitopc(cod_pc, datadef, marca, \n"
+       
+
+        String sql = "insert into defeitopc(cod_pc, datadef,nome_pc, marca, \n"
                 + " modelo, so, garantia, ram, processador, hd, \n"
-                + " statusd, descricao)values(?,?,?,?,?,?,?,?,?,?,?)";
+                + " statusd, descricao)values(?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, pcDef.getCod_pcDef());
             ps.setString(2, pcDef.getDatadef());
-            ps.setString(3, pcDef.getMarca_pcDef());
-            ps.setString(4, pcDef.getModelo_pcDef());
-            ps.setString(5, pcDef.getSo_pcDef());
-            ps.setString(6, pcDef.getGarantia_pcDef());
-            ps.setString(7, pcDef.getRam_pcDef());
-            ps.setString(8, pcDef.getCpu_pcDef());
-            ps.setString(9, pcDef.getHd_pcDef());
-            ps.setString(10, pcDef.getStatus_pcDef());
-            ps.setString(11, pcDef.getDescricao_pcDef());
+            ps.setString(3, pcDef.getNomePcDef());
+            ps.setString(4, pcDef.getMarca_pcDef());
+            ps.setString(5, pcDef.getModelo_pcDef());
+            ps.setString(6, pcDef.getSo_pcDef());
+            ps.setString(7, pcDef.getGarantia_pcDef());
+            ps.setString(8, pcDef.getRam_pcDef());
+            ps.setString(9, pcDef.getCpu_pcDef());
+            ps.setString(10, pcDef.getHd_pcDef());
+            ps.setString(11, pcDef.getStatus_pcDef());
+            ps.setString(12, pcDef.getDescricao_pcDef());
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Defeito inserido com sucesso");
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir Aluno " + e);
+            JOptionPane.showMessageDialog(null, "Erro ao inserir Defeito " + e);
         } finally {
             connection_stock.closeConnection(con, ps);
         }

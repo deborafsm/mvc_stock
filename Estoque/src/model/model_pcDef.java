@@ -188,6 +188,11 @@ package model;
         this.descricao_pcDef = descricao_pcDef;
     }
 
+    @Override
+    public String toString() {
+       return getStatus_pcDef();
+    }
+
     
     
     

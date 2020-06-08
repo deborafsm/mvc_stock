@@ -9,8 +9,8 @@ select * from mouse;
 select * from teclado;
 select * from kit;
 select * from monitordef;
-select * from defeitopc;
-
+select * from defeitopc; 
+alter table defeitopc add column nome_pc varchar(200) after datadef;
 
 create table pc(
 	id_formulario int primary key auto_increment,
