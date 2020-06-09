@@ -10,7 +10,8 @@ select * from teclado;
 select * from kit;
 select * from monitordef;
 select * from defeitopc; 
-alter table defeitopc add column nome_pc varchar(200) after datadef;
+alter table defeitopc add column nome_operador varchar(200) ;
+alter table defeitopc add column email varchar(200) ;
 
 create table pc(
 	id_formulario int primary key auto_increment,

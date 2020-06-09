@@ -33,7 +33,7 @@ public class dao_pcDef {
 
         String sql = "insert into defeitopc(cod_pc, datadef,nome_pc, marca, \n"
                 + " modelo, so, garantia, ram, processador, hd, \n"
-                + " statusd, descricao)values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                + " statusd, descricao,email,nome_operador)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -49,6 +49,8 @@ public class dao_pcDef {
             ps.setString(10, pcDef.getHd_pcDef());
             ps.setString(11, pcDef.getStatus_pcDef());
             ps.setString(12, pcDef.getDescricao_pcDef());
+            ps.setString(13, pcDef.getEmail());
+            ps.setString(14, pcDef.getNomePcDef());
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Defeito inserido com sucesso");
@@ -159,7 +161,7 @@ public class dao_pcDef {
         //Retora o array 
         return selectKit;
     }
-
+    //Mostra PC que estão no estoque
     public java.util.List<model_pc> selectPC() {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -192,33 +194,48 @@ public class dao_pcDef {
         return selectPC;
     }
 
-    public void updateStud(model_pcDef nome_operador) {
+    public void atualizaKIT(model_pc pcnv) {
         PreparedStatement ps = null;
-        String sql = "UPDATE kit\n"
-                + "SET lacre = ?,nome_operador = ?,email  = ?,\n"
-                + "cod_pc = ?,nome_pc = ?,marca_pc = ?,modelo_pc = ?,\n"
-                + "processador = ?,hd = ?,memoria = ?,\n"
-                + "so = ?,garantia = ?\n"
+        String sql = "UPDATE kit SET nome_pc = ?, cod_pc = ?,marca_pc = ?,modelo_pc = ?,\n"
+                + "processador = ?,memoria = ?,so = ?,hd = ?,garantia = ?\n"
                 + "WHERE id_kit  = ?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, nome_operador.getLacre());
-            ps.setString(2, nome_operador.getNome_operador());
-            ps.setString(3, nome_operador.getEmail());
-            ps.setString(4, nome_operador.getCod_pcDef());
-            ps.setString(5, nome_operador.getNomePcDef());
-            ps.setString(6, nome_operador.getMarca_pcDef());
-            ps.setString(7, nome_operador.getModelo_pcDef());
-            ps.setString(8, nome_operador.getSo_pcDef());
-            ps.setString(9, nome_operador.getHd_pcDef());
-            ps.setString(10, nome_operador.getRam_pcDef());
-            ps.setString(11, nome_operador.getSo_pcDef());
-            ps.setString(12, nome_operador.getGarantia_pcDef());
-
-            ps.executeQuery();
+           
+            ps.setString(1, pcnv.getNomepc());
+            ps.setString(2, pcnv.getCod());
+            ps.setString(3, pcnv.getMarca());
+            ps.setString(4, pcnv.getModelo());
+            ps.setString(5, pcnv.getProcessador());
+            ps.setString(6, pcnv.getMemoria());
+            ps.setString(7, pcnv.getSo());
+            ps.setString(8, pcnv.getHd());
+            ps.setString(9, pcnv.getGarantia());
+            ps.setInt(10, pcnv.getIdform());
+            ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Kit Alterado com sucesso");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Alterar Kit" + e);
+        } finally {
+            connection_stock.closeConnection(con, ps);
+        }
+
+    }
+  
+    //Atualiza status do pc = "No estoque para Saida
+    public void atualizarStatusPC(model_pc pcnv) {
+        PreparedStatement ps = null;
+        String sql = "UPDATE pc SET status_pc = ? WHERE id_formulario  = ?;";
+        try {
+            ps = con.prepareStatement(sql);
+           
+            ps.setString(1, pcnv.getStatus());
+            ps.setInt(2, pcnv.getId());
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Status do PC foi alterado com sucesso.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Alterar o status do pc" + e);
         } finally {
             connection_stock.closeConnection(con, ps);
         }
