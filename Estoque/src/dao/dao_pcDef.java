@@ -29,7 +29,6 @@ public class dao_pcDef {
     }
 
     public void inserirPCDefeito(model_pcDef pcDef) {
-       
 
         String sql = "insert into defeitopc(cod_pc, datadef,nome_pc, marca, \n"
                 + " modelo, so, garantia, ram, processador, hd, \n"
@@ -60,15 +59,16 @@ public class dao_pcDef {
             connection_stock.closeConnection(con, ps);
         }
     }
+
     //Pesquisar Operadora
     public java.util.List<model_pcDef> pesquisaOperador(String nome_operador) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        java.util.List<model_pcDef> pesquisarOperadora = new ArrayList<>(); 
-        try {   
+        java.util.List<model_pcDef> pesquisarOperadora = new ArrayList<>();
+        try {
             ps = con.prepareStatement("SELECT * FROM kit WHERE nome_operador like ?");
             ps.setString(1, "%" + nome_operador + "%");
-            rs = ps.executeQuery(); 
+            rs = ps.executeQuery();
             while (rs.next()) {
                 model_pcDef kit = new model_pcDef();
                 kit.setId_kit(rs.getString("id_kit"));
@@ -93,15 +93,16 @@ public class dao_pcDef {
         }
         return pesquisarOperadora;
     }
+
     //Pesquisar PC
     public java.util.List<model_pc> pesquisarPc(String cod_pc) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        java.util.List<model_pc> pesquisarPC = new ArrayList<>(); 
-        try {   
+        java.util.List<model_pc> pesquisarPC = new ArrayList<>();
+        try {
             ps = con.prepareStatement("SELECT * FROM pc WHERE codpc like ?");
             ps.setString(1, "%" + cod_pc + "%");
-            rs = ps.executeQuery(); 
+            rs = ps.executeQuery();
             while (rs.next()) {
                 model_pc pc = new model_pc();
                 pc.setNomepc(rs.getString("nome_pc"));
@@ -161,38 +162,6 @@ public class dao_pcDef {
         //Retora o array 
         return selectKit;
     }
-    //Mostra PC que estão no estoque
-    public java.util.List<model_pc> selectPC() {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        String valor = "No Estoque";
-        String sql = ("select nome_pc,codpc,marca_pc,modelo,processador,memoria,so,"
-                + "hd,garantia from pc where status_pc = " + "'" + valor + "'");
-        java.util.List<model_pc> selectPC = new ArrayList<>();
-        try {
-             ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                model_pc pc = new model_pc();
-                pc.setNomepc(rs.getString("nome_pc"));
-                pc.setCodPC(rs.getString("codpc"));
-                pc.setMarca(rs.getString("marca_pc"));
-                pc.setModelo(rs.getString("modelo"));
-                pc.setProcessador(rs.getString("processador"));
-                pc.setMemoria(rs.getString("memoria"));
-                pc.setSo(rs.getString("so"));
-                pc.setHd(rs.getString("hd"));
-                pc.setGarantia(rs.getString("garantia"));
-                selectPC.add(pc);
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao mostrar PC. " + e);
-        } finally {
-            connection_stock.closeConnection(con, ps, rs);
-        }
-        //Retora o array 
-        return selectPC;
-    }
 
     public void atualizaKIT(model_pc pcnv) {
         PreparedStatement ps = null;
@@ -201,7 +170,7 @@ public class dao_pcDef {
                 + "WHERE id_kit  = ?;";
         try {
             ps = con.prepareStatement(sql);
-           
+
             ps.setString(1, pcnv.getNomepc());
             ps.setString(2, pcnv.getCod());
             ps.setString(3, pcnv.getMarca());
@@ -216,26 +185,6 @@ public class dao_pcDef {
             JOptionPane.showMessageDialog(null, "Kit Alterado com sucesso");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Alterar Kit" + e);
-        } finally {
-            connection_stock.closeConnection(con, ps);
-        }
-
-    }
-  
-    //Atualiza status do pc = "No estoque para Saida
-    public void atualizarStatusPC(model_pc pcnv) {
-        PreparedStatement ps = null;
-        String sql = "UPDATE pc SET status_pc = ? WHERE id_formulario  = ?;";
-        try {
-            ps = con.prepareStatement(sql);
-           
-            ps.setString(1, pcnv.getStatus());
-            ps.setInt(2, pcnv.getId());
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Status do PC foi alterado com sucesso.");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao Alterar o status do pc" + e);
         } finally {
             connection_stock.closeConnection(con, ps);
         }

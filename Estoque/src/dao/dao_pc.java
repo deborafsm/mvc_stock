@@ -90,39 +90,7 @@ public class dao_pc {
         return listPc;
     }
 
-    //Pesquisa pc
-    public java.util.List<model_pc> findPC(String status_pc) {
-        java.util.List<model_pc> findPC = new ArrayList<>(); //Array de pcs
-        try {   //seleciona por nome do pc 
-            ps = con.prepareStatement("SELECT * FROM pc WHERE status_pc like ?"); //Seleciona tdo de pcs
-            ps.setString(1, "%" + status_pc + "%");// ? = nome
-            rs = ps.executeQuery(); //Result set para se obter o resultado
-            while (rs.next()) {//Enquando tiver resultado (linhas)
-                model_pc pc = new model_pc();
-                //Lista os componentes
-                pc.setIdform(rs.getInt("id_formulario"));
-                pc.setDataCad(rs.getString("datacad"));
-                pc.setCod(rs.getString("codpc"));
-                pc.setNomepc(rs.getString("nome_pc"));
-                pc.setProcessador(rs.getString("processador"));
-                pc.setMarca(rs.getString("marca_pc"));
-                pc.setHd(rs.getString("hd"));
-                pc.setMemoria(rs.getString("memoria"));
-                pc.setSo(rs.getString("so"));
-                pc.setGarantia(rs.getString("garantia"));
-                pc.setModelo(rs.getString("modelo"));
-                pc.setStatus(rs.getString("status_pc"));
-                //E adiciona no array list
-                findPC.add(pc);
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao pesquisar pc. " + e);//Mostra o erro da logica, ja que só mostra algum resultado
-        } finally {
-            connection_stock.closeConnection(con, ps, rs);
-        }
-        //Retora o array 
-        return findPC;
-    }
+    
 
     public void deletPc(model_pc pc) {
         //query deleta cliente de acordo com o id

@@ -6,6 +6,7 @@
 package view;
 
 import dao.dao_pc;
+import dao.dao_pcDef;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -65,29 +66,25 @@ public class view_pc extends javax.swing.JInternalFrame {
         });
     }
 
-    public void readJtableStatus(String status) {
+    //Para pesquisar pc
+    public void pesquisaPC(String cod_pc) {
         DefaultTableModel model = (DefaultTableModel) tblPC.getModel();
         model.setNumRows(0);
-        dao_pc dao = new dao_pc();
+        dao_pcDef dao = new dao_pcDef();
 
-        // prod.findAll().stream().forEach((p)-> { //Operação funcional
-        dao.findPC(status).forEach((pc) -> {
-            // for é usado para passar pelos objetos
+        dao.pesquisarPc(cod_pc).forEach((pc) -> {
             model.addRow(new Object[]{
-                //Chama os item 
-                pc.getIdform(),
-                pc.getDataCad(),
-                pc.getCod(),
+                //Chama os itens 
+
                 pc.getNomepc(),
-                pc.getProcessador(),
+                pc.getCodPC(),
                 pc.getMarca(),
                 pc.getModelo(),
-                pc.getHd(),
+                pc.getProcessador(),
                 pc.getMemoria(),
                 pc.getSo(),
-                pc.getGarantia(),
-                pc.getStatus()
-
+                pc.getHd(),
+                pc.getGarantia()
             });
         });
 
@@ -509,7 +506,7 @@ public class view_pc extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        readJtableStatus(txtPesquisa.getText());
+        pesquisaPC(txtPesquisa.getText());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
