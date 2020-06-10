@@ -27,6 +27,7 @@ public class dao_head {
     public dao_head() {
         con = connection_stock.getConnection();
     }
+    //Adicionar Marca do Head no Banco de Dados
     public void addHead(model_head head) {
 
         try {
@@ -62,5 +63,6 @@ public class dao_head {
         }
         return listHead;
     }
+    //Remover Head
 }
 

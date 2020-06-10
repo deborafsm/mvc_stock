@@ -50,7 +50,7 @@
                   </Group>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="368" max="32767" attributes="0"/>
+              <EmptySpace pref="323" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -106,7 +106,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tblMOV">
+            <Component class="javax.swing.JTable" name="tbmMonitor">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="4">
@@ -200,7 +200,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtEndereco" alignment="0" min="-2" pref="385" max="-2" attributes="0"/>
+                      <Component id="txtEmail" alignment="0" min="-2" pref="385" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Component id="txtDataKitEntrada" alignment="0" pref="176" max="32767" attributes="0"/>
                           <Component id="txtNomeOP" alignment="0" max="32767" attributes="0"/>
@@ -225,7 +225,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
               </Group>
@@ -240,9 +240,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeOP">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtEndereco">
+        <Component class="javax.swing.JTextField" name="txtEmail">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEnderecoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel17">
@@ -287,12 +287,12 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtCodMonDefeito" max="32767" attributes="0"/>
+                                  <Component id="txtCodMonDef" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtMonitorDefeito" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="txtidMonDef" min="-2" pref="33" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -303,15 +303,16 @@
                           <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="205" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="cboStatusMonitor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnAddDefMon" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -324,7 +325,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtMonitorDefeito" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtidMonDef" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtMarcaMonDef" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -333,15 +334,16 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCodMonDefeito" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCodMonDef" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jScrollPane5" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cboStatusMonitor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAddDefMon" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -353,7 +355,7 @@
             <Property name="text" type="java.lang.String" value="Id_MT:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMonitorDefeito">
+        <Component class="javax.swing.JTextField" name="txtidMonDef">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
@@ -367,7 +369,7 @@
             <Property name="text" type="java.lang.String" value="Cod_MT"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCodMonDefeito">
+        <Component class="javax.swing.JTextField" name="txtCodMonDef">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel43">
           <Properties>
@@ -406,6 +408,14 @@
             <Property name="text" type="java.lang.String" value="Status:"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="btnAddDefMon">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/erro.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Adicionar Defeito"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -420,26 +430,35 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane3" max="32767" attributes="0"/>
+              <Component id="jScrollPane3" pref="632" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="btnUpdate" min="-2" pref="247" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtCodMonNV" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtCodMonNV" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtMonitorNV" min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtMarcaMonNov" min="-2" pref="111" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMonitorNV" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="jTextField2" min="-2" pref="298" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtMarcaMonNov" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -449,6 +468,12 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
@@ -478,7 +503,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tblMonitor">
+            <Component class="javax.swing.JTable" name="tblMonNovo">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
@@ -492,14 +517,17 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblMonitorMouseClicked"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tblMonitorKeyReleased"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblMonNovoMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tblMonNovoKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="btnUpdate">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/refrescar (1).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Atualizar Kit"/>
           </Properties>
         </Component>
@@ -523,6 +551,21 @@
         <Component class="javax.swing.JTextField" name="txtMonitorNV">
         </Component>
         <Component class="javax.swing.JTextField" name="txtMarcaMonNov">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="C&#xf3;digo Monitor:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField2">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/lupa.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pesquisar"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

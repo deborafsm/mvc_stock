@@ -34,7 +34,7 @@ public class dao_kitSaida {
         con = connection_stock.getConnection();
     }
 
-    //Insert 
+    //Faz a inserção de kit no banco de dados
     public void addKit(model_kitSaida kit) {
         String sql = "INSERT INTO kit(data_kit, status_kit, id_operador, nome_operador, telefone, email, endereco, cargo, setor, supervisor, operacao,nome_pc, cod_pc, marca_pc, modelo_pc,"
                 + " processador, memoria, so, hd, garantia, marca_monitor, marca_teclado, marca_mouse, marca_head, marca_webcam, qnt_vga, qnt_e, rede,lacre,id_monitor,cod_monitor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -134,7 +134,7 @@ public class dao_kitSaida {
     }
     //Pesquisar Pc Por código
 
-    //select monitor
+    //Seleciona todos os monitores que estão no estoque
     public List<model_kitSaida> findAllMonitor() {//Metodo Tipo lista
         String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do monitor (verificando se o mesmo está no estoque )
@@ -162,7 +162,7 @@ public class dao_kitSaida {
         return listMonitorKit;
     }
 
-    //select operadora
+    //Seleciona todos operadores que estão OK
     public List<model_kitSaida> findAllOp() {//Metodo Tipo lista
         String valor = "Ok";
         //Seleciona apenas o Codigo e o status do operador
@@ -194,7 +194,7 @@ public class dao_kitSaida {
         return listOp;
     }
 
-    //select mouse
+    //Seleciona marca dos mouses
     public List<model_mouse> findMouse() {//Metodo Tipo lista
 
         //Seleciona apenas o Codigo e o status do operador
@@ -219,7 +219,7 @@ public class dao_kitSaida {
         return listMouse;
     }
 
-    //select teclado
+    //Seleciona todas as marcas dos teclados
     public List<model_teclado> findTeclado() {//Metodo Tipo lista
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select teclado_marca  from teclado");
@@ -243,7 +243,7 @@ public class dao_kitSaida {
         return listTeclado;
     }
 
-    //select head
+    //Seleciona as marcas dos heads
     public List<model_head> findHead() {//Metodo Tipo lista
         //String valor = "No Estoque";
         //Seleciona apenas o Codigo e o status do operador
@@ -267,7 +267,7 @@ public class dao_kitSaida {
         return listHead;
     }
 
-    //select webcam
+    //Seleciona as marcas da webcam
     public List<model_webcam> findWebCam() {//Metodo Tipo lista
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select webcam_marca from webcam ");
@@ -291,7 +291,7 @@ public class dao_kitSaida {
         return listwebcam;
     }
 
-    //update status pc
+    //Faz a atualização do pc de "Estoque" para "Saida"
     public void updatePC(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
@@ -309,7 +309,7 @@ public class dao_kitSaida {
         }
     }
 
-    //update status Operadora
+    //Faz atualização das operadoras 
     public void updateOp(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
@@ -327,7 +327,7 @@ public class dao_kitSaida {
         }
     }
 
-    //update status monitor
+    //Faz a atualização do status do monitor
     public void updateMonitor(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo

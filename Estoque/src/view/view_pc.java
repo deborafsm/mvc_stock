@@ -70,21 +70,22 @@ public class view_pc extends javax.swing.JInternalFrame {
     public void pesquisaPC(String cod_pc) {
         DefaultTableModel model = (DefaultTableModel) tblPC.getModel();
         model.setNumRows(0);
-        dao_pcDef dao = new dao_pcDef();
-
+        dao_pc dao = new dao_pc();
         dao.pesquisarPc(cod_pc).forEach((pc) -> {
             model.addRow(new Object[]{
                 //Chama os itens 
-
+                pc.getId(),
+                pc.getDataCad(),
                 pc.getNomepc(),
                 pc.getCodPC(),
+                pc.getProcessador(),
                 pc.getMarca(),
                 pc.getModelo(),
-                pc.getProcessador(),
+                pc.getHd(),
                 pc.getMemoria(),
                 pc.getSo(),
-                pc.getHd(),
-                pc.getGarantia()
+                pc.getGarantia(),
+                pc.getStatus()
             });
         });
 
@@ -180,7 +181,7 @@ public class view_pc extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setPreferredSize(new java.awt.Dimension(1100, 600));
+        setPreferredSize(new java.awt.Dimension(1338, 605));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Visualizar computador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -203,7 +204,7 @@ public class view_pc extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "cadastro", "codigo pc", "nome pc", "processador", "marca", "modelo", "hd", "memoria", "so", "garantia", "status"
+                "ID", "Data do cadastro", "Nome pc", "codigo pc", "processador", "marca", "modelo", "hd", "memoria", "so", "garantia", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {

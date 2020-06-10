@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package model;
 
 /**
  *
- * @author Usuário
+ * @author jobhome
  */
-public class NewClass {
+public class model_monitorDef {
     
 }

@@ -1,0 +1,28 @@
+Data 19/05/2020
+Commit - Interface 
+-Mouse 
+-Teclado
+-Monitor
+-PCs
+-Head
+-Webcam
+-Operadora
+-Banco de dados
+Commit Select Banco de dados
+-Mouse 
+-Teclado
+-Monitor
+-PC
+-Head
+-Webcam
+-Operadora
+Commit Insert Banco de dados
+-Mouse 
+-Teclado
+-Monitor
+-PC
+-Head
+-Webcam
+-Operadora
+Commit Insert 
+-Kit

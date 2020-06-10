@@ -90,12 +90,11 @@ public class dao_pc {
         return listPc;
     }
 
-    
-
     public void deletPc(model_pc pc) {
         //query deleta cliente de acordo com o id
-        String sql = "DELETE FROM pc WHERE id_formulario = ?";
         PreparedStatement ps = null;
+        String sql = "DELETE FROM pc WHERE id_formulario = ?";
+
         try {//tenta fazer a logica abaixo
             ps = con.prepareStatement(sql);
             ps.setInt(1, pc.getIdform()); //pega o codigo do pc
@@ -107,5 +106,56 @@ public class dao_pc {
             connection_stock.closeConnection(con, ps); //fecha as conexoes utilizadas
         }
     }
+    //Pesquisar PC
 
+    public java.util.List<model_pc> pesquisarPc(String cod_pc) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        java.util.List<model_pc> pesquisarPC = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT * FROM pc WHERE codpc like ?");
+            ps.setString(1, "%" + cod_pc + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_pc pc = new model_pc();
+                pc.setId(Integer.parseInt(rs.getString("id_formulario")));
+                pc.setDataCad(rs.getString("datacad"));
+                pc.setNomepc(rs.getString("nome_pc"));
+                pc.setCodPC(rs.getString("codpc"));
+                pc.setProcessador(rs.getString("processador"));
+                pc.setMarca(rs.getString("marca_pc"));
+                pc.setModelo(rs.getString("modelo"));
+                pc.setHd(rs.getString("hd"));
+                pc.setMemoria(rs.getString("memoria"));
+                pc.setSo(rs.getString("so"));
+                pc.setGarantia(rs.getString("garantia"));
+                pc.setStatus(rs.getString("status_pc"));
+
+                pesquisarPC.add(pc);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao pesquisar o pc. " + e);
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return pesquisarPC;
+    }
+
+//    public void removePC(model_pc pc) {
+//        PreparedStatement ps = null;
+//        String sql = ("DELETE FROM pc WHERE id_formulario = ?");
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(1, pc.getIdform());
+//            ps.executeUpdate();
+//            JOptionPane.showMessageDialog(null, "PC excluido");
+//             
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Não foi possivel excluir."+e);
+//        }finally{
+//            connection_stock.closeConnection(con, ps);
+//        }
+//    }
+    
+   
 }

@@ -7,7 +7,7 @@
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1100, 600]"/>
+      <Dimension value="[1338, 605]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -144,9 +144,9 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="12" rowCount="4">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
-                    <Column editable="false" title="cadastro" type="java.lang.Object"/>
+                    <Column editable="false" title="Data do cadastro" type="java.lang.Object"/>
+                    <Column editable="false" title="Nome pc" type="java.lang.Object"/>
                     <Column editable="false" title="codigo pc" type="java.lang.Object"/>
-                    <Column editable="false" title="nome pc" type="java.lang.Object"/>
                     <Column editable="false" title="processador" type="java.lang.Object"/>
                     <Column editable="false" title="marca" type="java.lang.Object"/>
                     <Column editable="false" title="modelo" type="java.lang.Object"/>
@@ -154,7 +154,7 @@
                     <Column editable="false" title="memoria" type="java.lang.Object"/>
                     <Column editable="false" title="so" type="java.lang.Object"/>
                     <Column editable="false" title="garantia" type="java.lang.Object"/>
-                    <Column editable="false" title="status" type="java.lang.Object"/>
+                    <Column editable="false" title="Status" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

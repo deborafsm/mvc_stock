@@ -172,6 +172,11 @@ public class Estoque extends javax.swing.JFrame {
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/eletronicos.png"))); // NOI18N
         jMenuItem9.setText("Monitores");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/torre.png"))); // NOI18N
@@ -301,6 +306,12 @@ public class Estoque extends javax.swing.JFrame {
         mov.setVisible(true);
         deskEstoque.add(mov);
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+       view_monitorDef mondef = new view_monitorDef();
+       mondef.setVisible(true);
+       deskEstoque.add(mondef);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
