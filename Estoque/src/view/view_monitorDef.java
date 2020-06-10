@@ -6,6 +6,12 @@
 package view;
 
 import dao.dao_kitSaida;
+import dao.dao_monitorDef;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,8 +26,20 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
     public view_monitorDef() {
         initComponents();
         readJtableMonitor();
+        selecionaKitMonitor();
+        date();
     }
+public void date() { //Mostra data
+        txtData.setEnabled(false);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(
+                new Runnable() {
+            public void run() {
+                txtData.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
+            }
+        }, 1, 1, TimeUnit.SECONDS);
 
+    }
     public void readJtableMonitor() {
         DefaultTableModel model = (DefaultTableModel) tblMonNovo.getModel();
         model.setNumRows(0);
@@ -36,7 +54,24 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
             });
         });
     }
-
+//Para selecionar kits existentes no banco de dados
+    public void selecionaKitMonitor() {
+        DefaultTableModel model = (DefaultTableModel) tblMonitorKit.getModel();
+        model.setNumRows(0);
+        dao_monitorDef kitpc = new dao_monitorDef();
+        kitpc.selecionaKit().forEach((pc) -> {
+            // for é usado para passar pelos objetos
+            model.addRow(new Object[]{
+                pc.getId_kit(),
+                pc.getLacre(),
+                pc.getNome_operador(),
+                pc.getEmail(),
+               
+                pc.getCod_monitor(),
+                pc.getMarca_monior()
+            });
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +83,7 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbmMonitor = new javax.swing.JTable();
+        tblMonitorKit = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -57,11 +92,9 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
         txtNomeOP = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        txtDataKitEntrada = new javax.swing.JTextField();
+        txtData = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        txtidMonDef = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtMarcaMonDef = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -88,26 +121,36 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Kits Existentes"));
 
-        tbmMonitor.setModel(new javax.swing.table.DefaultTableModel(
+        tblMonitorKit.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID_KIT", "Lacre KIT", "Nome Operadora", "Email", "ID_monitor", "Cod_monitor", "Marca Monitor"
+                "ID_KIT", "Lacre KIT", "Nome Operadora", "Email", "Cod_monitor", "Marca Monitor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbmMonitor);
+        tblMonitorKit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMonitorKitMouseClicked(evt);
+            }
+        });
+        tblMonitorKit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblMonitorKitKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblMonitorKit);
 
         jLabel2.setText("Nome Operador(a):");
 
@@ -152,10 +195,10 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
 
         jLabel17.setText("E-mail:");
 
-        txtDataKitEntrada.setDisabledTextColor(new java.awt.Color(255, 0, 0));
-        txtDataKitEntrada.addActionListener(new java.awt.event.ActionListener() {
+        txtData.setDisabledTextColor(new java.awt.Color(255, 0, 0));
+        txtData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataKitEntradaActionPerformed(evt);
+                txtDataActionPerformed(evt);
             }
         });
 
@@ -175,7 +218,7 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtDataKitEntrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                        .addComponent(txtData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                         .addComponent(txtNomeOP, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(154, Short.MAX_VALUE))
         );
@@ -183,7 +226,7 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDataKitEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -197,8 +240,6 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitor"));
-
-        jLabel9.setText("Id_MT:");
 
         jLabel11.setText("Marca:");
 
@@ -225,18 +266,14 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCodMonDef))
+                                .addComponent(txtCodMonDef, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtidMonDef, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(txtMarcaMonDef, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addComponent(jLabel43)
@@ -258,8 +295,6 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
-                                .addComponent(txtidMonDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel11)
                                 .addComponent(txtMarcaMonDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel43))
@@ -321,6 +356,11 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.png"))); // NOI18N
         jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -416,8 +456,8 @@ public class view_monitorDef extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtDataKitEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataKitEntradaActionPerformed
-    }//GEN-LAST:event_txtDataKitEntradaActionPerformed
+    private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
+    }//GEN-LAST:event_txtDataActionPerformed
 
     private void tblMonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonNovoMouseClicked
 if (tblMonNovo.getSelectedRow() != -1) {
@@ -439,6 +479,34 @@ if (tblMonNovo.getSelectedRow() != -1) {
         }
     }//GEN-LAST:event_tblMonNovoKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblMonitorKitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMonitorKitKeyReleased
+        if (tblMonitorKit.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            txtNomeOP.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 2).toString());
+            txtEmail.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 3).toString());
+            
+            txtCodMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 4).toString());
+            txtMarcaMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 5).toString());
+        }
+    }//GEN-LAST:event_tblMonitorKitKeyReleased
+
+    private void tblMonitorKitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonitorKitMouseClicked
+        if (tblMonitorKit.getSelectedRow() != -1) {
+            //Preenche os campos ao clicar dentro de um dado na tabela
+            
+            txtNomeOP.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 2).toString());
+            txtEmail.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 3).toString());
+            
+            txtCodMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 4).toString());
+            txtMarcaMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 5).toString());
+
+        }
+    }//GEN-LAST:event_tblMonitorKitMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDefMon;
@@ -458,7 +526,6 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -469,16 +536,15 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tblMonNovo;
-    private javax.swing.JTable tbmMonitor;
+    private javax.swing.JTable tblMonitorKit;
     private javax.swing.JTextArea txaDefMon;
     private javax.swing.JTextField txtCodMonDef;
     private javax.swing.JTextField txtCodMonNV;
-    private javax.swing.JTextField txtDataKitEntrada;
+    private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMarcaMonDef;
     private javax.swing.JTextField txtMarcaMonNov;
     private javax.swing.JTextField txtMonitorNV;
     private javax.swing.JTextField txtNomeOP;
-    private javax.swing.JTextField txtidMonDef;
     // End of variables declaration//GEN-END:variables
 }

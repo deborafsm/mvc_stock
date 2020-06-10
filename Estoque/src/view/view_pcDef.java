@@ -625,6 +625,12 @@ public class view_pcDef extends javax.swing.JInternalFrame {
             }
         });
 
+        txtFindop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFindopActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1046,6 +1052,10 @@ public class view_pcDef extends javax.swing.JInternalFrame {
        btnAtualizar.setEnabled(true);
        
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtFindopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFindopActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFindopActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
