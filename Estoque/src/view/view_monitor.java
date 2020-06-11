@@ -21,7 +21,6 @@ public class view_monitor extends javax.swing.JInternalFrame {
     public view_monitor() {
         initComponents();
         readJtable();
-        
         txtIdMonitor.setEnabled(false);
     }
 
@@ -175,10 +174,20 @@ public class view_monitor extends javax.swing.JInternalFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/criss-cross.png"))); // NOI18N
         jButton3.setText("Remover Monitor");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ferramentas-de-edicao.png"))); // NOI18N
         jButton4.setText("Editar Monitor");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitor"));
 
@@ -299,7 +308,7 @@ public class view_monitor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       searchMonitor(txtCodsearch.getText());
+        searchMonitor(txtCodsearch.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tblMonitorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMonitorKeyReleased
@@ -327,6 +336,32 @@ public class view_monitor extends javax.swing.JInternalFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         limpar();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (tblMonitor.getSelectedRow() != -1) {
+            model_monitor monitor = new model_monitor();
+            dao_monitor dao = new dao_monitor();
+            monitor.setId(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 0).toString());
+            dao.deleteMonitor(monitor);
+            readJtable();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (tblMonitor.getSelectedRow() != -1) {
+            model_monitor monitor = new model_monitor();
+            dao_monitor dao = new dao_monitor();
+            
+            monitor.setCod(txtCodigo.getText());
+            monitor.setMarca_monitor(txtMarca.getText());
+            monitor.setModelo(txtModelo.getText());
+            
+            monitor.setId(tblMonitor.getValueAt(tblMonitor.getSelectedRow(), 0).toString());
+            
+            dao.updateMonitor(monitor);
+            readJtable();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
     private void campos(model_monitor monitor) {
         monitor.setId(txtIdMonitor.getText());
         monitor.setCod(txtCodigo.getText());

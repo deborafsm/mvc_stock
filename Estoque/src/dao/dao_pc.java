@@ -89,7 +89,8 @@ public class dao_pc {
         }
         return listPc;
     }
-
+//Deleta um pc do banco
+    
     public void deletPc(model_pc pc) {
         //query deleta cliente de acordo com o id
         PreparedStatement ps = null;
@@ -140,22 +141,5 @@ public class dao_pc {
         }
         return pesquisarPC;
     }
-
-//    public void removePC(model_pc pc) {
-//        PreparedStatement ps = null;
-//        String sql = ("DELETE FROM pc WHERE id_formulario = ?");
-//        try {
-//            ps = con.prepareStatement(sql);
-//            ps.setInt(1, pc.getIdform());
-//            ps.executeUpdate();
-//            JOptionPane.showMessageDialog(null, "PC excluido");
-//             
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Não foi possivel excluir."+e);
-//        }finally{
-//            connection_stock.closeConnection(con, ps);
-//        }
-//    }
-    
    
 }
