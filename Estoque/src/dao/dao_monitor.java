@@ -134,7 +134,6 @@ public class dao_monitor {
         } finally {
             connection_stock.closeConnection(con, ps);
         }
-
     }
 
 }

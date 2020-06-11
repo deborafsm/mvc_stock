@@ -90,7 +90,7 @@ public class dao_pc {
         return listPc;
     }
 //Deleta um pc do banco
-    
+
     public void deletPc(model_pc pc) {
         //query deleta cliente de acordo com o id
         PreparedStatement ps = null;
@@ -141,5 +141,33 @@ public class dao_pc {
         }
         return pesquisarPC;
     }
-   
+
+    //Update pc
+    public void upddatePc(model_pc pc) {
+        PreparedStatement ps = null;
+        String sql = "UPDATE pc SET codpc=?, nome_pc=?,processador=?, marca_pc=?,hd=?,memoria=?,so=?,"
+                + "garantia = ?,status_pc=?,modelo=? WHERE id_formulario= ?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, pc.getCod());
+            ps.setString(2, pc.getNomepc());
+            ps.setString(3, pc.getProcessador());
+            ps.setString(4, pc.getMarca());
+            ps.setString(5, pc.getHd());
+            ps.setString(6, pc.getMemoria());
+            ps.setString(7, pc.getSo());
+            ps.setString(8, pc.getGarantia());
+            ps.setString(9, pc.getStatus());
+            ps.setString(10, pc.getModelo());
+            ps.setInt(11, pc.getIdform());
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "PC alterado com sucesso.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro:" + e);
+        } finally {
+            connection_stock.closeConnection(con, ps);
+        }
+    }
+
 }

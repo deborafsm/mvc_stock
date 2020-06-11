@@ -294,7 +294,7 @@ public class view_pc extends javax.swing.JInternalFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tecnologia.png"))); // NOI18N
 
-        jLabel11.setText("Data de Cadastro:");
+        jLabel11.setText("Data:");
 
         txtDatCad.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtDatCad.addActionListener(new java.awt.event.ActionListener() {
@@ -335,26 +335,23 @@ public class view_pc extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel12))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(41, 41, 41)
-                            .addComponent(jLabel2)
-                            .addGap(4, 4, 4))
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel12))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(41, 41, 41)
+                                    .addComponent(jLabel2)
+                                    .addGap(4, 4, 4))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(txtDatCad, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(txtHd, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,7 +362,8 @@ public class view_pc extends javax.swing.JInternalFrame {
                         .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtNomePc, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)))
+                        .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                    .addComponent(txtDatCad, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -384,7 +382,7 @@ public class view_pc extends javax.swing.JInternalFrame {
                     .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDatGar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtso))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 509, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -529,7 +527,7 @@ public class view_pc extends javax.swing.JInternalFrame {
         if (tblPC.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
             txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
-            txtDatCad.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
+            
             txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
             txtNomePc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
             txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 4).toString());
@@ -548,7 +546,7 @@ public class view_pc extends javax.swing.JInternalFrame {
         if (tblPC.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
             txtID.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString());
-            txtDatCad.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 1).toString());
+           
             txtCodPc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 2).toString());
             txtNomePc.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 3).toString());
             txtProcessador.setText(tblPC.getValueAt(tblPC.getSelectedRow(), 4).toString());
@@ -564,11 +562,29 @@ public class view_pc extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblPCKeyPressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       zeraCampos();
+        zeraCampos();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        if (tblPC.getSelectedRow() != -1) {
+            model_pc pc = new model_pc();
+            dao_pc dao = new dao_pc();
+           
+            pc.setCod(txtCodPc.getText());
+            pc.setNomepc(txtNomePc.getText());
+            pc.setProcessador(txtProcessador.getText());
+            pc.setMarca(txtMarca.getText());
+            pc.setHd(txtHd.getText());
+            pc.setMemoria(txtMemoria.getText());
+            pc.setSo(txtso.getText());
+            pc.setGarantia(txtDatGar.getText());
+            pc.setStatus(cboStatus.getSelectedItem().toString());
+            pc.setModelo(txtModelo.getText());
+            pc.setIdform(Integer.parseInt(tblPC.getValueAt(tblPC.getSelectedRow(), 0).toString()));
+            
+            dao.upddatePc(pc);
+            readJtable();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
