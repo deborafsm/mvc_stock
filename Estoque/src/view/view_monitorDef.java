@@ -119,6 +119,9 @@ public void date() { //Mostra data
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Kits Existentes"));
 
         tblMonitorKit.setModel(new javax.swing.table.DefaultTableModel(

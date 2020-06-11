@@ -33,8 +33,12 @@ public class dao_monitor {
     public void addMonitor(model_monitor monitor) {
 
         try {
-            ps = con.prepareStatement("insert into monitor(marca_monitor)values(?)");
-            ps.setString(1, monitor.getMarca_monitor());
+            ps = con.prepareStatement("insert into monitor(cod_monitor,marca_monitor,modelo_monitor)values(?,?,?)");
+
+            ps.setString(1, monitor.getCod());
+            ps.setString(2, monitor.getMarca_monitor());
+            ps.setString(3, monitor.getModelo());
+
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Monitor Inserido com sucesso!");
         } catch (Exception e) {
@@ -47,15 +51,17 @@ public class dao_monitor {
 
     //Seleciona TODAS Marcas existentes
     public List<model_monitor> findAll() {
-        String sql = "select marca_monitor from monitor";
+        String sql = "select id_monitor,cod_monitor , marca_monitor, modelo_monitor from monitor";
         List<model_monitor> listMon = new ArrayList<>();
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_monitor monitor = new model_monitor();
+                monitor.setId(rs.getString("id_monitor"));
+                monitor.setCod(rs.getString("cod_monitor"));
                 monitor.setMarca_monitor(rs.getString("marca_monitor"));
-
+                monitor.setModelo(rs.getString("modelo_monitor"));
                 listMon.add(monitor);
             }
         } catch (SQLException e) {
@@ -66,6 +72,30 @@ public class dao_monitor {
         return listMon;
     }
 
+        //Para Pesquisar todos os monitores
+    public List<model_monitor> searchMonitor(String cod_monitor) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<model_monitor> listMon = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT * FROM monitor WHERE cod_monitor like ?");
+            ps.setString(1, "%" + cod_monitor + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_monitor monitor = new model_monitor();
+                monitor.setId(rs.getString("id_monitor"));
+                monitor.setCod(rs.getString("cod_monitor"));
+                monitor.setMarca_monitor(rs.getString("marca_monitor"));
+                monitor.setModelo(rs.getString("modelo_monitor"));
+                listMon.add(monitor);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listMon;
+    }
+    
+
 }
-
-
