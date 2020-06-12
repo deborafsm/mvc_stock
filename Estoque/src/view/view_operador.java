@@ -30,9 +30,10 @@ public class view_operador extends javax.swing.JInternalFrame {
         date();
         txtId.setEnabled(false);
     }
-public void date() {
+
+    public void date() {
         txtDat.setEnabled(false);
-        
+
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(
                 new Runnable() {
@@ -42,6 +43,7 @@ public void date() {
         }, 1, 1, TimeUnit.SECONDS);
 
     }
+
     public void readJtable() {
         DefaultTableModel model = (DefaultTableModel) tblOperador.getModel();
         model.setNumRows(0);
@@ -74,6 +76,7 @@ public void date() {
             });
         });
     }
+
     public void pesquisar(String nome) {
         DefaultTableModel model = (DefaultTableModel) tblOperador.getModel();
         model.setNumRows(0);
@@ -128,12 +131,13 @@ public void date() {
         op.setStatus(cboStatus.getSelectedItem().toString());
 
     }
-     /*  # id_operador,  nome_operador, email_operador, tel, celular, endereco, 
+
+    /*  # id_operador,  nome_operador, email_operador, tel, celular, endereco, 
             cep, numero, complemento, referencia, bairro, cidade, estado, setor, cargo, status_operador,
              empresa, supervisor
-             */
+     */
     //Limpa os campos
-    public void limpar(){
+    public void limpar() {
         txtnome.setText("");
         txtemail.setText("");
         txttel.setText("");
@@ -152,6 +156,7 @@ public void date() {
         cboStatus.setSelectedItem(null);//Combo box não seleciona nenhum item
         txtsup.setText("");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -518,6 +523,11 @@ public void date() {
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ferramentas-de-edicao.png"))); // NOI18N
         btnEdit.setText("Editar Operador");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/adicionar.png"))); // NOI18N
@@ -587,22 +597,24 @@ public void date() {
     }//GEN-LAST:event_txtsupActionPerformed
 
     private void brnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnDeleteActionPerformed
-       if (tblOperador.getSelectedRow() != -1) {
-        model_operador op = new model_operador();
-        dao_operador dao = new dao_operador();
-        op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
-        dao.deleteOperador(op);
-        readJtable();
-       }
+        if (tblOperador.getSelectedRow() != -1) {
+            model_operador op = new model_operador();
+            dao_operador dao = new dao_operador();
+            op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
+            dao.deleteOperador(op);
+            readJtable();
+        }
     }//GEN-LAST:event_brnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        model_operador op = new model_operador();
-        dao_operador dao = new dao_operador();
-        campos(op);
-        dao.createOperador(op);
-        readJtable();
-
+        if (tblOperador.getSelectedRow() != -1) {
+            model_operador op = new model_operador();
+            dao_operador dao = new dao_operador();
+            op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
+            campos(op);
+            dao.createOperador(op);
+            readJtable();
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tblOperadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOperadorMouseClicked
@@ -666,8 +678,35 @@ public void date() {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnFinderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinderActionPerformed
-          pesquisar(txtfindOP.getText());
+        pesquisar(txtfindOP.getText());
     }//GEN-LAST:event_btnFinderActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        if (tblOperador.getSelectedRow() != -1) {
+            model_operador op = new model_operador();
+            dao_operador dao = new dao_operador();
+            op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
+            op.setNome_operador(txtnome.getText());
+            op.setEmail(txtemail.getText());
+            op.setTel(txttel.getText());
+            op.setCelular(txtcel.getText());
+            op.setEnd(txtend.getText());
+            op.setCep(txtcep.getText());
+            op.setNum(txtnum.getText());
+            op.setComplemento(txtcomp.getText());
+            op.setReferencia(txtref.getText());
+            op.setBairro(txtbairro.getText());
+            op.setCidade(txtcity.getText());
+            op.setEstado(txtest.getText());
+            op.setEmpresa(txtope.getText());
+            op.setSetor(txtset.getText());
+            op.setSupervisor(txtsup.getText());
+            op.setCargo(txtcargo.getText());
+            op.setStatus(cboStatus.getSelectedItem().toString());
+            dao.updateoperador(op);
+            readJtable();
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

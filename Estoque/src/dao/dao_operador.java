@@ -65,7 +65,42 @@ public class dao_operador {
     }
     
     //update 
-    //pesquisar
+    //Update pc
+    public void updateoperador(model_operador op) {
+        PreparedStatement ps = null;
+        String sql = "UPDATE operador SET nome_operador=?, email_operador=?, tel=?, celular=?,"
+                + " endereco=?, cep=?, numero=?, complemento=?, referencia=?, bairro=?, cidade=?, estado=?, setor=?, cargo=?, "
+                + "status_operador=?, empresa=?, supervisor =? WHERE id_operador =?;";
+        try {
+            ps = con.prepareStatement(sql);
+           
+            ps.setString(1, op.getNome_operador());
+            ps.setString(2, op.getEmail());
+            ps.setString(3, op.getTel());
+            ps.setString(4, op.getCelular());
+            ps.setString(5, op.getEnd());
+            ps.setString(6, op.getCep());
+            ps.setString(7, op.getNum());
+            ps.setString(8, op.getComplemento());
+            ps.setString(9, op.getReferencia());
+            ps.setString(10, op.getBairro());
+            ps.setString(11, op.getCidade());
+            ps.setString(12, op.getEstado());
+            ps.setString(13, op.getSetor());
+            ps.setString(14, op.getCargo());
+            ps.setString(15, op.getStatus());
+            ps.setString(16, op.getEmpresa());
+            ps.setString(17, op.getSupervisor());
+            ps.setString(18, op.getId_operador());
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Operador alterado com sucesso.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro:" + e);
+        } finally {
+            connection_stock.closeConnection(con, ps);
+        }
+    }
     //remove
     public void deleteOperador(model_operador op) {
         //query deleta cliente de acordo com o id
