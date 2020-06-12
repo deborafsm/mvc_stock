@@ -74,6 +74,38 @@ public void date() {
             });
         });
     }
+    public void pesquisar(String nome) {
+        DefaultTableModel model = (DefaultTableModel) tblOperador.getModel();
+        model.setNumRows(0);
+        dao_operador dao = new dao_operador();
+        dao.findOperador(nome).forEach((op) -> {
+            /*  # id_operador,  nome_operador, email_operador, tel, celular, endereco, 
+            cep, numero, complemento, referencia, bairro, cidade, estado, setor, cargo, status_operador,
+             empresa, supervisor
+             */
+            model.addRow(new Object[]{
+                op.getId_operador(),
+                op.getNome_operador(),
+                op.getEmail(),
+                op.getTel(),
+                op.getCelular(),
+                op.getEnd(),
+                op.getCep(),
+                op.getNum(),
+                op.getComplemento(),
+                op.getReferencia(),
+                op.getBairro(),
+                op.getCidade(),
+                op.getEstado(),
+                op.getSetor(),
+                op.getCargo(),
+                op.getStatus(),
+                op.getEmpresa(),
+                op.getSupervisor()
+
+            });
+        });
+    }
 
     public void campos(model_operador op) {
         op.setDatacad(txtDat.getText());
@@ -100,6 +132,7 @@ public void date() {
             cep, numero, complemento, referencia, bairro, cidade, estado, setor, cargo, status_operador,
              empresa, supervisor
              */
+    //Limpa os campos
     public void limpar(){
         txtnome.setText("");
         txtemail.setText("");
@@ -417,6 +450,11 @@ public void date() {
         btnFinder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnFinder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.png"))); // NOI18N
         btnFinder.setText("Pesquisar");
+        btnFinder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinderActionPerformed(evt);
+            }
+        });
 
         tblOperador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -626,6 +664,10 @@ public void date() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limpar();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnFinderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinderActionPerformed
+          pesquisar(txtfindOP.getText());
+    }//GEN-LAST:event_btnFinderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,7 +6,6 @@
 package dao;
 
 import connection.connection_stock;
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.model_operador;
-import model.model_pc;
 
 /**
  *
@@ -127,5 +125,43 @@ public class dao_operador {
             connection_stock.closeConnection(con, ps, rs);
         }
         return listOp;
+    }
+    //Prqwuisar
+    public List<model_operador> findOperador(String nome) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<model_operador> listaFindOp = new ArrayList<>();
+        try {
+             ps = con.prepareStatement("SELECT * FROM operador WHERE nome_operador like ?");
+            ps.setString(1, "%" + nome + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_operador op = new model_operador();
+                op.setId_operador(rs.getString("id_operador"));
+                op.setNome_operador(rs.getString("nome_operador"));
+                op.setEmail(rs.getString("email_operador"));
+                op.setTel(rs.getString("tel"));
+                op.setCelular(rs.getString("celular"));
+                op.setEnd(rs.getString("endereco"));
+                op.setCep(rs.getString("cep"));
+                op.setNum(rs.getString("numero"));
+                op.setComplemento(rs.getString("complemento"));
+                op.setReferencia(rs.getString("referencia"));
+                op.setBairro(rs.getString("bairro"));
+                op.setCidade(rs.getString("cidade"));
+                op.setEstado(rs.getString("estado"));
+                op.setSetor(rs.getString("setor"));
+                op.setCargo(rs.getString("cargo"));
+                op.setStatus(rs.getString("status_operador"));
+                op.setEmpresa(rs.getString("empresa"));
+                op.setSupervisor(rs.getString("supervisor"));
+                listaFindOp.add(op);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro" + e);//Erro
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        return listaFindOp;
     }
 }

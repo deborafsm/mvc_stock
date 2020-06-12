@@ -2,7 +2,7 @@ create database estoque;
 use estoque;
 select * from pc;
 select * from operador;
-
+SELECT * FROM operador WHERE nome_operador like "teste";
 select * from head;
 select * from webcam;
 select *from monitor;	

@@ -108,7 +108,6 @@ public class dao_pc {
         }
     }
     //Pesquisar PC
-
     public java.util.List<model_pc> pesquisarPc(String cod_pc) {
         PreparedStatement ps = null;
         ResultSet rs = null;

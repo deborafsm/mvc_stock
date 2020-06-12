@@ -66,7 +66,7 @@ public class dao_pcDef {
         ResultSet rs = null;
         java.util.List<model_pcDef> pesquisarOperadora = new ArrayList<>();
         try {
-            ps = con.prepareStatement("SELECT * FROM kit WHERE nome_operador like ?");
+            String sql =("SELECT * FROM kit WHERE nome_operador like ?");
             ps.setString(1, "%" + nome_operador + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
