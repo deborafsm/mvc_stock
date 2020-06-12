@@ -2,6 +2,7 @@ create database estoque;
 use estoque;
 select * from pc;
 select * from operador;
+
 select * from head;
 select * from webcam;
 select *from monitor;	
@@ -10,7 +11,7 @@ select * from teclado;
 select * from kit;
 select * from monitordef;
 select * from defeitopc; 
-alter table defeitopc add column nome_operador varchar(200) ;
+alter table operador add column data_cad varchar(200) after id_operador;
 alter table defeitopc add column email varchar(200) ;
 
 create table pc(
@@ -63,7 +64,18 @@ create table operador(
     empresa varchar(200),
     supervisor varchar(100)
 );
+select * from operador;
+alter table operador add column celular varchar(200) after tel;
+alter table operador add column cep varchar(200)after endereco;
 
+alter table operador add column numero varchar(200) after cep ;
+alter table operador add column complemento varchar(200) after numero;
+
+alter table operador add column referencia varchar(200) after complemento;
+
+alter table operador add column bairro varchar(200) after referencia;
+alter table operador add column cidade varchar(200) after bairro;
+alter table operador add column estado varchar(200) after cidade;
 create table kit(
 	id_kit int primary key auto_increment ,
 	data_kit varchar(200),

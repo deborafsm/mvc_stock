@@ -33,18 +33,20 @@ public class model_operador {
     private String referencia;
     private String bairro;
     private String cidade;
+    private String datacad;
  
 
     public model_operador() {
     }
 
-    public model_operador(String id_operador, String nome_operador, String email, String tel, String celular, String end, String cep, String estado, String setor, String cargo, String status, String empresa, String supervisor) {
+    public model_operador(String id_operador, String nome_operador, String email, String tel, String celular, String end, String num, String cep, String estado, String setor, String cargo, String status, String empresa, String supervisor, String complemento, String referencia, String bairro, String cidade, String datacad) {
         this.id_operador = id_operador;
         this.nome_operador = nome_operador;
         this.email = email;
         this.tel = tel;
         this.celular = celular;
         this.end = end;
+        this.num = num;
         this.cep = cep;
         this.estado = estado;
         this.setor = setor;
@@ -52,7 +54,24 @@ public class model_operador {
         this.status = status;
         this.empresa = empresa;
         this.supervisor = supervisor;
+        this.complemento = complemento;
+        this.referencia = referencia;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.datacad = datacad;
     }
+    
+    
+
+    public String getDatacad() {
+        return datacad;
+    }
+
+    public void setDatacad(String datacad) {
+        this.datacad = datacad;
+    }
+
+  
 
     public String getId_operador() {
         return id_operador;
@@ -174,10 +193,6 @@ public class model_operador {
         this.complemento = complemento;
     }
 
-    public String getReferencia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String getBairro() {
         return bairro;
     }
@@ -193,6 +208,14 @@ public class model_operador {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
-    
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+
+   
 }

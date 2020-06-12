@@ -37,7 +37,7 @@ public class dao_pc {
             ps = con.prepareStatement("insert into pc(datacad,codpc,nome_pc,processador,marca_pc,hd,memoria,so,garantia,status_pc,modelo)values(?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, pc.getDataCad());
             ps.setString(2, pc.getCod());
-            ps.setString(3, pc.getNomepc()); //OP
+            ps.setString(3, pc.getNomepc());
             ps.setString(4, pc.getProcessador());
             ps.setString(5, pc.getMarca());
             ps.setString(6, pc.getHd());
