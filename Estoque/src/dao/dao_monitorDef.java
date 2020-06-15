@@ -126,7 +126,7 @@ public class dao_monitorDef {
         ResultSet rs = null;
         List<model_monitorDef> findOp = new ArrayList<>();
         try {
-            ps = con.prepareStatement("SELECT * FROM kit WHERE nome_operador like ?");//Colocar  ps = con.prepareStatement
+            ps = con.prepareStatement("SELECT * FROM kit WHERE nome_operador like ?");//  ps = con.prepareStatement
             ps.setString(1, "%" + nome_operador + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -148,6 +148,31 @@ public class dao_monitorDef {
         }
         //Retora o array 
         return findOp;
+    }
+    //Pesquisar Monitor
+    public List<model_monitorDef> findMonitor(String cod_monitor) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<model_monitorDef> findMon = new ArrayList<>();
+        try {
+            String m = "No Estoque";
+            ps = con.prepareStatement("SELECT * FROM monitor WHERE cod_monitor like ?");//  ps = con.prepareStatement
+            ps.setString(1, "%" + cod_monitor + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_monitorDef kit = new model_monitorDef();
+                kit.setId_monitor(rs.getString("id_monitor"));
+                kit.setCod_monitor(rs.getString("cod_monitor"));
+                kit.setMarca_monitor(rs.getString("marca_monitor"));
+                findMon.add(kit);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao pesquisar operador(a) " + e);
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        //Retora o array 
+        return findMon;
     }
 
 }

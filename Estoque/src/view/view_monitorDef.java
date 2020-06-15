@@ -110,6 +110,20 @@ public void date() { //Mostra data
         });
 
     }
+    public void pesquisarNvMonitor(String cod_monitor) {
+        DefaultTableModel model = (DefaultTableModel) tblMonNovo.getModel();
+        model.setNumRows(0);
+        dao_monitorDef dao = new dao_monitorDef();
+        dao.findMonitor(cod_monitor).forEach((mon) -> {
+            model.addRow(new Object[]{
+                //Chama os itens 
+                mon.getId_monitor(),
+                mon.getCod_monitor(),
+                mon.getMarca_monitor()
+            });
+        });
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,7 +170,7 @@ public void date() { //Mostra data
         txtMonitorNV = new javax.swing.JTextField();
         txtMarcaMonNov = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCodMonitorFind = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         cboSaida = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -443,7 +457,7 @@ public void date() { //Mostra data
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCodMonitorFind, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -474,7 +488,7 @@ public void date() { //Mostra data
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodMonitorFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,7 +570,7 @@ if (tblMonNovo.getSelectedRow() != -1) {
     }//GEN-LAST:event_tblMonNovoKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        pesquisarNvMonitor(txtCodMonitorFind.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tblMonitorKitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMonitorKitKeyReleased
@@ -642,12 +656,12 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tblMonNovo;
     private javax.swing.JTable tblMonitorKit;
     private javax.swing.JTextArea txaDefMon;
     private javax.swing.JTextField txtCodMonDef;
     private javax.swing.JTextField txtCodMonNV;
+    private javax.swing.JTextField txtCodMonitorFind;
     private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFindOp;
