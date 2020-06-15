@@ -7,6 +7,7 @@ package view;
 
 import dao.dao_kitSaida;
 import dao.dao_monitorDef;
+import dao.dao_pcDef;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -90,6 +91,25 @@ public void date() { //Mostra data
             readJtableMonitor();
         }
     }
+     //Para pesquisar operador
+    public void pesquisarOperador(String nome_operador) {
+        DefaultTableModel model = (DefaultTableModel) tblMonitorKit.getModel();
+        model.setNumRows(0);
+        dao_monitorDef dao = new dao_monitorDef();
+        dao.findOperador(nome_operador).forEach((mon) -> {
+            model.addRow(new Object[]{
+                //Chama os itens 
+                mon.getId_kit(),
+                mon.getLacre(),
+                mon.getNome_operador(),
+                mon.getEmail(),
+                mon.getId_monitor(),
+                mon.getCod_monitor(),
+                mon.getMarca_monitor()
+            });
+        });
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,8 +123,8 @@ public void date() { //Mostra data
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMonitorKit = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnPesquisarOP = new javax.swing.JButton();
+        txtFindOp = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         txtNomeOP = new javax.swing.JTextField();
@@ -139,6 +159,7 @@ public void date() { //Mostra data
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         cboSaida = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -178,7 +199,12 @@ public void date() { //Mostra data
 
         jLabel2.setText("Nome Operador(a):");
 
-        jButton2.setText("Pesquisar");
+        btnPesquisarOP.setText("Pesquisar");
+        btnPesquisarOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarOPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -188,9 +214,9 @@ public void date() { //Mostra data
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFindOp, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnPesquisarOP)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -200,9 +226,9 @@ public void date() { //Mostra data
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jButton2))
+                            .addComponent(btnPesquisarOP))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField1))
+                    .addComponent(txtFindOp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -272,7 +298,7 @@ public void date() { //Mostra data
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitor"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitor no Kit Atual"));
 
         jLabel11.setText("Marca:");
 
@@ -348,7 +374,7 @@ public void date() { //Mostra data
                     .addComponent(btnAddDefMon)))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Monitor"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitores No Estoque"));
 
         tblMonNovo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -407,6 +433,8 @@ public void date() { //Mostra data
 
         cboSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saida" }));
 
+        jLabel4.setText("Status Monitor:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -434,6 +462,8 @@ public void date() { //Mostra data
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMarcaMonNov, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -454,7 +484,8 @@ public void date() { //Mostra data
                     .addComponent(txtMonitorNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(txtMarcaMonNov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -578,14 +609,18 @@ if (tblMonNovo.getSelectedRow() != -1) {
         atualizarMonitor();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnPesquisarOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarOPActionPerformed
+        pesquisarOperador(txtFindOp.getText());
+    }//GEN-LAST:event_btnPesquisarOPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDefMon;
+    private javax.swing.JButton btnPesquisarOP;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboSaida;
     private javax.swing.JComboBox<String> cboStatusMonitor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -597,6 +632,7 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JPanel jPanel1;
@@ -606,7 +642,6 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tblMonNovo;
     private javax.swing.JTable tblMonitorKit;
@@ -615,6 +650,7 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JTextField txtCodMonNV;
     private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFindOp;
     private javax.swing.JTextField txtMarcaMonDef;
     private javax.swing.JTextField txtMarcaMonNov;
     private javax.swing.JTextField txtMonitorNV;

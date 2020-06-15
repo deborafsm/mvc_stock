@@ -84,6 +84,7 @@ public class dao_monitor {
             rs = ps.executeQuery();
             while (rs.next()) {
                 model_monitor monitor = new model_monitor();
+                
                 monitor.setId(rs.getString("id_monitor"));
                 monitor.setCod(rs.getString("cod_monitor"));
                 monitor.setMarca_monitor(rs.getString("marca_monitor"));

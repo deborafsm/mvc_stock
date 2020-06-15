@@ -97,7 +97,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         txtIDfORM.setEnabled(true);
         brnDefeito.setEnabled(true);
     }
-    //Para pesquiar operador
+    //Para pesquisar operador
     public void pesquisarOperador(String nome_operador) {
         DefaultTableModel model = (DefaultTableModel) tblKitPc.getModel();
         model.setNumRows(0);

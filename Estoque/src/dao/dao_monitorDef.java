@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.model_kitSaida;
 import model.model_monitorDef;
@@ -65,7 +66,7 @@ public class dao_monitorDef {
             ps = con.prepareStatement("insert into monitordef(cod_monitor,data_defeito ,marca_monitor, descricao, statusm, nome, email)values(?,?,?,?,?,?,?)");
 
             ps.setString(1, monitor.getCod_monitor());
-            ps.setString(2,monitor.getData());
+            ps.setString(2, monitor.getData());
             ps.setString(3, monitor.getMarca_monitor());
             ps.setString(4, monitor.getDescricao());
             ps.setString(5, monitor.getStatus());
@@ -82,17 +83,17 @@ public class dao_monitorDef {
         }
     }
     //Atualiza Monitor
-    
+
     public void atualizaMonKIT(model_monitorDef mondef) {
         PreparedStatement ps = null;
         String sql = "UPDATE kit SET id_monitor =?,marca_monitor =?,cod_monitor =? WHERE id_kit  =?;";
         try {
             ps = con.prepareStatement(sql);
 
-            ps.setString(1,mondef.getId_monitor());
-            ps.setString(2,mondef.getMarca_monitor());
-            ps.setString(3,mondef.getCod_monitor());
-            ps.setString(4,mondef.getId_kit());
+            ps.setString(1, mondef.getId_monitor());
+            ps.setString(2, mondef.getMarca_monitor());
+            ps.setString(3, mondef.getCod_monitor());
+            ps.setString(4, mondef.getId_kit());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Kit Alterado com sucesso");
         } catch (Exception e) {
@@ -101,6 +102,7 @@ public class dao_monitorDef {
             connection_stock.closeConnection(con, ps);
         }
     }
+
     public void updateMonitor(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
@@ -117,4 +119,35 @@ public class dao_monitorDef {
             connection_stock.closeConnection(con, ps);
         }
     }
+
+    //Pesquisar KIT
+    public List<model_monitorDef> findOperador(String nome_operador) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<model_monitorDef> findOp = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT * FROM kit WHERE nome_operador like ?");//Colocar  ps = con.prepareStatement
+            ps.setString(1, "%" + nome_operador + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                model_monitorDef kit = new model_monitorDef();
+
+                kit.setId_kit(rs.getString("id_kit"));
+                kit.setLacre(rs.getString("lacre"));
+                kit.setNome_operador(rs.getString("nome_operador"));
+                kit.setEmail(rs.getString("email"));
+                kit.setId_monitor(rs.getString("id_monitor"));
+                kit.setCod_monitor(rs.getString("cod_monitor"));
+                kit.setMarca_monitor(rs.getString("marca_monitor"));
+                findOp.add(kit);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao pesquisar operador(a) " + e);
+        } finally {
+            connection_stock.closeConnection(con, ps, rs);
+        }
+        //Retora o array 
+        return findOp;
+    }
+
 }

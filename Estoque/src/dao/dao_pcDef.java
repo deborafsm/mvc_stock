@@ -87,7 +87,7 @@ public class dao_pcDef {
                 pesquisarOperadora.add(kit);
             }
         } catch (Exception e) {
-            System.out.println("Erro ao pesquisar operadora. " + e);
+            System.out.println("Erro ao pesquisar operador(a). " + e);
         } finally {
             connection_stock.closeConnection(con, ps, rs);
         }
