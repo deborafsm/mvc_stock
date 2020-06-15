@@ -54,7 +54,7 @@
                   </Group>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="321" max="32767" attributes="0"/>
+              <EmptySpace pref="325" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -113,17 +113,23 @@
             <Component class="javax.swing.JTable" name="tblMonitorKit">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="4">
+                  <Table columnCount="7" rowCount="4">
                     <Column editable="false" title="ID_KIT" type="java.lang.Object"/>
                     <Column editable="false" title="Lacre KIT" type="java.lang.Object"/>
                     <Column editable="false" title="Nome Operadora" type="java.lang.Object"/>
                     <Column editable="false" title="Email" type="java.lang.Object"/>
+                    <Column editable="false" title="ID_Monitor" type="java.lang.Object"/>
                     <Column editable="false" title="Cod_monitor" type="java.lang.Object"/>
                     <Column editable="false" title="Marca Monitor" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -203,12 +209,18 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtEmail" alignment="0" min="-2" pref="385" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtData" alignment="0" pref="176" max="32767" attributes="0"/>
-                          <Component id="txtNomeOP" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtData" alignment="0" pref="176" max="32767" attributes="0"/>
+                              <Component id="txtNomeOP" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="txtidKit" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="154" max="32767" attributes="0"/>
+                  <EmptySpace pref="138" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -218,6 +230,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtData" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtidKit" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -266,6 +280,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Data Kit Entrada"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtidKit">
         </Component>
       </SubComponents>
     </Container>

@@ -331,7 +331,7 @@ public class dao_kitSaida {
     public void updateMonitor(model_kitSaida kit) {//Query de atualizar cliente
         PreparedStatement ps = null;
         try {//tenta a logica abaixo
-            ps = con.prepareStatement("UPDATE monitor SET status_monitor  = ?  WHERE cod_monitor = ? ");
+            ps = con.prepareStatement("UPDATE monitor SET status_monitor  =? WHERE cod_monitor =? ");
             //Permissão para atualizar apenas os componentes abaixo
             ps.setString(1, kit.getStatus());
             ps.setString(2, kit.getCod_monitor());

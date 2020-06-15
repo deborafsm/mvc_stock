@@ -44,7 +44,7 @@ public class dao_monitorDef {
                 kit.setLacre(rs.getString("lacre"));
                 kit.setNome_operador(rs.getString("nome_operador"));
                 kit.setEmail(rs.getString("email"));
-
+                kit.setId_monitor(rs.getString("id_monitor"));
                 kit.setCod_monitor(rs.getString("cod_monitor"));
                 kit.setMarca_monitor(rs.getString("marca_monitor"));
                 selectKit.add(kit);
@@ -81,16 +81,18 @@ public class dao_monitorDef {
             connection_stock.closeConnection(con, ps);
         }
     }
+    //Atualiza Monitor
+    
     public void atualizaMonKIT(model_monitorDef mondef) {
         PreparedStatement ps = null;
-        String sql = "UPDATE kit SET id_monitor =?,marca_monitor =?,cod_monitor =?WHERE id_kit  = ?;";
+        String sql = "UPDATE kit SET id_monitor =?,marca_monitor =?,cod_monitor =? WHERE id_kit  =?;";
         try {
             ps = con.prepareStatement(sql);
 
             ps.setString(1,mondef.getId_monitor());
             ps.setString(2,mondef.getMarca_monitor());
             ps.setString(3,mondef.getCod_monitor());
-            ps.setString(4, mondef.getId_kit());
+            ps.setString(4,mondef.getId_kit());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Kit Alterado com sucesso");
         } catch (Exception e) {

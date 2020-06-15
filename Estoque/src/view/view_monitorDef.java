@@ -69,14 +69,14 @@ public void date() { //Mostra data
                 pc.getLacre(),
                 pc.getNome_operador(),
                 pc.getEmail(),
-               
+                pc.getId_monitor(),
                 pc.getCod_monitor(),
                 pc.getMarca_monitor()
             });
         });
     }
     
-    public void atualizaPC() {
+    public void atualizarMonitor() {
         model_kitSaida monnv = new model_kitSaida();
         dao_kitSaida dao = new dao_kitSaida();
         if (tblMonNovo.getSelectedRow() != -1) {
@@ -85,7 +85,7 @@ public void date() { //Mostra data
             //A atualização só vai ser possivel atraves do Código
             monnv.setCod_monitor((String) tblMonNovo.getValueAt(tblMonNovo.getSelectedRow(), 1));
             //Chama metodo UPDATE 
-            dao.updateMonitor(monnv);;
+            dao.updateMonitor(monnv);
             //Atualiza os campos da tabela
             readJtableMonitor();
         }
@@ -112,6 +112,8 @@ public void date() { //Mostra data
         jLabel17 = new javax.swing.JLabel();
         txtData = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtidKit = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         txtMarcaMonDef = new javax.swing.JTextField();
@@ -145,17 +147,17 @@ public void date() { //Mostra data
 
         tblMonitorKit.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID_KIT", "Lacre KIT", "Nome Operadora", "Email", "Cod_monitor", "Marca Monitor"
+                "ID_KIT", "Lacre KIT", "Nome Operadora", "Email", "ID_Monitor", "Cod_monitor", "Marca Monitor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -226,6 +228,8 @@ public void date() { //Mostra data
 
         jLabel24.setText("Data Kit Entrada");
 
+        jLabel3.setText("ID:");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -239,17 +243,24 @@ public void date() { //Mostra data
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                        .addComponent(txtNomeOP, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(154, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .addComponent(txtNomeOP, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(139, 139, 139)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtidKit, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel3)
+                    .addComponent(txtidKit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -480,7 +491,7 @@ public void date() { //Mostra data
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         pack();
@@ -520,6 +531,7 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private void tblMonitorKitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMonitorKitKeyReleased
         if (tblMonitorKit.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
+            txtidKit.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(),0).toString());
             txtNomeOP.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 2).toString());
             txtEmail.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 3).toString());
             txtCodMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 4).toString());
@@ -528,13 +540,13 @@ if (tblMonNovo.getSelectedRow() != -1) {
     }//GEN-LAST:event_tblMonitorKitKeyReleased
 
     private void tblMonitorKitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonitorKitMouseClicked
-        if (tblMonitorKit.getSelectedRow() != -1) {
+       if (tblMonitorKit.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
+            txtidKit.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(),0).toString());
             txtNomeOP.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 2).toString());
             txtEmail.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 3).toString());
             txtCodMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 4).toString());
             txtMarcaMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 5).toString());
-
         }
     }//GEN-LAST:event_tblMonitorKitMouseClicked
         private void campos(model_monitorDef mdef){
@@ -560,8 +572,10 @@ if (tblMonNovo.getSelectedRow() != -1) {
         mdef.setId_monitor(txtMonitorNV.getText());
         mdef.setMarca_monitor(txtMarcaMonNov.getText());
         mdef.setCod_monitor(txtCodMonNV.getText());
+        mdef.setId_kit(txtidKit.getText());
         dao.atualizaMonKIT(mdef);
         selecionaKitMonitor();  
+        atualizarMonitor();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
 
@@ -582,6 +596,7 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JPanel jPanel1;
@@ -604,5 +619,6 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private javax.swing.JTextField txtMarcaMonNov;
     private javax.swing.JTextField txtMonitorNV;
     private javax.swing.JTextField txtNomeOP;
+    private javax.swing.JTextField txtidKit;
     // End of variables declaration//GEN-END:variables
 }
