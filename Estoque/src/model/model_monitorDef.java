@@ -13,24 +13,41 @@ public class model_monitorDef {
 
     private String id_monitor;
     private String cod_monitor;
-    private String marca_monior;
+    private String marca_monitor;
+    private String status;
+    private String descricao;
     private String id_kit;
     private String lacre;
     private String nome_operador;
     private String email;
+    private String data;
 
     public model_monitorDef() {
     }
 
-    public model_monitorDef(String id_monitor, String cod_monitor, String marca_monior, String id_kit, String lacre, String nome_operador, String email) {
+    public model_monitorDef(String id_monitor, String cod_monitor, String marca_monitor, String status, String descricao, String id_kit, String lacre, String nome_operador, String email, String data) {
         this.id_monitor = id_monitor;
         this.cod_monitor = cod_monitor;
-        this.marca_monior = marca_monior;
+        this.marca_monitor = marca_monitor;
+        this.status = status;
+        this.descricao = descricao;
         this.id_kit = id_kit;
         this.lacre = lacre;
         this.nome_operador = nome_operador;
         this.email = email;
+        this.data = data;
     }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+  
+   
 
     public String getId_monitor() {
         return id_monitor;
@@ -48,14 +65,7 @@ public class model_monitorDef {
         this.cod_monitor = cod_monitor;
     }
 
-    public String getMarca_monior() {
-        return marca_monior;
-    }
-
-    public void setMarca_monior(String marca_monior) {
-        this.marca_monior = marca_monior;
-    }
-
+    
     public String getId_kit() {
         return id_kit;
     }
@@ -88,4 +98,29 @@ public class model_monitorDef {
         this.email = email;
     }
 
+    public String getMarca_monitor() {
+        return marca_monitor;
+    }
+
+    public void setMarca_monitor(String marca_monitor) {
+        this.marca_monitor = marca_monitor;
+    }
+
+  
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 }

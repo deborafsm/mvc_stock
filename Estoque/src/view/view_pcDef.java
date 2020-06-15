@@ -192,7 +192,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         });
     }
     //Campos do pc com defeito
-    public void campos(model_pcDef pcDef) {
+        public void campos(model_pcDef pcDef) {
         pcDef.setCod_pcDef(txtCodPcDefeito.getText());
         pcDef.setDatadef(txtDataDK.getText());
         pcDef.setNomePcDef(txtPCDefeito.getText());

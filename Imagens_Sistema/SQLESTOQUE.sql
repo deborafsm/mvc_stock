@@ -10,9 +10,10 @@ select * from mouse;
 select * from teclado;
 select * from kit;
 select * from monitordef;
+
 select * from defeitopc; 
-alter table operador add column data_cad varchar(200) after id_operador;
-alter table defeitopc add column email varchar(200) ;
+
+alter table monitordef add column data_defeito varchar(200) after cod_monitor;
 
 create table pc(
 	id_formulario int primary key auto_increment,

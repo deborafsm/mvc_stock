@@ -13,6 +13,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.swing.table.DefaultTableModel;
+import model.model_kitSaida;
+import model.model_monitor;
+import model.model_monitorDef;
 
 /**
  *
@@ -68,9 +71,24 @@ public void date() { //Mostra data
                 pc.getEmail(),
                
                 pc.getCod_monitor(),
-                pc.getMarca_monior()
+                pc.getMarca_monitor()
             });
         });
+    }
+    
+    public void atualizaPC() {
+        model_kitSaida monnv = new model_kitSaida();
+        dao_kitSaida dao = new dao_kitSaida();
+        if (tblMonNovo.getSelectedRow() != -1) {
+            //Seta todos os campos que podem ser atualizados
+            monnv.setStatus(cboSaida.getSelectedItem().toString());//Pega o valor do combobox
+            //A atualização só vai ser possivel atraves do Código
+            monnv.setCod_monitor((String) tblMonNovo.getValueAt(tblMonNovo.getSelectedRow(), 1));
+            //Chama metodo UPDATE 
+            dao.updateMonitor(monnv);;
+            //Atualiza os campos da tabela
+            readJtableMonitor();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,6 +136,7 @@ public void date() { //Mostra data
         jLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        cboSaida = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -260,6 +279,11 @@ public void date() { //Mostra data
 
         btnAddDefMon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/erro.png"))); // NOI18N
         btnAddDefMon.setText("Adicionar Defeito");
+        btnAddDefMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDefMonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -285,7 +309,7 @@ public void date() { //Mostra data
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel46)
                         .addGap(18, 18, 18)
-                        .addComponent(cboStatusMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboStatusMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAddDefMon)))
                 .addGap(14, 14, 14))
@@ -348,6 +372,11 @@ public void date() { //Mostra data
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/refrescar (1).png"))); // NOI18N
         btnUpdate.setText("Atualizar Kit");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Id_MT:");
 
@@ -365,36 +394,38 @@ public void date() { //Mostra data
             }
         });
 
+        cboSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saida" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel13)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCodMonNV))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtMonitorNV, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtMarcaMonNov, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCodMonNV))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMonitorNV, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMarcaMonNov, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,14 +442,14 @@ public void date() { //Mostra data
                     .addComponent(jLabel12)
                     .addComponent(txtMonitorNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
-                    .addComponent(txtMarcaMonNov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMarcaMonNov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(txtCodMonNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(btnUpdate)
-                .addGap(20, 20, 20))
+                    .addComponent(txtCodMonNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate))
+                .addGap(66, 66, 66))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -449,7 +480,7 @@ public void date() { //Mostra data
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
 
         pack();
@@ -491,7 +522,6 @@ if (tblMonNovo.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
             txtNomeOP.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 2).toString());
             txtEmail.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 3).toString());
-            
             txtCodMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 4).toString());
             txtMarcaMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 5).toString());
         }
@@ -500,20 +530,45 @@ if (tblMonNovo.getSelectedRow() != -1) {
     private void tblMonitorKitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonitorKitMouseClicked
         if (tblMonitorKit.getSelectedRow() != -1) {
             //Preenche os campos ao clicar dentro de um dado na tabela
-            
             txtNomeOP.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 2).toString());
             txtEmail.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 3).toString());
-            
             txtCodMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 4).toString());
             txtMarcaMonDef.setText(tblMonitorKit.getValueAt(tblMonitorKit.getSelectedRow(), 5).toString());
 
         }
     }//GEN-LAST:event_tblMonitorKitMouseClicked
+        private void campos(model_monitorDef mdef){
+            mdef.setNome_operador(txtNomeOP.getText());
+            mdef.setEmail(txtEmail.getText());
+            mdef.setCod_monitor(txtCodMonDef.getText());
+            mdef.setMarca_monitor(txtMarcaMonDef.getText());
+            mdef.setDescricao(txaDefMon.getText());
+            mdef.setStatus(cboStatusMonitor.getSelectedItem().toString());
+            mdef.setData(txtData.getText());
+        }
+    private void btnAddDefMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDefMonActionPerformed
+        model_monitorDef mdef = new model_monitorDef();
+        dao_monitorDef dao = new dao_monitorDef();
+        campos(mdef);
+        dao.addMonitorDef(mdef);
+        selecionaKitMonitor();
+    }//GEN-LAST:event_btnAddDefMonActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        model_monitorDef mdef = new model_monitorDef();
+        dao_monitorDef dao = new dao_monitorDef();
+        mdef.setId_monitor(txtMonitorNV.getText());
+        mdef.setMarca_monitor(txtMarcaMonNov.getText());
+        mdef.setCod_monitor(txtCodMonNV.getText());
+        dao.atualizaMonKIT(mdef);
+        selecionaKitMonitor();  
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDefMon;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cboSaida;
     private javax.swing.JComboBox<String> cboStatusMonitor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
