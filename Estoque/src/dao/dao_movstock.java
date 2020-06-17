@@ -16,7 +16,7 @@ import model.model_movstock;
 
 /**
  *
- * @author Usuário
+ * * @author Debora Freire T.I JobHome
  */
 public class dao_movstock {
 

@@ -18,7 +18,7 @@ import model.model_webcam;
 
 /**
  *
- * @author Usuário
+ * * @author Debora Freire T.I JobHome
  */
 public class dao_webcam {
 

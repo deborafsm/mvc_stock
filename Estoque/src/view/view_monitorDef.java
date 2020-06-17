@@ -213,6 +213,7 @@ public void date() { //Mostra data
 
         jLabel2.setText("Nome Operador(a):");
 
+        btnPesquisarOP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.png"))); // NOI18N
         btnPesquisarOP.setText("Pesquisar");
         btnPesquisarOP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
