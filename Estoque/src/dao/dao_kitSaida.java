@@ -36,8 +36,10 @@ public class dao_kitSaida {
 
     //Faz a inserção de kit no banco de dados
     public void addKit(model_kitSaida kit) {
-        String sql = "INSERT INTO kit(data_kit, status_kit, id_operador, nome_operador, telefone, email, endereco, cargo, setor, supervisor, operacao,nome_pc, cod_pc, marca_pc, modelo_pc,"
-                + " processador, memoria, so, hd, garantia, marca_monitor, marca_teclado, marca_mouse, marca_head, marca_webcam, qnt_vga, qnt_e, rede,lacre,id_monitor,cod_monitor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO kit(data_kit, status_kit, id_operador, nome_operador, telefone, email, endereco, cargo,"
+                + " setor, supervisor, operacao,nome_pc, cod_pc, marca_pc, modelo_pc,"
+                + " processador, memoria, so, hd, garantia, marca_monitor, marca_teclado, marca_mouse, marca_head,"
+                + " marca_webcam, qnt_vga, qnt_e, rede,lacre,id_monitor,cod_monitor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         try {
 
@@ -164,7 +166,7 @@ public class dao_kitSaida {
 
     //Seleciona todos operadores que estão OK
     public List<model_kitSaida> findAllOp() {//Metodo Tipo lista
-        String valor = "Ok";
+        String valor = "Sem Kit";
         //Seleciona apenas o Codigo e o status do operador
         String sql = ("select id_operador,nome_operador,tel,email_operador,endereco,cargo,setor,supervisor,empresa from operador where status_operador = " + "'" + valor + "'");
         List<model_kitSaida> listOp = new ArrayList<>();//Cria lista

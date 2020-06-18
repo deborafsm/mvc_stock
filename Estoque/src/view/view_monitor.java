@@ -83,6 +83,8 @@ public class view_monitor extends javax.swing.JInternalFrame {
         txtIdMonitor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        cboStatusMon = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
 
         setClosable(true);
@@ -201,6 +203,10 @@ public class view_monitor extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Código");
 
+        jLabel6.setText("Status:");
+
+        cboStatusMon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Estoque", "Saida" }));
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -213,9 +219,11 @@ public class view_monitor extends javax.swing.JInternalFrame {
                     .addComponent(jLabel54)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboStatusMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIdMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -247,7 +255,11 @@ public class view_monitor extends javax.swing.JInternalFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cboStatusMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jButton5.setText("Limpar Campos");
@@ -367,6 +379,7 @@ public class view_monitor extends javax.swing.JInternalFrame {
         monitor.setCod(txtCodigo.getText());
         monitor.setMarca_monitor(txtMarca.getText());
         monitor.setModelo(txtModelo.getText());
+        monitor.setStatus_monitor(cboStatusMon.getSelectedItem().toString());
     }
 
     private void limpar() {
@@ -377,6 +390,7 @@ public class view_monitor extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboStatusMon;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -388,6 +402,7 @@ public class view_monitor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JScrollPane jScrollPane1;

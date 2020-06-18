@@ -34,12 +34,12 @@ public class dao_monitor {
     public void addMonitor(model_monitor monitor) {
 
         try {
-            ps = con.prepareStatement("insert into monitor(cod_monitor,marca_monitor,modelo_monitor)values(?,?,?)");
+            ps = con.prepareStatement("insert into monitor(cod_monitor,marca_monitor,modelo_monitor,status_monitor)values(?,?,?,?)");
 
             ps.setString(1, monitor.getCod());
             ps.setString(2, monitor.getMarca_monitor());
             ps.setString(3, monitor.getModelo());
-
+            ps.setString(4,monitor.getStatus_monitor());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Monitor Inserido com sucesso!");
         } catch (Exception e) {

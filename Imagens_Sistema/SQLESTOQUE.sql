@@ -9,12 +9,17 @@ select *from monitor;
 select * from mouse;
 select * from teclado;
 select * from kit;
+
 select * from monitordef;
-
+select * from usuarios;
 select * from defeitopc; 
-
+alter table monitor add column status_monitor varchar(200);
 alter table monitordef add column data_defeito varchar(200) after cod_monitor;
-
+create table usuarios(
+ id_usuario int primary key auto_increment,
+ usuario varchar(20),
+ senha varchar(10)
+);
 create table pc(
 	id_formulario int primary key auto_increment,
     datacad varchar(100),
@@ -34,7 +39,9 @@ create table monitor(
 	id_monitor int primary key auto_increment,
     marca_monitor varchar(100),
     modelo_monitor varchar(100),
-    cod_monitor varchar(200)
+    cod_monitor varchar(200),
+    status_monitor varchar(200)
+    
 );    
   create table mouse(  
 	id_mouse int primary key auto_increment,
@@ -65,6 +72,7 @@ create table operador(
     empresa varchar(200),
     supervisor varchar(100)
 );
+alter table operador add column data_cad varchar(200) after id_operador;
 select * from operador;
 alter table operador add column celular varchar(200) after tel;
 alter table operador add column cep varchar(200)after endereco;
@@ -173,3 +181,11 @@ select * FROM monitor WHERE status_monitor = 'No Estoque';
 UPDATE kit SET nome_pc= ?,cod_pc = ? ,marca_pc = ?,modelo_pc = ?,processador= ?,memoria= ?,so= ?,hd= ?,garantia= ?   WHERE id_kit = ?;
 -- Atualizar KIT Monitor
 UPDATE kit SET marca_monitor= ?,id_monitor = ? ,cod_monitor = ?  WHERE id_kit = ?;
+
+
+select * from kit ;
+
+
+alter table kit add column lacre varchar(200);
+alter table kit add column id_monitor varchar(200);
+alter table kit add column cod_monitor varchar(200);

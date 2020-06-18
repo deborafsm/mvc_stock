@@ -232,7 +232,7 @@ public class view_operador extends javax.swing.JInternalFrame {
 
         jLabel19.setText("Setor:");
 
-        jLabel20.setText("Supervisora:");
+        jLabel20.setText("Supervisor(a):");
 
         txtsup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,7 +342,7 @@ public class view_operador extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel10)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                        .addGap(0, 4, Short.MAX_VALUE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(txtset, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel20)
@@ -373,7 +373,7 @@ public class view_operador extends javax.swing.JInternalFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jLabel13)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cboStatus, 0, 114, Short.MAX_VALUE))
+                                                .addComponent(cboStatus, 0, 110, Short.MAX_VALUE))
                                             .addGroup(jPanel5Layout.createSequentialGroup()
                                                 .addComponent(txtest, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -532,6 +532,11 @@ public class view_operador extends javax.swing.JInternalFrame {
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/adicionar.png"))); // NOI18N
         btnAdd.setText("Adicionar Operador");
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -607,14 +612,14 @@ public class view_operador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_brnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        if (tblOperador.getSelectedRow() != -1) {
-            model_operador op = new model_operador();
-            dao_operador dao = new dao_operador();
-            op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
-            campos(op);
-            dao.createOperador(op);
-            readJtable();
-        }
+
+        model_operador op = new model_operador();
+        dao_operador dao = new dao_operador();
+        //op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
+        campos(op);
+        dao.addOp(op);
+        readJtable();
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tblOperadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOperadorMouseClicked
@@ -707,6 +712,10 @@ public class view_operador extends javax.swing.JInternalFrame {
             readJtable();
         }
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+
+    }//GEN-LAST:event_btnAddMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

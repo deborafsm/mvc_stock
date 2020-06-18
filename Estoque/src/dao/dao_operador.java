@@ -29,9 +29,9 @@ public class dao_operador {
         con = connection_stock.getConnection();
     }
     //insert 
-    public void createOperador(model_operador op) {
+    public void addOp(model_operador op) {
         try {
-            ps = con.prepareStatement("insert into operador(data_cad ,nome_operador, email_operador, tel, celular, endereco, "
+            ps = con.prepareStatement("INSERT INTO operador(data_cad ,nome_operador, email_operador, tel, celular, endereco, "
                     + "cep, numero, complemento, referencia, bairro, cidade, estado, setor, cargo, status_operador,"
                     + " empresa, supervisor)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )");
 
@@ -55,7 +55,6 @@ public class dao_operador {
             ps.setString(18, op.getSupervisor());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Inserido com sucesso !");
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel inserir os dados." + e);
         } finally {

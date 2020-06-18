@@ -14,6 +14,7 @@ public class model_monitor {
     private String modelo;
     private String id;
     private String cod;
+    private String status_monitor;
     
 
     public model_monitor() {
@@ -48,6 +49,14 @@ public class model_monitor {
 
     public void setCod(String cod) {
         this.cod = cod;
+    }
+
+    public String getStatus_monitor() {
+        return status_monitor;
+    }
+
+    public void setStatus_monitor(String status_monitor) {
+        this.status_monitor = status_monitor;
     }
 
     

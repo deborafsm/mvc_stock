@@ -132,7 +132,7 @@
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="txtset" min="-2" pref="152" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
@@ -168,7 +168,7 @@
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="cboStatus" pref="114" max="32767" attributes="0"/>
+                                                  <Component id="cboStatus" pref="110" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="txtest" min="-2" pref="141" max="-2" attributes="0"/>
@@ -294,7 +294,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Supervisora:"/>
+            <Property name="text" type="java.lang.String" value="Supervisor(a):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtsup">
@@ -671,6 +671,7 @@
         <Property name="text" type="java.lang.String" value="Adicionar Operador"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAddMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
       </Events>
     </Component>
