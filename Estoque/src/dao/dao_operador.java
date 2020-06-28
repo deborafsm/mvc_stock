@@ -33,7 +33,7 @@ public class dao_operador {
         try {
             ps = con.prepareStatement("INSERT INTO operador(data_cad ,nome_operador, email_operador, tel, celular, endereco, "
                     + "cep, numero, complemento, referencia, bairro, cidade, estado, setor, cargo, status_operador,"
-                    + " empresa, supervisor)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )");
+                    + " empresa, supervisor,cpf)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )");
 
             ps.setString(1, op.getDatacad());
             ps.setString(2, op.getNome_operador());
@@ -53,6 +53,7 @@ public class dao_operador {
             ps.setString(16, op.getStatus());
             ps.setString(17, op.getEmpresa());
             ps.setString(18, op.getSupervisor());
+            ps.setString(19, op.getCpf());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Inserido com sucesso !");
         } catch (Exception e) {

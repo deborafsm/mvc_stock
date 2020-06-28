@@ -129,6 +129,7 @@ public class view_operador extends javax.swing.JInternalFrame {
         op.setSupervisor(txtsup.getText());
         op.setCargo(txtcargo.getText());
         op.setStatus(cboStatus.getSelectedItem().toString());
+        op.setCpf(txtCpf.getText());
 
     }
 
@@ -155,6 +156,7 @@ public class view_operador extends javax.swing.JInternalFrame {
         txtope.setText("");
         cboStatus.setSelectedItem(null);//Combo box não seleciona nenhum item
         txtsup.setText("");
+        txtCpf.setText("");
     }
 
     /**
@@ -206,6 +208,8 @@ public class view_operador extends javax.swing.JInternalFrame {
         txtId = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtDat = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtfindOP = new javax.swing.JTextField();
@@ -292,6 +296,14 @@ public class view_operador extends javax.swing.JInternalFrame {
 
         txtDat.setDisabledTextColor(new java.awt.Color(255, 0, 0));
 
+        jLabel22.setText("CPF:");
+
+        try {
+            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -328,8 +340,8 @@ public class view_operador extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtemail)
-                                    .addComponent(txtend)))
+                                    .addComponent(txtend)
+                                    .addComponent(txtemail)))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -387,6 +399,10 @@ public class view_operador extends javax.swing.JInternalFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDat, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
@@ -399,7 +415,9 @@ public class view_operador extends javax.swing.JInternalFrame {
                             .addComponent(jLabel14)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
-                            .addComponent(txtDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22)
+                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,17 +481,17 @@ public class view_operador extends javax.swing.JInternalFrame {
 
         tblOperador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome ", "E-mail", "Telefone", "Celular", "Endereço", "CEP", "Numero", "Complemento", "Referência", "Bairro", "Cidade", "Estado", "Setor", "Cargo", "Status", "Operação", "Supervisor"
+                "ID", "Nome ", "E-mail", "CPF", "Telefone", "Celular", "Endereço", "CEP", "Numero", "Complemento", "Referência", "Bairro", "Cidade", "Estado", "Setor", "Cargo", "Status", "Operação", "Supervisor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -739,6 +757,7 @@ public class view_operador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -750,6 +769,7 @@ public class view_operador extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOperador;
+    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtDat;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtbairro;

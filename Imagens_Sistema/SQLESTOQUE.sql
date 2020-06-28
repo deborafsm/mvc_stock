@@ -2,7 +2,7 @@ create database estoque;
 use estoque;
 select * from pc;
 select * from operador;
-SELECT * FROM operador WHERE nome_operador like "teste";
+alter table operador add column cpf varchar(200) unique;
 select * from head;
 select * from webcam;
 select *from monitor;	
@@ -30,7 +30,7 @@ create table pc(
 	hd varchar(10),
     memoria varchar(10),
     so varchar(50),
-    arquitetura varchar(10),
+   
     garantia varchar(100),
     status_pc varchar(50),
     modelo varchar(100)
@@ -62,29 +62,27 @@ create table webcam(
 );
 create table operador(
 	id_operador int primary key auto_increment,
+	data_cad varchar(200),
     nome_operador varchar(200),
     email_operador varchar(200) unique,
     tel varchar(20) unique,
+	celular varchar(200),
     endereco varchar(300),
+	cep varchar(200),
+	numero varchar(200),
+	complemento varchar(200),
+	referencia varchar(200),
+	bairro varchar(200),
+	cidade varchar(200),
+	estado varchar(200),
     setor varchar(100),
     cargo varchar (100),
     status_operador varchar(50),
     empresa varchar(200),
-    supervisor varchar(100)
+    supervisor varchar(100),
+    cpf VARCHAR(50)
 );
-alter table operador add column data_cad varchar(200) after id_operador;
-select * from operador;
-alter table operador add column celular varchar(200) after tel;
-alter table operador add column cep varchar(200)after endereco;
 
-alter table operador add column numero varchar(200) after cep ;
-alter table operador add column complemento varchar(200) after numero;
-
-alter table operador add column referencia varchar(200) after complemento;
-
-alter table operador add column bairro varchar(200) after referencia;
-alter table operador add column cidade varchar(200) after bairro;
-alter table operador add column estado varchar(200) after cidade;
 create table kit(
 	id_kit int primary key auto_increment ,
 	data_kit varchar(200),
@@ -98,7 +96,7 @@ create table kit(
     setor varchar(200),
     supervisor varchar(200),
     operacao varchar(200),
-    id_pc varchar(200),
+    nome_pc VARCHAR(200),
     cod_pc varchar(200),
     marca_pc varchar(200),
     modelo_pc varchar(200),
@@ -114,7 +112,10 @@ create table kit(
     marca_webcam varchar(200),
     qnt_vga varchar(200),
     qnt_e varchar(200),
-    rede varchar(200)
+    rede varchar(200),
+    lacre varchar(200),
+	 id_monitor varchar(200),
+	 cod_monitor varchar(200)
 );
 create table defeitoPC(
 	id_pcDef  int primary key auto_increment ,
@@ -133,11 +134,14 @@ create table defeitoPC(
 
 create table monitorDef(
 	id_monitorDefeito  int primary key auto_increment ,
-	id_monitor varchar(200),
+	
 	cod_monitor varchar(200),
+	data_defeito varchar(200),
     marca_monitor varchar(200),
     descricao varchar(200),
-    statusm varchar(200)
+    statusm varchar(200),
+    nome varchar(200),
+	email varchar(200)
 );
 select  id_operador,tel,email_operador,endereco,cargo,setor,supervisor from operador where status_operador = "Ok";
 
@@ -187,5 +191,5 @@ select * from kit ;
 
 
 alter table kit add column lacre varchar(200);
-alter table kit add column id_monitor varchar(200);
+
 alter table kit add column cod_monitor varchar(200);

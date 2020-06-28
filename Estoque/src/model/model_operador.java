@@ -34,12 +34,13 @@ public class model_operador {
     private String bairro;
     private String cidade;
     private String datacad;
+    private String cpf;
  
 
     public model_operador() {
     }
 
-    public model_operador(String id_operador, String nome_operador, String email, String tel, String celular, String end, String num, String cep, String estado, String setor, String cargo, String status, String empresa, String supervisor, String complemento, String referencia, String bairro, String cidade, String datacad) {
+    public model_operador(String id_operador, String nome_operador, String email, String tel, String celular, String end, String num, String cep, String estado, String setor, String cargo, String status, String empresa, String supervisor, String complemento, String referencia, String bairro, String cidade, String datacad, String cpf) {
         this.id_operador = id_operador;
         this.nome_operador = nome_operador;
         this.email = email;
@@ -59,7 +60,10 @@ public class model_operador {
         this.bairro = bairro;
         this.cidade = cidade;
         this.datacad = datacad;
+        this.cpf = cpf;
     }
+
+    
     
     
 
@@ -156,6 +160,15 @@ public class model_operador {
     public String getStatus() {
         return status;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
 
     public void setStatus(String status) {
         this.status = status;
