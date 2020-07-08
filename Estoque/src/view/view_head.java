@@ -65,6 +65,7 @@ public class view_head extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setPreferredSize(new java.awt.Dimension(1337, 690));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Head"));
 
@@ -201,7 +202,7 @@ public class view_head extends javax.swing.JInternalFrame {
                             .addComponent(jButton4)
                             .addComponent(jButton3)
                             .addComponent(jButton2))))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
 
         pack();

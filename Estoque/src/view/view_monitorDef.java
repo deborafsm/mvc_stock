@@ -177,6 +177,7 @@ public void date() { //Mostra data
 
         setClosable(true);
         setIconifiable(true);
+        setPreferredSize(new java.awt.Dimension(1337, 690));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Kits Existentes"));
 
@@ -537,7 +538,7 @@ public void date() { //Mostra data
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();

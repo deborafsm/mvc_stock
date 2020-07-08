@@ -91,6 +91,7 @@ public class view_monitor extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setPreferredSize(new java.awt.Dimension(1337, 690));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar Monitor"));
 
@@ -302,7 +303,7 @@ public class view_monitor extends javax.swing.JInternalFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton5)
                     .addComponent(jButton2))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
 
         pack();

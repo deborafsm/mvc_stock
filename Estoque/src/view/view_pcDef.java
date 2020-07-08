@@ -342,7 +342,7 @@ public class view_pcDef extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setPreferredSize(new java.awt.Dimension(1439, 690));
+        setPreferredSize(new java.awt.Dimension(1337, 690));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Do Operador"));
 

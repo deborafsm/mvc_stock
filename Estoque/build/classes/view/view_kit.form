@@ -54,7 +54,7 @@
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1400, 700]"/>
+      <Dimension value="[1337, 690]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -92,9 +92,9 @@
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="187" max="32767" attributes="0"/>
+                      <EmptySpace pref="124" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jPanel5" pref="451" max="32767" attributes="0"/>
+                  <Component id="jPanel5" pref="388" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -126,7 +126,7 @@
                   </Group>
                   <Component id="jPanel5" min="-2" pref="431" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="175" max="32767" attributes="0"/>
+              <EmptySpace pref="165" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

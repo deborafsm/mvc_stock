@@ -62,6 +62,7 @@ public class view_webcam extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setPreferredSize(new java.awt.Dimension(1337, 690));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Web Cam"));
 
@@ -211,7 +212,7 @@ public class view_webcam extends javax.swing.JInternalFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton4)
                     .addComponent(jButton3))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         pack();
