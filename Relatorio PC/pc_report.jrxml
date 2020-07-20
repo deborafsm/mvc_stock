@@ -42,8 +42,8 @@ FROM
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="2" y="0" width="200" height="40" uuid="d8c54f4d-6188-437a-84c1-8ecc6be99b23"/>
-				<imageExpression><![CDATA["C:\\Users\\jobhome\\Desktop\\mvc_jobhome_stock\\Estoque\\Image_Report\\Logo-JobHome-1-1.png"]]></imageExpression>
+				<reportElement x="14" y="10" width="200" height="40" uuid="505b380c-f8f4-4279-a579-2cd605830406"/>
+				<imageExpression><![CDATA["C:\\Users\\jobhome\\Desktop\\projetos\\mvc_jobhome_stock\\Logo-JobHome-1-1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
