@@ -129,7 +129,6 @@ public class view_operador extends javax.swing.JInternalFrame {
         op.setSupervisor(txtsup.getText());
         op.setCargo(txtcargo.getText());
         op.setStatus(cboStatus.getSelectedItem().toString());
-        op.setCpf(txtCpf.getText());
 
     }
 
@@ -156,7 +155,6 @@ public class view_operador extends javax.swing.JInternalFrame {
         txtope.setText("");
         cboStatus.setSelectedItem(null);//Combo box não seleciona nenhum item
         txtsup.setText("");
-        txtCpf.setText("");
     }
 
     /**
@@ -208,8 +206,6 @@ public class view_operador extends javax.swing.JInternalFrame {
         txtId = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtDat = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        txtCpf = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtfindOP = new javax.swing.JTextField();
@@ -297,14 +293,6 @@ public class view_operador extends javax.swing.JInternalFrame {
 
         txtDat.setDisabledTextColor(new java.awt.Color(255, 0, 0));
 
-        jLabel22.setText("CPF:");
-
-        try {
-            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -353,7 +341,7 @@ public class view_operador extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtope))))
+                                .addComponent(txtope, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -367,22 +355,18 @@ public class view_operador extends javax.swing.JInternalFrame {
                                 .addGap(48, 48, 48))
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtnome))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(txtcel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel17)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtemail, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                            .addComponent(txtend)))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtend, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtemail, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(txtset, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,9 +402,7 @@ public class view_operador extends javax.swing.JInternalFrame {
                     .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
-                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
@@ -477,17 +459,17 @@ public class view_operador extends javax.swing.JInternalFrame {
 
         tblOperador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome ", "E-mail", "CPF", "Telefone", "Celular", "Endereço", "CEP", "Numero", "Complemento", "Referência", "Bairro", "Cidade", "Estado", "Setor", "Cargo", "Status", "Operação", "Supervisor"
+                "ID", "Nome ", "E-mail", "Telefone", "Celular", "Endereço", "CEP", "Numero", "Complemento", "Referência", "Bairro", "Cidade", "Estado", "Setor", "Cargo", "Status", "Operação", "Supervisor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -645,10 +627,10 @@ public class view_operador extends javax.swing.JInternalFrame {
             cep, numero, complemento, referencia, bairro, cidade, estado, setor, cargo, status_operador,
              empresa, supervisor
              */
-
             txtId.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
             txtnome.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 1).toString());
             txtemail.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 2).toString());
+            // txtCpf.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 3).toString());
             txttel.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 3).toString());
             txtcel.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 4).toString());
             txtend.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 5).toString());
@@ -673,10 +655,10 @@ public class view_operador extends javax.swing.JInternalFrame {
             cep, numero, complemento, referencia, bairro, cidade, estado, setor, cargo, status_operador,
              empresa, supervisor
              */
-
             txtId.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
             txtnome.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 1).toString());
             txtemail.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 2).toString());
+            // txtCpf.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 3).toString());
             txttel.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 3).toString());
             txtcel.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 4).toString());
             txtend.setText(tblOperador.getValueAt(tblOperador.getSelectedRow(), 5).toString());
@@ -756,7 +738,6 @@ public class view_operador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -768,7 +749,6 @@ public class view_operador extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOperador;
-    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtDat;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtbairro;

@@ -28,6 +28,7 @@ public class dao_operador {
     public dao_operador() {
         con = connection_stock.getConnection();
     }
+
     //insert 
     public void addOp(model_operador op) {
         try {
@@ -63,7 +64,7 @@ public class dao_operador {
         }
 
     }
-    
+
     //update 
     //Update pc
     public void updateoperador(model_operador op) {
@@ -73,7 +74,7 @@ public class dao_operador {
                 + "status_operador=?, empresa=?, supervisor =? WHERE id_operador =?;";
         try {
             ps = con.prepareStatement(sql);
-           
+
             ps.setString(1, op.getNome_operador());
             ps.setString(2, op.getEmail());
             ps.setString(3, op.getTel());
@@ -101,6 +102,7 @@ public class dao_operador {
             connection_stock.closeConnection(con, ps);
         }
     }
+
     //remove
     public void deleteOperador(model_operador op) {
         //query deleta cliente de acordo com o id
@@ -118,9 +120,7 @@ public class dao_operador {
             connection_stock.closeConnection(con, ps); //fecha as conexoes utilizadas
         }
     }
-    
-    
-    
+
     //selecionar td 
     public List<model_operador> selectOperador() {
         String sql = "Select  id_operador, nome_operador, email_operador, tel, celular, endereco, "
@@ -161,13 +161,14 @@ public class dao_operador {
         }
         return listOp;
     }
+
     //Prqwuisar
     public List<model_operador> findOperador(String nome) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<model_operador> listaFindOp = new ArrayList<>();
         try {
-             ps = con.prepareStatement("SELECT * FROM operador WHERE nome_operador like ?");
+            ps = con.prepareStatement("SELECT * FROM operador WHERE nome_operador like ?");
             ps.setString(1, "%" + nome + "%");
             rs = ps.executeQuery();
             while (rs.next()) {

@@ -110,6 +110,11 @@ public class view_mouse extends javax.swing.JInternalFrame {
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ferramentas-de-edicao.png"))); // NOI18N
         jButton4.setText("Editar Mouse");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/criss-cross.png"))); // NOI18N
@@ -219,6 +224,10 @@ public class view_mouse extends javax.swing.JInternalFrame {
         
         readJtable();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
     private void campos(model_mouse mouse){
         mouse.setMarca_mouse(txtMarcamouse.getText());
     }
