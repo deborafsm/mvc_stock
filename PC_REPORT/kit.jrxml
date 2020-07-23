@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kit" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="683dbadf-70dd-43fd-b83b-1ecf80624908">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     kit.`lacre` AS kit_lacre,
+     kit.`hd` AS kit_hd,
+     kit.`so` AS kit_so,
+     kit.`processador` AS kit_processador,
+     kit.`memoria` AS kit_memoria,
+     kit.`nome_operador` AS kit_nome_operador
+FROM
+     `kit` kit]]>
+	</queryString>
+	<field name="kit_lacre" class="java.lang.String"/>
+	<field name="kit_hd" class="java.lang.String"/>
+	<field name="kit_so" class="java.lang.String"/>
+	<field name="kit_processador" class="java.lang.String"/>
+	<field name="kit_memoria" class="java.lang.String"/>
+	<field name="kit_nome_operador" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="200" height="40" uuid="b88c0e05-2f47-4060-b339-a9116fab837a"/>
+				<imageExpression><![CDATA["C:\\Users\\jobhome\\Desktop\\projetos\\mvc_jobhome_stock\\PC_REPORT\\Logo-JobHome-1-1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="103e7f35-ec81-411a-821b-434f724967c9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="144" height="15" uuid="7bb72d5a-4f78-4b4f-8a1f-c2ab122cf6d4"/>
+				<text><![CDATA[Lacre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="144" y="19" width="40" height="15" uuid="eeb45d30-db7a-4a91-8705-f3a6f1793d51"/>
+				<text><![CDATA[HD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="19" width="92" height="15" uuid="8dfba291-daf7-468a-b5ee-40d309c9aa16"/>
+				<text><![CDATA[SO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="92" height="15" uuid="c1a77d8d-0215-4b5a-8100-69360f9df785"/>
+				<text><![CDATA[CPU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="19" width="39" height="15" uuid="0b45ae9e-7308-4e9f-be6e-57bfba1bf649"/>
+				<text><![CDATA[RAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="407" y="19" width="145" height="15" uuid="cf13b97a-863d-418e-885e-7758d8232192"/>
+				<text><![CDATA[Agente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="7e224585-6056-4b36-b4eb-8583df4e7396"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="184" y="0" width="92" height="15" uuid="e2d31b51-0243-410b-a5a0-a086b61aa399"/>
+				<textFieldExpression><![CDATA[$F{kit_so}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="92" height="15" uuid="fd0a5866-88f8-4495-9584-90c368eb4087"/>
+				<textFieldExpression><![CDATA[$F{kit_processador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="368" y="0" width="39" height="15" uuid="296e523e-9690-4521-8f9c-23551c500f89"/>
+				<textFieldExpression><![CDATA[$F{kit_memoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="407" y="0" width="145" height="15" uuid="e6cf829b-746b-4ccf-946d-9aebef6a2198"/>
+				<textFieldExpression><![CDATA[$F{kit_nome_operador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="144" y="1" width="40" height="15" uuid="044fff3c-62b7-45a4-9f80-3fff383042c7"/>
+				<textFieldExpression><![CDATA[$F{kit_hd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="0" y="1" width="144" height="15" uuid="8786b0f2-fe75-41d2-bb38-ee682ce9695c"/>
+				<textFieldExpression><![CDATA[$F{kit_lacre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="d301ef28-3976-40ea-9c79-09f5a7d3fe17"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="d2d17a45-cd18-4a14-9487-24ee38fd56d6"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="7f8182cd-9952-45c8-8a3d-8a718c01a047"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="17df051d-7e09-45f1-9738-6f349eb7db28"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
