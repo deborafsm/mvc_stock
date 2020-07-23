@@ -1,4 +1,7 @@
 # mvc_jobhome_stock
+
+
+![GitHub repo size]https://img.shields.io/github/repo-size/deborafsm/mvc_jobhome_stock
 Controle de Estoque
 # Projeto Sistema de Gerenciamento de estoque para T.I JobHome
 
