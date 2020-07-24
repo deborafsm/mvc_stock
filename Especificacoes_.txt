@@ -1,0 +1,21 @@
+PC
+- nome_pc
+- Marca 
+- Modelo
+- HD
+- RAM
+- S.O
+- CPU
+- Código PC
+- Garantia
+Monitor
+- Código Monitor
+- Marca 
+- Modelo
+MOUSE / TECLADO / HEAD / WEBCAM /
+- Marca
+
+OPERDOR
+-nome
+-operacao
+-supervisor
