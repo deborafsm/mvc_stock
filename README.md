@@ -1,11 +1,11 @@
 # mvc_jobhome_stock
 
 Controle de Estoque
-# Projeto Sistema de Gerenciamento de estoque para T.I JobHome
+# Projeto Sistema de Gerenciamento de estoque para T.I
 
-Software para gerenciar estoque para T.I JobHome.
+Software para gerenciar estoque para T.I
 
-** Author: ** Débora Freire T.I JobHome (by: desFreire)
+** Author: ** Débora Freire T.I  (by: desFreire)
 Tecnologias Utilizadas:
     IDE: Netbeans
     Linguagem de programação: Java
