@@ -1,4 +1,4 @@
-# mvc_jobhome_stock
+# mvc_Debs_Wisp_stock
 
 Controle de Estoque
 # Projeto Sistema de Gerenciamento de estoque para T.I
