@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.controler_cadOperador;
 import dao.dao_operador;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.model_operador;
 
@@ -24,7 +26,10 @@ public class view_operador extends javax.swing.JInternalFrame {
     /**
      * Creates new form view_analista
      */
+    controler_cadOperador cont;
+
     public view_operador() {
+        cont = new controler_cadOperador();
         initComponents();
         readJtable();
         date();
@@ -611,13 +616,20 @@ public class view_operador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_brnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        if (txtnome.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite o nome do operador");
+        } else if (txtemail.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite o e-mail");
+        } else {
+            model_operador op = new model_operador();
+            dao_operador dao = new dao_operador();
+            //op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
+            campos(op);
 
-        model_operador op = new model_operador();
-        dao_operador dao = new dao_operador();
-        //op.setId_operador(tblOperador.getValueAt(tblOperador.getSelectedRow(), 0).toString());
-        campos(op);
-        dao.addOp(op);
-        readJtable();
+            dao.addOp(op);
+            readJtable();
+        }
+
 
     }//GEN-LAST:event_btnAddActionPerformed
 
