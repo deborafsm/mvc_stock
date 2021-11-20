@@ -55,17 +55,18 @@ Suporte para volta dos equipamento com defeito.
 
 # Cadastro de PC (computadores
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
-Cadastro de computadores com os campos 
+Cadastro de computadores com os campos: 
+
 - [x] nome do PC 
-- [x]  marca
-- [x]  modelo
-- [x]  HD
-- [x]  Memoria
-- [x]  S.O
-- [x]  processador
-- [x]  Código do PC
-- [x]  Garantia
-- [x]  Status
+- [x] marca
+- [x] modelo
+- [x] HD
+- [x] Memoria
+- [x] S.O
+- [x] processador
+- [x] Código do PC
+- [x] Garantia
+- [x] Status
 
 
 
