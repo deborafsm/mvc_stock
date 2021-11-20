@@ -57,19 +57,20 @@ Suporte para volta dos equipamento com defeito.
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
 Cadastro de computadores com os campos: 
 
- nome do PC 
- marca
-modelo
- HD
-Memoria
- S.O
-processador
-Código do PC
-Garantia
-Status
+- [x] nome do PC 
+- [x] marca
+- [x] modelo
+- [x] HD
+- [x] MEMORIA
+- [x] S.O
+- [x] PROCESSADOR
+- [x] CÓDIGO DO PC
+- [x] GARANTIA
+- [x] STATUS
 
 
-# Cadastro de 
+
+# Cadastro de Monitores
 
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroMonitores.PNG" width="600"/>
 Cadastro de Monitores apenas com o campo marca.
@@ -77,13 +78,36 @@ Cadastro de Monitores apenas com o campo marca.
 
 Clique sobre a tabela no profissional cadastrado, ou pesquise pelo nome.
 
-<img src="https://github.com/deborafsm\ds_vanilla\Documentos_Sistema\Telas\Selecionando.PNG" width="600"/>
+# Cadastro de Mouse
+Cadastro de mouse aprenas com o campo marca.
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroMouse.PNG" width="600"/>
 
 
-# Cenario Editar Candidato
+# Cadastro de Head
+Cadastro de head aprenas com o campo marca.
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroHead.PNG" width="600"/>
 
-O usuario Loga com o usuario e senha, navegando pelo menu superior clique no profissional cadastrado, ou pesquise pelo nome assim selecionado
-editar os dados e em seguida clicar no botão Editar.
+# Cadastro de WebCam
+Cadastro de webcam aprenas com o campo marca.
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroWC.PNG" width="600"/>
+
+# Cadastro de teclado
+Cadastro de teclado aprenas com o campo marca.
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroTeclado.PNG" width="600"/>
+
+
+# Cadastro de Operador
+Cadastro de operador com os campos.
+# Empresas 
+- [x] Nome
+- [x] E-mail
+- [x] Telefone
+- [x] Setor
+- [x] Cargo
+- [x] Supervisor
+
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroOperador.PNG" width="600"/>
+
 
 # Cenario Remover Candidato
 O usuario Loga com o usuario e senha, navegando pelo menu superior clique no profissional cadastrado, ou pesquise pelo nome assim selecionado
