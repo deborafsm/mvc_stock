@@ -57,21 +57,22 @@ Suporte para volta dos equipamento com defeito.
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
 Cadastro de computadores com os campos: 
 
-- [x] nome do PC 
-- [x] marca
-- [x] modelo
-- [x] HD
-- [x] Memoria
-- [x] S.O
-- [x] processador
-- [x] Código do PC
-- [x] Garantia
-- [x] Status
+ nome do PC 
+ marca
+modelo
+ HD
+Memoria
+ S.O
+processador
+Código do PC
+Garantia
+Status
 
 
+# Cadastro de 
 
-<img src="https://github.com/deborafsm/ds_vanilla/blob/master/Documentos_Sistema/Telas/CapturarCandidato.PNG" width="600"/>
-
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroMonitores.PNG" width="600"/>
+Cadastro de Monitores apenas com o campo marca.
 # Cenario Selecionando Candidato
 
 Clique sobre a tabela no profissional cadastrado, ou pesquise pelo nome.
