@@ -49,7 +49,7 @@ Cadastro de periféricos como:
 Montagem de KIT para operadores que vão realizar o trabalho home office.
 Suporte para volta dos equipamento com defeito.
 
-<img src="https://github.com/deborafsm/mvc_stock/Imagens_Sistema/MenuPrincipal.PNG" width="600"/>
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
 
 
 # Cadastro de PC (computadores
