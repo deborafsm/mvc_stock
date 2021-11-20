@@ -37,6 +37,7 @@ Ilustra e descreve a funcionalidade do sistema
 
 
 # Menu inicial
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/MenuPrincipal.PNG" width="600"/>
 No menu inicial temos Cadastro, Kit e suporte.
 Cadastro de periféricos como:
 - PC (computadores)
@@ -49,10 +50,11 @@ Cadastro de periféricos como:
 Montagem de KIT para operadores que vão realizar o trabalho home office.
 Suporte para volta dos equipamento com defeito.
 
-<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
+
 
 
 # Cadastro de PC (computadores
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
 Cadastro de computadores com os campos 
 - nome do PC 
 - marca
@@ -64,7 +66,7 @@ Cadastro de computadores com os campos
 - Código do PC
 - Garantia
 - Status
-<img src="https://github.com/deborafsm/mvc_stock/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
+
 
 
 <img src="https://github.com/deborafsm/ds_vanilla/blob/master/Documentos_Sistema/Telas/CapturarCandidato.PNG" width="600"/>
