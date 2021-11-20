@@ -15,6 +15,7 @@ Que Ilustra justamente a sua funcionalidade podendo ser executada em um desktop,
 no seu compilador primário javaC se transforma em um byteCode por sua vez inici-se uma recompilação
 no JVA (java virtual machine) e essa executa no ambiente.
 
+
 # Apresentação 
 Sistema para gerenciamento de estoque para o setor de  T.I.
 
