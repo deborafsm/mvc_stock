@@ -40,7 +40,7 @@ Suporte para volta dos equipamento com defeito.
 
 
 
-# Cadastro de PC (computadores
+# Cadastro de PC (computadores)
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroPCs.PNG" width="600"/>
 Cadastro de computadores com os campos: 
 
