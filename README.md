@@ -101,11 +101,14 @@ Cadastro de operador com os campos.
 - [x] Supervisor
 
 # Cadastro de KIT DE SAIDA
-Cadastra o kit de saida com o todos os detalhes do computador, prerifericos e do  operador.
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroDeKitSaida.PNG" width="600"/>
+Cadastra o kit de saida com o todos os detalhes do computador, prerifericos e do  operador.
+
 
 #Suporte - abertura de chamado para Computadores 
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/DefeitoPC.PNG" width="600"/>
 
+
 #Suporte - abertura de chamado para Monitores 
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/DefeitoMonitor.PNG" width="600"/>
+
