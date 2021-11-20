@@ -22,20 +22,6 @@ Sistema para gerenciamento de estoque para o setor de  T.I.
 -Realizar o controle centralizado de estoque para o setor de T.I
 
 
-
- #Telas do Projeto
-
-
-
-# Casos de Uso 
-Ilustra e descreve a funcionalidade do sistema
-
-<img src="https://github.com/deborafsm/ds_vanilla/blob/master/Documentos_Sistema/Diagramas/RCU.PNG" width="460"/>
-
-# Diagrama de Banco de Dados
-
-
-
 # Menu inicial
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/MenuPrincipal.PNG" width="600"/>
 No menu inicial temos Cadastro, Kit e suporte.
