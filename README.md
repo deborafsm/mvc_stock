@@ -73,30 +73,37 @@ Cadastro de computadores com os campos:
 # Cadastro de Monitores
 
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroMonitores.PNG" width="600"/>
+
 Cadastro de Monitores apenas com o campo marca.
 # Cenario Selecionando Candidato
 
 Clique sobre a tabela no profissional cadastrado, ou pesquise pelo nome.
 
 # Cadastro de Mouse
-Cadastro de mouse aprenas com o campo marca.
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroMouse.PNG" width="600"/>
+
+Cadastro de mouse aprenas com o campo marca.
+
 
 
 # Cadastro de Head
-Cadastro de head aprenas com o campo marca.
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroHead.PNG" width="600"/>
 
+Cadastro de head aprenas com o campo marca.
+
+
 # Cadastro de WebCam
-Cadastro de webcam aprenas com o campo marca.
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroWC.PNG" width="600"/>
 
+Cadastro de webcam aprenas com o campo marca.
+
 # Cadastro de teclado
-Cadastro de teclado aprenas com o campo marca.
 <img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroTeclado.PNG" width="600"/>
 
+Cadastro de teclado aprenas com o campo marca.
 
 # Cadastro de Operador
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroOperador.PNG" width="600"/>
 Cadastro de operador com os campos.
 # Empresas 
 - [x] Nome
@@ -106,34 +113,12 @@ Cadastro de operador com os campos.
 - [x] Cargo
 - [x] Supervisor
 
-<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroOperador.PNG" width="600"/>
+# Cadastro de KIT DE SAIDA
+Cadastra o kit de saida com o todos os detalhes do computador, prerifericos e do  operador.
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/CadastroDeKitSaida.PNG" width="600"/>
 
+#Suporte - abertura de chamado para Computadores 
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/DefeitoPC.PNG" width="600"/>
 
-# Cenario Remover Candidato
-O usuario Loga com o usuario e senha, navegando pelo menu superior clique no profissional cadastrado, ou pesquise pelo nome assim selecionado
-Clique sobre Remover Usuário.
-
-
-<img src="https://github.com/deborafsm/ds_vanilla/blob/master/Documentos_Sistema/Telas/Cadastrar.PNG" width="460"/>
-
-
-# Empresas 
-- [x] Insert
-- [x] Update
-- [x] Find
-- [x] Select
-
-# Pessoas
-- [x] Insert
-- [ ] Update
-- [x] Find
-- [ ] Select
-
-# Vagas
-- [x] Insert
-- [ ] Update
-- [ ] Find
-- [ ] Select
-
-# Usuarios
-- [x] Select
+#Suporte - abertura de chamado para Monitores 
+<img src="https://github.com/deborafsm/mvc_stock/blob/master/Imagens_Sistema/DefeitoMonitor.PNG" width="600"/>
